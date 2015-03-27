@@ -8,6 +8,12 @@
 
 #import "ShareGameManager.h"
 
+NSString* const skillnames[] = {@"冶炼",@"土豪",@"伐木",@"伏兵",@"箭术",@"刺杀",@"强攻",@"砲术",@"沉着",@"冲锋",@"水神",@"助火",@"反制",@"残酷",@"驱散",@"医师",@"爆击",@"激怒",@"反馈",@"火计",@"火箭",@"治疗",@"威压",@"恐惧",@"铁壁",@"合击",@"诏书",@"雷击",@"机甲",@"仁义",@"迷魂",@"误导",@"解毒",@"毒术",@"雨天",@"援兵",@"反计",@"复仇",@"谣言",@"疾行",@"地道",@"治安",@"晴天",@"雷神",@"陷阱",@"群射",@"治水",@"水计"};
+
+NSString* const trooptypes[] = {@"",@"步兵",@"弓兵",@"骑兵",@"策士",@"弩车"};
+
+NSString* const citynames[] = {@"",@"酒泉",@"张掖",@"武威",@"西海",@"天水",@"陇西",@"汉中",@"巴西",@"梓潼",@"巴郡",@"广汉",@"成都",@"江阳",@"永安",@"江州",@"建宁",@"云南",@"交趾",@"郁林",@"扶风",@"京兆",@"长安",@"上庸",@"武陵",@"零陵",@"桂阳",@"苍梧",@"合浦",@"晋阳",@"平阳",@"弘农",@"襄阳",@"雁门",@"常山",@"洛阳",@"宛城",@"新野",@"江陵",@"长沙",@"南海",@"朱崖",@"上谷",@"范阳",@"代郡",@"邺城",@"巨鹿",@"河内",@"濮阳",@"颖川",@"许昌",@"陈留",@"汝南",@"寿春",@"江夏",@"庐江",@"柴桑",@"鄱阳",@"豫章",@"建安",@"庐陵",@"蓟城",@"渔阳",@"清河",@"泰山",@"平原",@"北平",@"辽西",@"襄平",@"乐浪",@"南皮",@"东莱",@"北海",@"小沛",@"琅邪",@"东海",@"徐州",@"下邳",@"广陵",@"建业",@"毗陵",@"吴郡",@"会稽",@"临海",@"夷州"};
+
 @implementation ShareGameManager
 
 @synthesize gameDifficulty = _gameDifficulty;
@@ -586,6 +592,28 @@ static id instance = nil;
     [[NSFileManager defaultManager] createFileAtPath:curdb contents:nil attributes:nil];
     NSFileHandle *outFileHandle = [NSFileHandle fileHandleForWritingAtPath:curdb];//写管道
     NSFileHandle *inFileHandle = [NSFileHandle fileHandleForReadingAtPath:savefile];//读管道
+    NSData *data =[inFileHandle readDataToEndOfFile];
+    [outFileHandle writeData:data];
+    [outFileHandle closeFile];
+    [inFileHandle closeFile];
+}
+
+-(void) autoSaveCurrentDB
+{
+    NSString *rootpath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+    NSString *curdb = [rootpath stringByAppendingPathComponent:@"current.db"];
+    
+    NSString *savefile = [rootpath stringByAppendingPathComponent:@"autosave.db"];
+    
+    if ([[NSFileManager defaultManager] fileExistsAtPath:savefile isDirectory:NO]) {
+        CCLOG(@"save file removing....");
+        [[NSFileManager defaultManager] removeItemAtPath:savefile error:nil];
+        return;
+    }
+    
+    [[NSFileManager defaultManager] createFileAtPath:curdb contents:nil attributes:nil];
+    NSFileHandle *outFileHandle = [NSFileHandle fileHandleForWritingAtPath:savefile];//写管道
+    NSFileHandle *inFileHandle = [NSFileHandle fileHandleForReadingAtPath:curdb];//读管道
     NSData *data =[inFileHandle readDataToEndOfFile];
     [outFileHandle writeData:data];
     [outFileHandle closeFile];

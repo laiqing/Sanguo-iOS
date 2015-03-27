@@ -34,7 +34,9 @@ typedef enum {
 
 @end
 
-
+extern NSString* const skillnames[];
+extern NSString* const trooptypes[];
+extern NSString* const citynames[];
 
 @interface ShareGameManager : NSObject {
     BOOL hasAudioBeenInitialized;
@@ -85,6 +87,7 @@ typedef enum {
 //-----------------------------------
 -(void) saveGameToRecord:(int)recID;
 -(void) loadGameFromRecord:(int)recID;
+-(void) autoSaveCurrentDB;
 
 
 

@@ -161,6 +161,7 @@
 		26CEA5D41AC3193B00649827 /* MapScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 26CEA5D31AC3193B00649827 /* MapScene.m */; };
 		26CEA5D71AC3195900649827 /* MapLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 26CEA5D61AC3195900649827 /* MapLayer.m */; };
 		26CEA5DA1AC3196700649827 /* MapHUDLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 26CEA5D91AC3196700649827 /* MapHUDLayer.m */; };
+		26CFBD671AC58D45009CF983 /* FightLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 26CFBD661AC58D45009CF983 /* FightLayer.m */; };
 		26F1279C1AC500A900DADFD9 /* ExternCCAction.m in Sources */ = {isa = PBXBuildFile; fileRef = 26F1279B1AC500A900DADFD9 /* ExternCCAction.m */; };
 /* End PBXBuildFile section */
 
@@ -477,6 +478,8 @@
 		26CEA5D61AC3195900649827 /* MapLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapLayer.m; sourceTree = "<group>"; };
 		26CEA5D81AC3196700649827 /* MapHUDLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapHUDLayer.h; sourceTree = "<group>"; };
 		26CEA5D91AC3196700649827 /* MapHUDLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapHUDLayer.m; sourceTree = "<group>"; };
+		26CFBD651AC58D45009CF983 /* FightLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FightLayer.h; sourceTree = "<group>"; };
+		26CFBD661AC58D45009CF983 /* FightLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FightLayer.m; sourceTree = "<group>"; };
 		26F1279A1AC5008B00DADFD9 /* ExternCCAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExternCCAction.h; sourceTree = "<group>"; };
 		26F1279B1AC500A900DADFD9 /* ExternCCAction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExternCCAction.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -563,6 +566,8 @@
 				2643F7BD1AC39B58001FD1AA /* BattleHUDLayer.m */,
 				26BEA18C1AC4E0DD00B3ACAF /* DiaoDongLayer.h */,
 				26BEA18D1AC4E0DD00B3ACAF /* DiaoDongLayer.m */,
+				26CFBD651AC58D45009CF983 /* FightLayer.h */,
+				26CFBD661AC58D45009CF983 /* FightLayer.m */,
 			);
 			path = scene;
 			sourceTree = "<group>";
@@ -1155,6 +1160,7 @@
 				263D05A81AC03FE000248FFA /* CCSprite.m in Sources */,
 				263D054F1AC03FE000248FFA /* CCGrabber.m in Sources */,
 				263D06591AC03FE200248FFA /* mat3.c in Sources */,
+				26CFBD671AC58D45009CF983 /* FightLayer.m in Sources */,
 				263D06731AC03FE200248FFA /* AppDelegate.m in Sources */,
 				263D05E31AC03FE100248FFA /* CCES2Renderer.m in Sources */,
 				263D05551AC03FE000248FFA /* CCLabelAtlas.m in Sources */,

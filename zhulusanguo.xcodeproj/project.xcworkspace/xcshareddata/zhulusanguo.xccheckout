@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>FB8AB603-A37C-4B6B-95EE-69C7BFD68A3D</string>
+	<key>IDESourceControlProjectName</key>
+	<string>zhulusanguo</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>ACE363636F5F3617022D3BA0EBFC8B87AC285129</key>
+		<string>github.com:laiqing/Sanguo-iOS.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>zhulusanguo.xcodeproj</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>ACE363636F5F3617022D3BA0EBFC8B87AC285129</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>github.com:laiqing/Sanguo-iOS.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>ACE363636F5F3617022D3BA0EBFC8B87AC285129</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>ACE363636F5F3617022D3BA0EBFC8B87AC285129</string>
+			<key>IDESourceControlWCCName</key>
+			<string>zhulusanguo</string>
+		</dict>
+	</array>
+</dict>
+</plist>

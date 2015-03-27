@@ -2435,7 +2435,7 @@
                 <key>sourceSize</key>
                 <string>{68,91}</string>
             </dict>
-            <key>mapdialog-hd.png</key>
+            <key>mapdialog.png</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,2},{884,458}}</string>
@@ -3147,7 +3147,7 @@
             <key>size</key>
             <string>{1024,2453}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:03f5b80beae5383a4b86466da8c2796e:b3b45cbc2a71798478b58837e9a71a71:6f72a09d9a0677bae8b6b816aed8edf3$</string>
+            <string>$TexturePacker:SmartUpdate:74d5b34c996f4d544e32adfc708b2c91:b3b45cbc2a71798478b58837e9a71a71:6f72a09d9a0677bae8b6b816aed8edf3$</string>
             <key>textureFileName</key>
             <string>sanguo-hd.pvr.ccz</string>
         </dict>

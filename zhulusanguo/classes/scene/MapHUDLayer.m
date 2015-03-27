@@ -134,9 +134,8 @@
         [self addChild:ironLabel z:3];
         
         //add menu btn
-        //------------------- change to touchable sprite
         //------------------- add pop menu layer event function
-        CCSprite* menu = [CCSprite spriteWithSpriteFrameName:@"menu2.png"];
+        menu = [TouchableSprite spriteWithSpriteFrameName:@"menu2.png"];
         menu.anchorPoint = ccp(0.5, 1);
         menu.position = ccp(530,320);
         [self addChild:menu z:2];
@@ -334,6 +333,7 @@
 
 -(void) popCityInfoWithCityID:(int)cid
 {
+    [[SimpleAudioEngine sharedEngine] playEffect:@"menu.caf"];
     CGSize winsize = [CCDirector sharedDirector].winSize;
     //add bginfo
     if (citydlg==nil) {
@@ -555,8 +555,6 @@
     [self addChild:ballistaCount z:3];
     
     //add btn
-    //------------------ need to add change the text on this button , change it to touchable sprite
-    //------------------ when city owner is not the king , change the button to fighting...
     if (selkid != [ShareGameManager shareGameManager].kingID) {
         
     }
@@ -583,11 +581,27 @@
     
 }
 
+//---------------------------------
+//
+//---------------------------------
 -(void) performDiaoDongToCity:(NSNumber*)cid
 {
     int _cid = (int)[cid integerValue];
     //show diao dong dialog
     CCLOG(@"show diao dong dialong with cityid :%d",_cid);
+    [[SimpleAudioEngine sharedEngine] playEffect:@"menu.caf"];
+    
+    CGSize wsize = [[CCDirector sharedDirector] winSize];
+    //410*205
+    CGPoint origin = ccp(wsize.width*0.5-205, wsize.height*0.5-103);
+    CGRect vrect = CGRectMake(origin.x, origin.y, 410, 206);
+    
+    DiaoDongLayer* ddlayer = [DiaoDongLayer slidingLayer:Vertically contentRect:vrect withTargetCityID:_cid];
+    CCScene* run = [[CCDirector sharedDirector] runningScene];
+    ddlayer.tag = 3;
+    [run addChild:ddlayer z:3];
+    
+    [self performSelector:@selector(removePopCityInfo) withObject:nil afterDelay:0.5];
     
 }
 

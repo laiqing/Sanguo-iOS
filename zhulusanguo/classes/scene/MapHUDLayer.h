@@ -11,6 +11,9 @@
 
 #import "ShareGameManager.h"
 #import "TouchableSprite.h"
+#import "DiaoDongLayer.h"
+#import "FightLayer.h"
+
 
 @interface MapHUDLayer : CCLayer<MapHUDProtocol> {
     UIView *uvi;
@@ -47,6 +50,8 @@
     
     TouchableSprite* btn1;
     TouchableSprite* btn2;
+    
+    TouchableSprite* menu;
     
 }
 

@@ -13,6 +13,8 @@
 #import "cocos2d.h"
 
 #import "ShareGameManager.h"
+#import "TouchableSprite.h"
+#import "HeroObject.h"
 
 typedef enum{
     Vertically,
@@ -37,11 +39,14 @@ typedef enum{
     float xvel;
     float contentHeight;
     
+    float minTopY;
+    float maxBottomY;
+    
     int _targetCityID;
 }
 
-+ (id) slidingLayer:(SlideDirection) slideDirection size:(CGSize)contentSize contentRect:(CGRect)contentRect withTargetCityID:(int)tcid;
-- (id) initSlidingLayer:(SlideDirection) slideDirection size:(CGSize)contentSize contentRect:(CGRect)contentRect withTargetCityID:(int)tcid;
++ (id) slidingLayer:(SlideDirection) slideDirection contentRect:(CGRect)contentRect withTargetCityID:(int)tcid;
+- (id) initSlidingLayer:(SlideDirection) slideDirection contentRect:(CGRect)contentRect withTargetCityID:(int)tcid;
 - (void) update:(ccTime) deltaTime;
 -(void) updateChildVisible:(CCNode*)ch;
 -(void) addChildToVirtualNode:(CCNode*)child;

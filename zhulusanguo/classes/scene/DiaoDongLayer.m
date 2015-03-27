@@ -11,44 +11,165 @@
 
 @implementation DiaoDongLayer
 
-+ (id) slidingLayer:(SlideDirection) slideDirection size:(CGSize)contentSize contentRect:(CGRect)contentRect withTargetCityID:(int)tcid
++ (id) slidingLayer:(SlideDirection) slideDirection contentRect:(CGRect)contentRect withTargetCityID:(int)tcid
 {
-    return [[[self alloc] initSlidingLayer:slideDirection size:contentSize contentRect:contentRect withTargetCityID:tcid] autorelease];
+    return [[[self alloc] initSlidingLayer:slideDirection contentRect:contentRect withTargetCityID:tcid] autorelease];
 }
 
-- (id) initSlidingLayer:(SlideDirection) slideDirection size:(CGSize)contentSize contentRect:(CGRect)contentRect withTargetCityID:(int)tcid{
+- (id) initSlidingLayer:(SlideDirection) slideDirection contentRect:(CGRect)contentRect withTargetCityID:(int)tcid{
     if ((self = [super init])) {
         slideDirection_ = slideDirection;
-        [self setContentSize:contentSize];
+        //[self setContentSize:contentSize];
         _targetCityID = tcid;
         isDragging_ = false;
         lasty = 0.0f;
         xvel = 0.0f;
         direction_ = BounceDirectionStayingStill;
         contentRect_ = contentRect;
-        [self setAnchorPoint:CGPointZero];
-        if(slideDirection_ == Vertically) {
-            CGPoint newPosition = CGPointMake(contentRect.origin.x, -1 * (self.contentSize.width - contentRect_.size.height));
-            [self setPosition:newPosition];
-        }
-        else if(slideDirection_ == Horizontally){
-            [self setPosition:ccp(contentRect.origin.x, contentRect.origin.y)];
-        }
-        [self scheduleUpdate];
-        [self registerWithTouchDispatcher]; // register touch
+        //[self setAnchorPoint:CGPointZero];
+        //if(slideDirection_ == Vertically) {
+        //    CGPoint newPosition = CGPointMake(contentRect.origin.x, -1 * (self.contentSize.width - contentRect_.size.height));
+        //    [self setPosition:newPosition];
+        //}
+        //else if(slideDirection_ == Horizontally){
+        //    [self setPosition:ccp(contentRect.origin.x, contentRect.origin.y)];
+        //}
+        //[self scheduleUpdate];
+        // register touch
         
         virtualLayer = [CCNode node];
         [self addChild:virtualLayer z:1];
+        minTopY = virtualLayer.position.y;
+
+        CCSprite* bg = [CCSprite spriteWithSpriteFrameName:@"mapdialog.png"];
+        CGSize wsize = [[CCDirector sharedDirector] winSize];
+        bg.position = ccp(wsize.width*0.5, wsize.height*0.5);
+        [self addChild:bg z:0];
+        CGFloat bgheight = bg.boundingBox.size.height;
         
-        //try to select hero from other city, 
+        int kid = [ShareGameManager shareGameManager].kingID;
+        NSArray* heroes = [[ShareGameManager shareGameManager] selectHeroForDiaoDong:kid targetCityID:tcid];
+        int len = (int)[heroes count];
+        CCLOG(@"all heroes count: %d",len);
+        CGFloat hfheight;
+        for (int i=0;i<len;i++) {
+            //add selectHeroFrame
+            CCSprite* hf = [CCSprite spriteWithSpriteFrameName:@"selectHeroFrame.png"];
+            hfheight = hf.boundingBox.size.height;
+            hf.position = ccp(wsize.width*0.5-20, wsize.height*0.5+bgheight*0.5 - 20 - hfheight*0.5 -(hfheight+5)*i);
+            [virtualLayer addChild:hf z:1];
+            //CCLOG(@"hero name:%@",((HeroObject*)[heroes objectAtIndex:i]).cname);
+            
+            //add hero icon
+            HeroObject* ho = (HeroObject*)[heroes objectAtIndex:i];
+            NSString* hheadname = [NSString stringWithFormat:@"hero%d.png",ho.headImageID];
+            CCSprite* hhead = [CCSprite spriteWithSpriteFrameName:hheadname];
+            hhead.position = ccp(hf.position.x - hf.boundingBox.size.width*0.5 + 15 + hhead.boundingBox.size.width*0.5 , hf.position.y);
+            [virtualLayer addChild:hhead z:2];
+            
+            float labely1 = hhead.position.y + hhead.boundingBox.size.height*0.25;
+            float labely2 = hhead.position.y - hhead.boundingBox.size.height*0.25;
+            
+            //now add hero name , city,  level , strength, intelligence, skill1,2,3, troopatt,troopmental, trooptype , troopcount
+            NSString* sk1;
+            sk1 = skillnames[ho.skill1];
+            NSString* sk2;
+            if (ho.skill2==99) {
+                sk2 = @"无";
+            }
+            else {
+                sk2 = skillnames[ho.skill2];
+            }
+            NSString* sk3;
+            if (ho.skill3==99) {
+                sk3 = @"无";
+            }
+            else {
+                sk3 = skillnames[ho.skill3];
+            }
+            NSString* cin = citynames[ho.cityID];
+            NSString* line1 = [NSString stringWithFormat:@"%@  %@  等级:%d  武力:%d  智力:%d  %@  %@  %@",ho.cname,cin,ho.level,ho.strength,ho.intelligence,sk1,sk2,sk3];
+            CCLabelTTF* labelline1 = [CCLabelTTF labelWithString:line1 fontName:@"Arial" fontSize:12];
+            labelline1.anchorPoint = ccp(0, 0.5);
+            labelline1.color = ccYELLOW;
+            labelline1.position = ccp(hhead.position.x + 30, labely1);
+            [virtualLayer addChild:labelline1 z:2];
+            
+            NSString* trtp = trooptypes[ho.troopType];
+            NSString* line2 = [NSString stringWithFormat:@"部队攻击力:%d  部队精神力:%d  %@  数量:%d",ho.troopAttack,ho.troopMental,trtp,ho.troopCount];
+            CCLabelTTF* labelline2 = [CCLabelTTF labelWithString:line2 fontName:@"Arial" fontSize:12];
+            labelline2.anchorPoint = ccp(0, 0.5);
+            labelline2.color = ccORANGE;
+            labelline2.position = ccp(hhead.position.x + 30, labely2);
+            [virtualLayer addChild:labelline2 z:2];
+            
+            //add check box
+            TouchableSprite* cb = [TouchableSprite spriteWithSpriteFrameName:@"checkbox.png"];
+            cb.position = ccp(hf.position.x + hf.boundingBox.size.width*0.5 + 20, hf.position.y);
+            
+            [virtualLayer addChild:cb z:2];
+            [cb initTheCallbackFunc:@selector(touchHeroWithID:) withCaller:self withTouchID:ho.heroID];
+            
+        }
+        maxBottomY = (hfheight+5)*len - contentRect.size.height + 10 ;
+        for (CCNode* item in virtualLayer.children) {
+            [self updateChildVisible:item];
+        }
+        
+        //add infobar in the bottom , target city, cost ,  button
+        CCSprite* bottom = [CCSprite spriteWithSpriteFrameName:@"infobar.png"];
+        bottom.position = ccp(wsize.width*0.5, wsize.height*0.5 - bg.boundingBox.size.height*0.5 - bottom.boundingBox.size.height*0.5 - 5);
+        [self addChild:bottom z:1];
+        
+        //text
+        NSString* ctna = citynames[tcid];
+        CCLabelTTF* tcity = [CCLabelTTF labelWithString:ctna fontName:@"Arial" fontSize:12];
+        tcity.color = ccYELLOW;
+        tcity.position = ccp(bottom.position.x - bottom.boundingBox.size.width*0.4, bottom.position.y);
+        [self addChild:tcity z:2];
+        
+        //gold
+        CCSprite* gg = [CCSprite spriteWithSpriteFrameName:@"gold.png"];
+        gg.scale = 0.5;
+        gg.position = ccp(wsize.width*0.5, bottom.position.y);
+        [self addChild:gg z:2];
+        
+        //gold text
+        CCLabelTTF* ggtext = [CCLabelTTF labelWithString:@"0" fontName:@"Arial" fontSize:12];
+        ggtext.anchorPoint = ccp(0, 0.5);
+        ggtext.position = ccp(gg.position.x + 15, gg.position.y);
+        [self addChild:ggtext z:2];
+        
+        
+        //button
+        TouchableSprite* btn = [TouchableSprite spriteWithSpriteFrameName:@"diaodong.png"];
+        btn.position = ccp(bottom.position.x + bottom.boundingBox.size.width*0.4, bottom.position.y);
+        [self addChild:btn z:2];
         
         
     }
     return self;
 }
 
-- (void) dealloc {
+-(void) touchHeroWithID:(NSNumber*)heID
+{
+    int hid = (int)[heID integerValue];
+    CCLOG(@"hid select : %d",hid);
+}
+
+-(void) onEnter
+{
+    [self registerWithTouchDispatcher];
+    [super onEnter];
+}
+
+-(void) onExit
+{
     [[[CCDirector sharedDirector] touchDispatcher] removeDelegate:self];
+    [super onExit];
+}
+
+- (void) dealloc {
     [super dealloc];
 }
 
@@ -57,147 +178,30 @@
     [virtualLayer addChild:child z:1];
 }
 
-- (void) update:(ccTime) deltaTime {
-    CGPoint pos = self.position;
-    // positions for slidingLayer
-    float right = pos.x + 0 + self.contentSize.width;
-    float left = pos.x + 0;
-    float top = pos.y + 0;
-    float bottom = pos.y + 0 + self.contentSize.height;
-    
-    // Bounding area of slidingview
-    float minX = contentRect_.origin.x;
-    float maxX = contentRect_.origin.x + contentRect_.size.width;
-    
-    float minY = contentRect_.origin.y;
-    float maxY = contentRect_.origin.y + contentRect_.size.height;
-    
-    if(!isDragging_) {
-        static float friction = 0.96f;
-        if(slideDirection_ == Horizontally){
-            if(left > minX && direction_ != BounceDirectionGoingLeft) {
-                xvel = 0;
-                direction_ = BounceDirectionGoingLeft;
-            }
-            else if(right < maxX && direction_ != BounceDirectionGoingRight) {
-                xvel = 0;
-                direction_ = BounceDirectionGoingRight;
-            }
-        }
-        else if(slideDirection_ == Vertically) {
-            if(top > minY && direction_ != BounceDirectionGoingUp) {
-                xvel = 0;
-                direction_ = BounceDirectionGoingUp;
-            }
-            else if(bottom < maxY && direction_ != BounceDirectionGoingDown) {
-                xvel = 0;
-                direction_ = BounceDirectionGoingDown;
-            }
-        }
-        if(direction_ == BounceDirectionGoingRight) {
-            if(xvel >= 0) {
-                float delta = (maxX - right);
-                float yDeltaPerFrame = (delta / (BOUNCE_TIME * FRAME_RATE));
-                xvel = yDeltaPerFrame;
-            }
-            if((right + 0.5f) == maxX) {
-                pos.x = right -  self.contentSize.width;
-                xvel = 0;
-                direction_ = BounceDirectionStayingStill;
-            }
-        }
-        else if(direction_ == BounceDirectionGoingLeft) {
-            if(xvel <= 0) {
-                float delta = (minX - left);
-                float yDeltaPerFrame = (delta / (BOUNCE_TIME * FRAME_RATE));
-                xvel = yDeltaPerFrame;
-            }
-            if((left + 0.5f) == minX) {
-                pos.x = left - 0;
-                xvel = 0;
-                direction_ = BounceDirectionStayingStill;
-            }
-        }
-        else if(direction_ == BounceDirectionGoingDown) {
-            if(xvel >= 0) {
-                float delta = (maxY - bottom);
-                float yDeltaPerFrame = (delta / (BOUNCE_TIME * FRAME_RATE));
-                xvel = yDeltaPerFrame;
-            }
-            if((bottom + 0.5f) == maxY) {
-                pos.y = bottom -  self.contentSize.height;
-                xvel = 0;
-                direction_ = BounceDirectionStayingStill;
-            }
-        }
-        else if(direction_ == BounceDirectionGoingUp) {
-            if(xvel <= 0) {
-                float delta = (minY - top);
-                float yDeltaPerFrame = (delta / (BOUNCE_TIME * FRAME_RATE));
-                xvel = yDeltaPerFrame;
-            }
-            if((top + 0.5f) == minY) {
-                
-                pos.y = top - 0;
-                xvel = 0;
-                direction_ = BounceDirectionStayingStill;
-            }
-        }
-        else {
-            xvel *= friction;
-        }
-        if(slideDirection_ == Horizontally) {
-            pos.x += xvel;
-        }
-        else if (slideDirection_ == Vertically) {
-            pos.y += xvel;
-        }
-        [self setPosition:pos];
-    }
-    else {
-        if(slideDirection_ == Horizontally) {
-            if(left <= minX || right >= maxX) {
-                direction_ = BounceDirectionStayingStill;
-            }
-            if(direction_ == BounceDirectionStayingStill) {
-                xvel = (pos.x - lasty)/2;
-                lasty = pos.x;
-            }
-        }
-        else if(slideDirection_ == Vertically){
-            if(top <= minY || bottom >= maxY) {
-                direction_ = BounceDirectionStayingStill;
-            }
-            if(direction_ == BounceDirectionStayingStill) {
-                xvel = (pos.y - lasty)/2;
-                lasty = pos.y;
-            }
-        }
-    }
-}
+
 
 - (void) registerWithTouchDispatcher {
-    [[[CCDirector sharedDirector] touchDispatcher] addTargetedDelegate:self priority:1 swallowsTouches:NO];
+    [[[CCDirector sharedDirector] touchDispatcher] addTargetedDelegate:self priority:1 swallowsTouches:YES];
 }
 
 - (BOOL) ccTouchBegan:(UITouch*)touch withEvent:(UIEvent *)event {
     CGPoint touchLocation = [[CCDirector sharedDirector] convertToGL:[touch locationInView: [touch view]]];
     if (CGRectContainsPoint(contentRect_, touchLocation)) {
-        //touchLocation in area, now try to detect is dragging or drag icon
-        for (CCLabelTTF* label in virtualLayer.children) {
-            CGRect cb = CGRectApplyAffineTransform(label.boundingBox, [virtualLayer nodeToParentTransform]);
-            CGRect cb2 = CGRectApplyAffineTransform(cb, [self nodeToParentTransform]);
-            if ( CGRectContainsPoint(cb2, touchLocation) ) {
-                CCLOG(@"touch on label");
-                return YES;
-            }
-        }
-        CCLOG(@"finish search children but not found....");
         isDragging_ = YES;
+        return YES;
     }
-    return YES;
+    else {
+        //close self after 0.5 second
+        [self performSelector:@selector(removeFromParent) withObject:nil afterDelay:0.5];
+        return YES;
+    }
+    
 }
 
+
+//
+//here , ch is a child to virtualLayer node
+//
 -(void) updateChildVisible:(CCNode*)ch
 {
     CGRect cb = CGRectApplyAffineTransform(ch.boundingBox, [virtualLayer nodeToParentTransform]);
@@ -218,29 +222,29 @@
     CGPoint a = [[CCDirector sharedDirector] convertToGL:preLocation];
     CGPoint b = [[CCDirector sharedDirector] convertToGL:curLocation];
     
-    CGPoint nowPosition = self.position;
+    CGPoint nowPosition = virtualLayer.position;
     
     if(slideDirection_ == Vertically) {
         float minY = 0;
         float maxY = (contentRect_.size.height) - self.contentSize.height;
+        //CCLOG(@"maxY:%f",maxY);
         float delta = ( b.y - a.y );
         float deltaY = nowPosition.y + delta;
         if(deltaY < maxY || deltaY > minY) {
-            delta *= 0.2;
+            delta *= 0.5;
         }
         nowPosition.y += delta;
     }
-    else if(slideDirection_ == Horizontally) {
-        float minX = 0;
-        float maxX = (contentRect_.size.height) - self.contentSize.height;
-        float delta = ( b.x - a.x );
-        float deltaX = nowPosition.x + delta;
-        if(deltaX < maxX || deltaX > minX) {
-            delta *= 0.2;
-        }
-        nowPosition.x += delta;
+    
+    //CCLOG(@"now position.y %f , max: %f",nowPosition.y,maxBottomY);
+    if (nowPosition.y <0) {
+        nowPosition.y = 0;
     }
-    [self setPosition:nowPosition];
+    else if (nowPosition.y > maxBottomY) {
+        nowPosition.y = maxBottomY;
+    }
+    
+    [virtualLayer setPosition:nowPosition];
     
     for (CCNode* item in virtualLayer.children) {
         [self updateChildVisible:item];
