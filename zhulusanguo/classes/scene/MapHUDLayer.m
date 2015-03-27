@@ -134,6 +134,8 @@
         [self addChild:ironLabel z:3];
         
         //add menu btn
+        //------------------- change to touchable sprite
+        //------------------- add pop menu layer event function
         CCSprite* menu = [CCSprite spriteWithSpriteFrameName:@"menu2.png"];
         menu.anchorPoint = ccp(0.5, 1);
         menu.position = ccp(530,320);
@@ -154,6 +156,7 @@
 -(void) dealloc
 {
     [self unscheduleAllSelectors];
+    [[[CCDirector sharedDirector] touchDispatcher] removeDelegate:self];
     if (uvi != nil) {
         [uvi removeFromSuperview];
     }
@@ -398,26 +401,18 @@
         [btn2 removeFromParent];
         btn2 = nil;
     }
-    if (btn1text) {
-        [btn1text removeFromParent];
-        btn1text = nil;
-    }
-    if (btn2text) {
-        [btn2text removeFromParent];
-        btn2text = nil;
-    }
     
     int selkid = [[ShareGameManager shareGameManager] getCityKingID:cid];
     int selhc = [[ShareGameManager shareGameManager] getCityHeroCount:cid withKingID:selkid];
     CityInfoObject* cio = [[ShareGameManager shareGameManager] getCityInfoObjectFromID:cid];
     
     //int kingid = [ShareGameManager shareGameManager].kingID;
-    NSString* heroname = [NSString stringWithFormat:@"hero%d.png",selkid];
-    heroIcon = [CCSprite spriteWithSpriteFrameName:heroname];
-    [self addChild:heroIcon z:4];
-    heroIcon.position = ccp(citydlg.position.x - 30 , citydlg.position.y + 70);
-    
-    
+    if (selkid!=99) {
+        NSString* heroname = [NSString stringWithFormat:@"hero%d.png",selkid];
+        heroIcon = [CCSprite spriteWithSpriteFrameName:heroname];
+        [self addChild:heroIcon z:4];
+        heroIcon.position = ccp(citydlg.position.x - 30 , citydlg.position.y + 70);
+    }
     
     //frame
     heroFrame = [CCSprite spriteWithSpriteFrameName:@"hero_bg.png"];
@@ -463,6 +458,9 @@
             break;
         case 11:
             kingstr = @"公孙瓒";
+            break;
+        case 99:
+            kingstr = @"无";
             break;
         default:
             break;
@@ -557,23 +555,56 @@
     [self addChild:ballistaCount z:3];
     
     //add btn
-    btn1 = [CCSprite spriteWithSpriteFrameName:@"citybtn.png"];
-    btn1.position = ccp(citydlg.position.x-33, citydlg.position.y - 80);
-    [self addChild:btn1 z:3];
+    //------------------ need to add change the text on this button , change it to touchable sprite
+    //------------------ when city owner is not the king , change the button to fighting...
+    if (selkid != [ShareGameManager shareGameManager].kingID) {
+        
+    }
+    else {
+        btn1 = [TouchableSprite spriteWithSpriteFrameName:@"diaodong.png"];
+        btn1.position = ccp(citydlg.position.x-33, citydlg.position.y - 80);
+        [self addChild:btn1 z:3];
+        [btn1 initTheCallbackFunc:@selector(performDiaoDongToCity:) withCaller:self withTouchID:cid];
+    }
     
-    btn2 = [CCSprite spriteWithSpriteFrameName:@"citybtn.png"];
-    btn2.position =ccp(citydlg.position.x+33, citydlg.position.y - 80);
-    [self addChild:btn2 z:3];
+    if (selkid != [ShareGameManager shareGameManager].kingID) {
+        btn2 = [TouchableSprite spriteWithSpriteFrameName:@"fight.png"];
+        btn2.position =ccp(citydlg.position.x+33, citydlg.position.y - 80);
+        [self addChild:btn2 z:3];
+        [btn2 initTheCallbackFunc:@selector(performFightToCity:) withCaller:self withTouchID:cid];
+    }
+    else {
+        btn2 = [TouchableSprite spriteWithSpriteFrameName:@"enter.png"];
+        btn2.position =ccp(citydlg.position.x+33, citydlg.position.y - 80);
+        [self addChild:btn2 z:3];
+        [btn2 initTheCallbackFunc:@selector(performEnterCity:) withCaller:self withTouchID:cid];
+    }
     
-    btn1text = [CCLabelTTF labelWithString:@"调动" fontName:@"Verdana" fontSize:12];
-    btn1text.position = btn1.position;
     
-    [self addChild:btn1text z:4];
+}
+
+-(void) performDiaoDongToCity:(NSNumber*)cid
+{
+    int _cid = (int)[cid integerValue];
+    //show diao dong dialog
+    CCLOG(@"show diao dong dialong with cityid :%d",_cid);
     
-    btn2text = [CCLabelTTF labelWithString:@"进入" fontName:@"Verdana" fontSize:12];
-    btn2text.position = btn2.position;
+}
+
+-(void) performEnterCity:(NSNumber*)cid
+{
+    int _cid = (int)[cid integerValue];
+    //change to the city scene
+    CCLOG(@"go into the city scene in cityid : %d",_cid);
     
-    [self addChild:btn2text z:4];
+}
+
+-(void) performFightToCity:(NSNumber*)cid
+{
+    int _cid = (int)[cid integerValue];
+    //show fight dialog
+    CCLOG(@"show fight dialog for cityid : %d",_cid);
+    
 }
 
 
@@ -633,14 +664,6 @@
         if (btn2) {
             [btn2 removeFromParent];
             btn2 = nil;
-        }
-        if (btn1text) {
-            [btn1text removeFromParent];
-            btn1text = nil;
-        }
-        if (btn2text) {
-            [btn2text removeFromParent];
-            btn2text = nil;
         }
     }
 }

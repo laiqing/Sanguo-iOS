@@ -327,12 +327,14 @@ static id instance = nil;
 
 -(int) getCityHeroCount:(int)cityID withKingID:(int)kingid
 {
+    int result = 0;
+    if (kingid==99) return result;
+    
     NSString *rootpath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
     NSString *curdb = [rootpath stringByAppendingPathComponent:@"current.db"];
     sqlite3* _database;
     sqlite3_open([curdb UTF8String], &_database);
     
-    int result = 0;
     //insert into db , player select king id , and difficulty
     
     sqlite3_stmt *statement;
@@ -413,6 +415,181 @@ static id instance = nil;
     sqlite3_close(_database);
     
     return cio;
+}
+
+-(NSArray*) selectHeroForDiaoDong:(int)king_id targetCityID:(int)cid
+{
+    NSMutableArray* herolist = [[[NSMutableArray alloc] init] autorelease];
+    
+    NSString *rootpath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+    NSString *curdb = [rootpath stringByAppendingPathComponent:@"current.db"];
+    sqlite3* _database;
+    sqlite3_open([curdb UTF8String], &_database);
+
+    sqlite3_stmt *statement;
+    
+    NSString* query = [NSString stringWithFormat:@"select id,cname,city,headImage,strength,intelligence,level,skill1,skill2,skill3,troopAttack,troopMental,troopType,troopCount from hero  where owner=%d and city<>%d",king_id,cid];
+    if (sqlite3_prepare_v2(_database, [query UTF8String], -1, &statement, nil) == SQLITE_OK) {
+        while (sqlite3_step(statement) == SQLITE_ROW) {
+            int hid = (int) sqlite3_column_int(statement, 0);
+            char *cname = (char *) sqlite3_column_text(statement, 1);
+            NSString *cname2 = [[NSString alloc] initWithUTF8String:cname];
+            int currentCity = (int) sqlite3_column_int(statement, 2);
+            int headImageID = (int) sqlite3_column_int(statement, 3);
+            int strength = (int) sqlite3_column_int(statement, 4);
+            int intelligence = (int) sqlite3_column_int(statement, 5);
+            int level = (int) sqlite3_column_int(statement, 6);
+            int skill1 = (int) sqlite3_column_int(statement, 7);
+            int skill2 = (int) sqlite3_column_int(statement, 8);
+            int skill3 = (int) sqlite3_column_int(statement, 9);
+            int tatt = (int) sqlite3_column_int(statement, 10);
+            int tmental = (int) sqlite3_column_int(statement, 11);
+            int ttype = (int) sqlite3_column_int(statement, 12);
+            int tcount = (int) sqlite3_column_int(statement, 13);
+            
+            HeroObject* ho = [[HeroObject alloc] init];
+            ho.cname = cname2;
+            ho.heroID = hid;
+            ho.cityID = currentCity;
+            ho.headImageID = headImageID;
+            ho.strength = strength;
+            ho.intelligence = intelligence;
+            ho.level = level;
+            ho.skill1 = skill1;
+            ho.skill2 = skill2;
+            ho.skill3 = skill3;
+            ho.troopAttack = tatt;
+            ho.troopMental = tmental;
+            ho.troopType = ttype;
+            ho.troopCount = tcount;
+            
+            [herolist addObject:ho];
+            
+            
+            
+            [cname2 release];
+        }
+        
+    }
+    
+    sqlite3_finalize(statement);
+    
+    sqlite3_close(_database);
+    return herolist;
+}
+
+-(NSArray*) selectAllHeroForAttack:(int)king_id targetCityID:(int)cid
+{
+    NSMutableArray* herolist = [[[NSMutableArray alloc] init] autorelease];
+    
+    NSString *rootpath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+    NSString *curdb = [rootpath stringByAppendingPathComponent:@"current.db"];
+    sqlite3* _database;
+    sqlite3_open([curdb UTF8String], &_database);
+    
+    sqlite3_stmt *statement;
+    
+    NSString* query = [NSString stringWithFormat:@"select id,cname,city,headImage,strength,intelligence,level,skill1,skill2,skill3,troopAttack,troopMental,troopType,troopCount from hero  where owner=%d",king_id];
+    if (sqlite3_prepare_v2(_database, [query UTF8String], -1, &statement, nil) == SQLITE_OK) {
+        while (sqlite3_step(statement) == SQLITE_ROW) {
+            int hid = (int) sqlite3_column_int(statement, 0);
+            char *cname = (char *) sqlite3_column_text(statement, 1);
+            NSString *cname2 = [[NSString alloc] initWithUTF8String:cname];
+            int currentCity = (int) sqlite3_column_int(statement, 2);
+            int headImageID = (int) sqlite3_column_int(statement, 3);
+            int strength = (int) sqlite3_column_int(statement, 4);
+            int intelligence = (int) sqlite3_column_int(statement, 5);
+            int level = (int) sqlite3_column_int(statement, 6);
+            int skill1 = (int) sqlite3_column_int(statement, 7);
+            int skill2 = (int) sqlite3_column_int(statement, 8);
+            int skill3 = (int) sqlite3_column_int(statement, 9);
+            int tatt = (int) sqlite3_column_int(statement, 10);
+            int tmental = (int) sqlite3_column_int(statement, 11);
+            int ttype = (int) sqlite3_column_int(statement, 12);
+            int tcount = (int) sqlite3_column_int(statement, 13);
+            
+            HeroObject* ho = [[HeroObject alloc] init];
+            ho.cname = cname2;
+            ho.heroID = hid;
+            ho.cityID = currentCity;
+            ho.headImageID = headImageID;
+            ho.strength = strength;
+            ho.intelligence = intelligence;
+            ho.level = level;
+            ho.skill1 = skill1;
+            ho.skill2 = skill2;
+            ho.skill3 = skill3;
+            ho.troopAttack = tatt;
+            ho.troopMental = tmental;
+            ho.troopType = ttype;
+            ho.troopCount = tcount;
+            
+            [herolist addObject:ho];
+            
+            
+            
+            [cname2 release];
+        }
+        
+    }
+    
+    sqlite3_finalize(statement);
+    
+    sqlite3_close(_database);
+    return herolist;
+}
+
+-(void) saveGameToRecord:(int)recID
+{
+    NSString *rootpath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+    NSString *curdb = [rootpath stringByAppendingPathComponent:@"current.db"];
+    CCLOG(@"current db path:%@",curdb);
+    
+    NSString *f = [NSString stringWithFormat:@"save%d.db",recID];
+    NSString *savefile = [rootpath stringByAppendingPathComponent:f];
+    
+    if ([[NSFileManager defaultManager] fileExistsAtPath:savefile isDirectory:NO]) {
+        CCLOG(@"remove old save file....");
+        [[NSFileManager defaultManager] removeItemAtPath:savefile error:nil];
+    }
+    [[NSFileManager defaultManager] createFileAtPath:curdb contents:nil attributes:nil];
+    NSFileHandle *outFileHandle = [NSFileHandle fileHandleForWritingAtPath:savefile];//写管道
+    NSFileHandle *inFileHandle = [NSFileHandle fileHandleForReadingAtPath:curdb];//读管道
+    NSData *data =[inFileHandle readDataToEndOfFile];
+    [outFileHandle writeData:data];
+    [outFileHandle closeFile];
+    [inFileHandle closeFile];
+}
+
+
+//---------------------------
+//  the save file must exist, not check if it's exist here
+//---------------------------
+-(void) loadGameFromRecord:(int)recID
+{
+    NSString *rootpath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+    NSString *curdb = [rootpath stringByAppendingPathComponent:@"current.db"];
+    
+    NSString *f = [NSString stringWithFormat:@"save%d.db",recID];
+    NSString *savefile = [rootpath stringByAppendingPathComponent:f];
+    
+    if ([[NSFileManager defaultManager] fileExistsAtPath:savefile isDirectory:NO] == NO) {
+        CCLOG(@"save file not exist....");
+        return;
+    }
+    
+    if ([[NSFileManager defaultManager] fileExistsAtPath:curdb isDirectory:NO]) {
+        CCLOG(@"remove curdb file....");
+        [[NSFileManager defaultManager] removeItemAtPath:curdb error:nil];
+    }
+    
+    [[NSFileManager defaultManager] createFileAtPath:curdb contents:nil attributes:nil];
+    NSFileHandle *outFileHandle = [NSFileHandle fileHandleForWritingAtPath:curdb];//写管道
+    NSFileHandle *inFileHandle = [NSFileHandle fileHandleForReadingAtPath:savefile];//读管道
+    NSData *data =[inFileHandle readDataToEndOfFile];
+    [outFileHandle writeData:data];
+    [outFileHandle closeFile];
+    [inFileHandle closeFile];
 }
 
 

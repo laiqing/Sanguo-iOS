@@ -10,6 +10,7 @@
 #import "cocos2d.h"
 
 #import "ShareGameManager.h"
+#import "TouchableSprite.h"
 
 @interface MapHUDLayer : CCLayer<MapHUDProtocol> {
     UIView *uvi;
@@ -44,10 +45,9 @@
     CCLabelTTF* wizardCount;
     CCLabelTTF* ballistaCount;
     
-    CCSprite* btn1;
-    CCSprite* btn2;
-    CCLabelTTF* btn1text;
-    CCLabelTTF* btn2text;
+    TouchableSprite* btn1;
+    TouchableSprite* btn2;
+    
 }
 
 @end

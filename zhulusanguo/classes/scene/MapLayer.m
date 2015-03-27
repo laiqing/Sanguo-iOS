@@ -129,23 +129,14 @@
         int div = bg.boundingBox.size.height / 80;
         for (int i=1; i<div; i++) {
             NSString* cloudfile;
-            //int kk = arc4random()%2;
-            //if (kk==0) {
             cloudfile = @"cloud01.png";
-            //}
-            //else {
-            //    cloudfile = @"cloud02.png";
-            //}
             CloudSprite *ccsp = [CloudSprite spriteWithSpriteFrameName:cloudfile];
-            ccsp.scale = 0.5;
             [ccsp initBoundary:bg.boundingBox.size.width withYPos:(80*i+arc4random()%30)];
             [bnode addChild:ccsp z:3];
         }
         
-        
-        
         //[[[CCDirector sharedDirector] touchDispatcher] addStandardDelegate:self priority:1];
-        [[[CCDirector sharedDirector] touchDispatcher] addTargetedDelegate:self priority:1 swallowsTouches:YES];
+        [[[CCDirector sharedDirector] touchDispatcher] addTargetedDelegate:self priority:2 swallowsTouches:YES];
         
         
         //schedule update
@@ -283,6 +274,14 @@
 {
     int flagID = [ShareGameManager shareGameManager].kingID;
     [self popCityAddGoldText:flagID];
+    
+    //schedule add enemy resource , distribute enemy's army , add enemy city's building
+    //----------------------------------------
+    //----------------------------------------
+    //schedule add inccident. flood, plage, thief.
+    //schedule other enemy fight each other.
+    //"刘备，据探马来报，董卓正在集结部队，准备10天后对xx城进攻，请做好准备。"
+    
 }
 
 
@@ -336,25 +335,22 @@
 {
     [self unscheduleAllSelectors];
     
-    
+    [[[CCDirector sharedDirector] touchDispatcher] removeDelegate:self];
     
     //remove citys
-    for (int i=[citySprites count]-1; i>=0; i--) {
+    for (long i=[citySprites count]-1; i>=0; i--) {
         CitySprite* cs  = [citySprites objectAtIndex:i];
         [citySprites removeObject:cs];
     }
     
     //remove clouds
-    for (int i=[clouds count]-1; i>=0; i--) {
+    for (long i=[clouds count]-1; i>=0; i--) {
         CloudSprite* csp = [clouds objectAtIndex:i];
         [clouds removeObject:csp];
         [bnode removeChild:csp cleanup:YES];
         //[csp release];
     }
     
-    // in case you have something to dealloc, do it in this method
-    // in this particular example nothing needs to be released.
-    // cocos2d will automatically release all the children (Label)
     
     // don't forget to call "super dealloc"
     [super dealloc];

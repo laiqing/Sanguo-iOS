@@ -157,9 +157,11 @@
 		264B4F5B1AC411DB005E7641 /* sanguo.db in Resources */ = {isa = PBXBuildFile; fileRef = 264B4F5A1AC411DB005E7641 /* sanguo.db */; };
 		2699812D1AC25CE900C13879 /* HeroObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 2699812C1AC25CE900C13879 /* HeroObject.m */; };
 		26A1A1D11AC1694000518A99 /* TouchableSprite.m in Sources */ = {isa = PBXBuildFile; fileRef = 26A1A1D01AC1694000518A99 /* TouchableSprite.m */; };
+		26BEA18E1AC4E0DD00B3ACAF /* DiaoDongLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 26BEA18D1AC4E0DD00B3ACAF /* DiaoDongLayer.m */; };
 		26CEA5D41AC3193B00649827 /* MapScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 26CEA5D31AC3193B00649827 /* MapScene.m */; };
 		26CEA5D71AC3195900649827 /* MapLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 26CEA5D61AC3195900649827 /* MapLayer.m */; };
 		26CEA5DA1AC3196700649827 /* MapHUDLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 26CEA5D91AC3196700649827 /* MapHUDLayer.m */; };
+		26F1279C1AC500A900DADFD9 /* ExternCCAction.m in Sources */ = {isa = PBXBuildFile; fileRef = 26F1279B1AC500A900DADFD9 /* ExternCCAction.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -467,12 +469,16 @@
 		2699812C1AC25CE900C13879 /* HeroObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HeroObject.m; sourceTree = "<group>"; };
 		26A1A1CF1AC1694000518A99 /* TouchableSprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TouchableSprite.h; sourceTree = "<group>"; };
 		26A1A1D01AC1694000518A99 /* TouchableSprite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TouchableSprite.m; sourceTree = "<group>"; };
+		26BEA18C1AC4E0DD00B3ACAF /* DiaoDongLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiaoDongLayer.h; sourceTree = "<group>"; };
+		26BEA18D1AC4E0DD00B3ACAF /* DiaoDongLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiaoDongLayer.m; sourceTree = "<group>"; };
 		26CEA5D21AC3193B00649827 /* MapScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapScene.h; sourceTree = "<group>"; };
 		26CEA5D31AC3193B00649827 /* MapScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapScene.m; sourceTree = "<group>"; };
 		26CEA5D51AC3195900649827 /* MapLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapLayer.h; sourceTree = "<group>"; };
 		26CEA5D61AC3195900649827 /* MapLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapLayer.m; sourceTree = "<group>"; };
 		26CEA5D81AC3196700649827 /* MapHUDLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapHUDLayer.h; sourceTree = "<group>"; };
 		26CEA5D91AC3196700649827 /* MapHUDLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapHUDLayer.m; sourceTree = "<group>"; };
+		26F1279A1AC5008B00DADFD9 /* ExternCCAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExternCCAction.h; sourceTree = "<group>"; };
+		26F1279B1AC500A900DADFD9 /* ExternCCAction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExternCCAction.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -511,6 +517,8 @@
 			children = (
 				262145AC1AC13F0F00E0D550 /* ShareGameManager.h */,
 				262145AD1AC13F0F00E0D550 /* ShareGameManager.m */,
+				26F1279A1AC5008B00DADFD9 /* ExternCCAction.h */,
+				26F1279B1AC500A900DADFD9 /* ExternCCAction.m */,
 			);
 			path = share;
 			sourceTree = "<group>";
@@ -553,6 +561,8 @@
 				26CEA5D91AC3196700649827 /* MapHUDLayer.m */,
 				2643F7BC1AC39B58001FD1AA /* BattleHUDLayer.h */,
 				2643F7BD1AC39B58001FD1AA /* BattleHUDLayer.m */,
+				26BEA18C1AC4E0DD00B3ACAF /* DiaoDongLayer.h */,
+				26BEA18D1AC4E0DD00B3ACAF /* DiaoDongLayer.m */,
 			);
 			path = scene;
 			sourceTree = "<group>";
@@ -1119,6 +1129,7 @@
 				263D06231AC03FE100248FFA /* ZipUtils.m in Sources */,
 				263D05151AC03FDF00248FFA /* CCActionManager.m in Sources */,
 				263D057D1AC03FE000248FFA /* CCParticleSystemQuad.m in Sources */,
+				26F1279C1AC500A900DADFD9 /* ExternCCAction.m in Sources */,
 				263D05401AC03FE000248FFA /* CCDrawNode.m in Sources */,
 				263D05D21AC03FE100248FFA /* CCTransitionPageTurn.m in Sources */,
 				263D05031AC03FDF00248FFA /* CCActionCatmullRom.m in Sources */,
@@ -1128,6 +1139,7 @@
 				262145C71AC148ED00E0D550 /* CloudSprite.m in Sources */,
 				2699812D1AC25CE900C13879 /* HeroObject.m in Sources */,
 				263D05741AC03FE000248FFA /* CCParticleBatchNode.m in Sources */,
+				26BEA18E1AC4E0DD00B3ACAF /* DiaoDongLayer.m in Sources */,
 				263D05B71AC03FE100248FFA /* CCTextureAtlas.m in Sources */,
 				263D06651AC03FE200248FFA /* utility.c in Sources */,
 				263D06111AC03FE100248FFA /* CCVertex.m in Sources */,
@@ -1237,7 +1249,7 @@
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -1256,7 +1268,7 @@
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

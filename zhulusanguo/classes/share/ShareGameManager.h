@@ -68,6 +68,10 @@ typedef enum {
 
 -(NSArray*) selectAllHero:(int)king_id; //return NSMutableArray , include heroobject[]
 
+-(NSArray*) selectHeroForDiaoDong:(int)king_id targetCityID:(int)cid;
+
+-(NSArray*) selectAllHeroForAttack:(int)king_id targetCityID:(int)cid;
+
 -(void) initNewGameDBWithKingID:(int)king_id;
 
 -(int) getTheCapitalCityWithKingID:(int)king_id;
@@ -75,6 +79,12 @@ typedef enum {
 -(CityInfoObject*) getCityInfoObjectFromID:(int)cityID;
 -(int) getCityHeroCount:(int)cityID withKingID:(int)kingid;
 -(int) getCityKingID:(int)cityID;
+
+//-----------------------------------
+//  save game , del game , load game
+//-----------------------------------
+-(void) saveGameToRecord:(int)recID;
+-(void) loadGameFromRecord:(int)recID;
 
 
 
