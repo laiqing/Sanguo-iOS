@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		261FE2041AC8E20800191275 /* SkillsLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 261FE2031AC8E20800191275 /* SkillsLayer.m */; };
 		262145AE1AC13F0F00E0D550 /* ShareGameManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 262145AD1AC13F0F00E0D550 /* ShareGameManager.m */; };
 		262145B21AC13F6E00E0D550 /* animate_all.plist in Resources */ = {isa = PBXBuildFile; fileRef = 262145B01AC13F6E00E0D550 /* animate_all.plist */; };
 		262145B31AC13F6E00E0D550 /* cityinfo1.json in Resources */ = {isa = PBXBuildFile; fileRef = 262145B11AC13F6E00E0D550 /* cityinfo1.json */; };
@@ -154,18 +155,26 @@
 		263D06731AC03FE200248FFA /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 263D06721AC03FE200248FFA /* AppDelegate.m */; };
 		263D06791AC03FE200248FFA /* IntroLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 263D06781AC03FE200248FFA /* IntroLayer.m */; };
 		2643F7BE1AC39B58001FD1AA /* BattleHUDLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 2643F7BD1AC39B58001FD1AA /* BattleHUDLayer.m */; };
-		264B4F5B1AC411DB005E7641 /* sanguo.db in Resources */ = {isa = PBXBuildFile; fileRef = 264B4F5A1AC411DB005E7641 /* sanguo.db */; };
+		2651FB611AC630200076E0A0 /* MoveTouchStateSprite.m in Sources */ = {isa = PBXBuildFile; fileRef = 2651FB601AC630200076E0A0 /* MoveTouchStateSprite.m */; };
+		2651FB631AC645A70076E0A0 /* cityscene-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 2651FB621AC645A70076E0A0 /* cityscene-hd.png */; };
+		2651FB661AC645CB0076E0A0 /* CityScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 2651FB651AC645CB0076E0A0 /* CityScene.m */; };
+		2651FB691AC645E00076E0A0 /* CityMainLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 2651FB681AC645E00076E0A0 /* CityMainLayer.m */; };
 		2699812D1AC25CE900C13879 /* HeroObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 2699812C1AC25CE900C13879 /* HeroObject.m */; };
 		26A1A1D11AC1694000518A99 /* TouchableSprite.m in Sources */ = {isa = PBXBuildFile; fileRef = 26A1A1D01AC1694000518A99 /* TouchableSprite.m */; };
+		26B03CD71AC6E60D00AA039A /* sanguo.db in Resources */ = {isa = PBXBuildFile; fileRef = 26B03CD61AC6E60D00AA039A /* sanguo.db */; };
 		26BEA18E1AC4E0DD00B3ACAF /* DiaoDongLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 26BEA18D1AC4E0DD00B3ACAF /* DiaoDongLayer.m */; };
 		26CEA5D41AC3193B00649827 /* MapScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 26CEA5D31AC3193B00649827 /* MapScene.m */; };
 		26CEA5D71AC3195900649827 /* MapLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 26CEA5D61AC3195900649827 /* MapLayer.m */; };
 		26CEA5DA1AC3196700649827 /* MapHUDLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 26CEA5D91AC3196700649827 /* MapHUDLayer.m */; };
 		26CFBD671AC58D45009CF983 /* FightLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 26CFBD661AC58D45009CF983 /* FightLayer.m */; };
+		26D43BE91AC7A7BF002CF592 /* SoliderWalkSprite.m in Sources */ = {isa = PBXBuildFile; fileRef = 26D43BE81AC7A7BF002CF592 /* SoliderWalkSprite.m */; };
+		26D43BEC1AC7ADC4002CF592 /* LeftSoliderWalkSprite.m in Sources */ = {isa = PBXBuildFile; fileRef = 26D43BEB1AC7ADC4002CF592 /* LeftSoliderWalkSprite.m */; };
 		26F1279C1AC500A900DADFD9 /* ExternCCAction.m in Sources */ = {isa = PBXBuildFile; fileRef = 26F1279B1AC500A900DADFD9 /* ExternCCAction.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		261FE2021AC8E20800191275 /* SkillsLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SkillsLayer.h; sourceTree = "<group>"; };
+		261FE2031AC8E20800191275 /* SkillsLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SkillsLayer.m; sourceTree = "<group>"; };
 		262145AC1AC13F0F00E0D550 /* ShareGameManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShareGameManager.h; sourceTree = "<group>"; };
 		262145AD1AC13F0F00E0D550 /* ShareGameManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShareGameManager.m; sourceTree = "<group>"; };
 		262145B01AC13F6E00E0D550 /* animate_all.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = animate_all.plist; sourceTree = "<group>"; };
@@ -465,11 +474,18 @@
 		263D06781AC03FE200248FFA /* IntroLayer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IntroLayer.m; sourceTree = "<group>"; };
 		2643F7BC1AC39B58001FD1AA /* BattleHUDLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BattleHUDLayer.h; sourceTree = "<group>"; };
 		2643F7BD1AC39B58001FD1AA /* BattleHUDLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BattleHUDLayer.m; sourceTree = "<group>"; };
-		264B4F5A1AC411DB005E7641 /* sanguo.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = sanguo.db; sourceTree = "<group>"; };
+		2651FB5F1AC630200076E0A0 /* MoveTouchStateSprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoveTouchStateSprite.h; sourceTree = "<group>"; };
+		2651FB601AC630200076E0A0 /* MoveTouchStateSprite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoveTouchStateSprite.m; sourceTree = "<group>"; };
+		2651FB621AC645A70076E0A0 /* cityscene-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cityscene-hd.png"; sourceTree = "<group>"; };
+		2651FB641AC645CB0076E0A0 /* CityScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CityScene.h; sourceTree = "<group>"; };
+		2651FB651AC645CB0076E0A0 /* CityScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CityScene.m; sourceTree = "<group>"; };
+		2651FB671AC645E00076E0A0 /* CityMainLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CityMainLayer.h; sourceTree = "<group>"; };
+		2651FB681AC645E00076E0A0 /* CityMainLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CityMainLayer.m; sourceTree = "<group>"; };
 		2699812B1AC25CE800C13879 /* HeroObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HeroObject.h; sourceTree = "<group>"; };
 		2699812C1AC25CE900C13879 /* HeroObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HeroObject.m; sourceTree = "<group>"; };
 		26A1A1CF1AC1694000518A99 /* TouchableSprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TouchableSprite.h; sourceTree = "<group>"; };
 		26A1A1D01AC1694000518A99 /* TouchableSprite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TouchableSprite.m; sourceTree = "<group>"; };
+		26B03CD61AC6E60D00AA039A /* sanguo.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = sanguo.db; sourceTree = "<group>"; };
 		26BEA18C1AC4E0DD00B3ACAF /* DiaoDongLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiaoDongLayer.h; sourceTree = "<group>"; };
 		26BEA18D1AC4E0DD00B3ACAF /* DiaoDongLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiaoDongLayer.m; sourceTree = "<group>"; };
 		26CEA5D21AC3193B00649827 /* MapScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapScene.h; sourceTree = "<group>"; };
@@ -480,6 +496,10 @@
 		26CEA5D91AC3196700649827 /* MapHUDLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapHUDLayer.m; sourceTree = "<group>"; };
 		26CFBD651AC58D45009CF983 /* FightLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FightLayer.h; sourceTree = "<group>"; };
 		26CFBD661AC58D45009CF983 /* FightLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FightLayer.m; sourceTree = "<group>"; };
+		26D43BE71AC7A7BF002CF592 /* SoliderWalkSprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SoliderWalkSprite.h; sourceTree = "<group>"; };
+		26D43BE81AC7A7BF002CF592 /* SoliderWalkSprite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SoliderWalkSprite.m; sourceTree = "<group>"; };
+		26D43BEA1AC7ADC4002CF592 /* LeftSoliderWalkSprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LeftSoliderWalkSprite.h; sourceTree = "<group>"; };
+		26D43BEB1AC7ADC4002CF592 /* LeftSoliderWalkSprite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LeftSoliderWalkSprite.m; sourceTree = "<group>"; };
 		26F1279A1AC5008B00DADFD9 /* ExternCCAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExternCCAction.h; sourceTree = "<group>"; };
 		26F1279B1AC500A900DADFD9 /* ExternCCAction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExternCCAction.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -529,6 +549,7 @@
 		262145AF1AC13F6D00E0D550 /* plist */ = {
 			isa = PBXGroup;
 			children = (
+				2651FB621AC645A70076E0A0 /* cityscene-hd.png */,
 				262145BB1AC147BF00E0D550 /* map-hd.png */,
 				262145B71AC1467A00E0D550 /* sanguo-hd.plist */,
 				262145B81AC1467A00E0D550 /* sanguo-hd.pvr.ccz */,
@@ -568,6 +589,12 @@
 				26BEA18D1AC4E0DD00B3ACAF /* DiaoDongLayer.m */,
 				26CFBD651AC58D45009CF983 /* FightLayer.h */,
 				26CFBD661AC58D45009CF983 /* FightLayer.m */,
+				2651FB641AC645CB0076E0A0 /* CityScene.h */,
+				2651FB651AC645CB0076E0A0 /* CityScene.m */,
+				2651FB671AC645E00076E0A0 /* CityMainLayer.h */,
+				2651FB681AC645E00076E0A0 /* CityMainLayer.m */,
+				261FE2021AC8E20800191275 /* SkillsLayer.h */,
+				261FE2031AC8E20800191275 /* SkillsLayer.m */,
 			);
 			path = scene;
 			sourceTree = "<group>";
@@ -585,6 +612,12 @@
 				26A1A1D01AC1694000518A99 /* TouchableSprite.m */,
 				2699812B1AC25CE800C13879 /* HeroObject.h */,
 				2699812C1AC25CE900C13879 /* HeroObject.m */,
+				2651FB5F1AC630200076E0A0 /* MoveTouchStateSprite.h */,
+				2651FB601AC630200076E0A0 /* MoveTouchStateSprite.m */,
+				26D43BE71AC7A7BF002CF592 /* SoliderWalkSprite.h */,
+				26D43BE81AC7A7BF002CF592 /* SoliderWalkSprite.m */,
+				26D43BEA1AC7ADC4002CF592 /* LeftSoliderWalkSprite.h */,
+				26D43BEB1AC7ADC4002CF592 /* LeftSoliderWalkSprite.m */,
 			);
 			path = objects;
 			sourceTree = "<group>";
@@ -639,7 +672,7 @@
 		263D04E11AC03FDF00248FFA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				264B4F5A1AC411DB005E7641 /* sanguo.db */,
+				26B03CD61AC6E60D00AA039A /* sanguo.db */,
 				2634E73B1AC19B0E00E90006 /* fire.png */,
 				262145B41AC13FA100E0D550 /* sound */,
 				262145AF1AC13F6D00E0D550 /* plist */,
@@ -1086,6 +1119,7 @@
 				263D04EF1AC03FDF00248FFA /* Icon-Small.png in Resources */,
 				263D04EB1AC03FDF00248FFA /* Icon-72.png in Resources */,
 				263D04E31AC03FDF00248FFA /* Default.png in Resources */,
+				26B03CD71AC6E60D00AA039A /* sanguo.db in Resources */,
 				263D04ED1AC03FDF00248FFA /* Icon-Small-50.png in Resources */,
 				263D04F81AC03FDF00248FFA /* iTunesArtwork in Resources */,
 				263D04F11AC03FDF00248FFA /* Icon-Small@2x.png in Resources */,
@@ -1093,12 +1127,12 @@
 				2634E73C1AC19B0E00E90006 /* fire.png in Resources */,
 				2634E73E1AC1ABDD00E90006 /* menu.caf in Resources */,
 				262145B61AC13FA100E0D550 /* sanguo_menu2.aifc in Resources */,
+				2651FB631AC645A70076E0A0 /* cityscene-hd.png in Resources */,
 				263D04E91AC03FDF00248FFA /* Default-Landscape~ipad.png in Resources */,
 				263D04E71AC03FDF00248FFA /* Default-568h@2x.png in Resources */,
 				263D04F51AC03FDF00248FFA /* Icon@2x.png in Resources */,
 				262145BA1AC1467A00E0D550 /* sanguo-hd.pvr.ccz in Resources */,
 				262145B91AC1467A00E0D550 /* sanguo-hd.plist in Resources */,
-				264B4F5B1AC411DB005E7641 /* sanguo.db in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1110,6 +1144,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				263D05BD1AC03FE100248FFA /* CCTexturePVR.m in Sources */,
+				261FE2041AC8E20800191275 /* SkillsLayer.m in Sources */,
 				263D060D1AC03FE100248FFA /* ccUtils.c in Sources */,
 				263D055E1AC03FE000248FFA /* CCLayer.m in Sources */,
 				263D05C01AC03FE100248FFA /* CCTileMapAtlas.m in Sources */,
@@ -1131,7 +1166,9 @@
 				263D05581AC03FE000248FFA /* CCLabelBMFont.m in Sources */,
 				263D06051AC03FE100248FFA /* ccCArray.m in Sources */,
 				263D062F1AC03FE100248FFA /* CDXMacOSXSupport.m in Sources */,
+				26D43BE91AC7A7BF002CF592 /* SoliderWalkSprite.m in Sources */,
 				263D06231AC03FE100248FFA /* ZipUtils.m in Sources */,
+				2651FB661AC645CB0076E0A0 /* CityScene.m in Sources */,
 				263D05151AC03FDF00248FFA /* CCActionManager.m in Sources */,
 				263D057D1AC03FE000248FFA /* CCParticleSystemQuad.m in Sources */,
 				26F1279C1AC500A900DADFD9 /* ExternCCAction.m in Sources */,
@@ -1148,6 +1185,7 @@
 				263D05B71AC03FE100248FFA /* CCTextureAtlas.m in Sources */,
 				263D06651AC03FE200248FFA /* utility.c in Sources */,
 				263D06111AC03FE100248FFA /* CCVertex.m in Sources */,
+				26D43BEC1AC7ADC4002CF592 /* LeftSoliderWalkSprite.m in Sources */,
 				263D06171AC03FE100248FFA /* NSThread+performBlock.m in Sources */,
 				263D051E1AC03FDF00248FFA /* CCActionTiledGrid.m in Sources */,
 				263D05651AC03FE000248FFA /* CCMenuItem.m in Sources */,
@@ -1177,6 +1215,7 @@
 				263D06351AC03FE100248FFA /* CocosDenshion.m in Sources */,
 				263D05BA1AC03FE100248FFA /* CCTextureCache.m in Sources */,
 				263D065D1AC03FE200248FFA /* neon_matrix_impl.c in Sources */,
+				2651FB691AC645E00076E0A0 /* CityMainLayer.m in Sources */,
 				26CEA5D71AC3195900649827 /* MapLayer.m in Sources */,
 				263D058D1AC03FE000248FFA /* CCScene.m in Sources */,
 				263D050C1AC03FDF00248FFA /* CCActionGrid3D.m in Sources */,
@@ -1186,6 +1225,7 @@
 				263D052A1AC03FDF00248FFA /* CCAtlasNode.m in Sources */,
 				263D06701AC03FE200248FFA /* main.m in Sources */,
 				263D05EE1AC03FE100248FFA /* CCTouchHandler.m in Sources */,
+				2651FB611AC630200076E0A0 /* MoveTouchStateSprite.m in Sources */,
 				263D05681AC03FE000248FFA /* CCMotionStreak.m in Sources */,
 				263D05E71AC03FE100248FFA /* CCGLView.m in Sources */,
 				263D06141AC03FE100248FFA /* CGPointExtension.m in Sources */,

@@ -17,17 +17,17 @@
         uvi = nil;
         statusbar = nil;
         
-        year = 189;
-        month = 1;
-        day = 1;
+        year = [ShareGameManager shareGameManager].year;
+        month = [ShareGameManager shareGameManager].month;
+        day = [ShareGameManager shareGameManager].day;
         
         _gold = [ShareGameManager shareGameManager].gold;
         _wood = [ShareGameManager shareGameManager].wood;
         _iron = [ShareGameManager shareGameManager].iron;
         
         //[[[CCDirector sharedDirector] touchDispatcher] addStandardDelegate:self priority:1];
+        CGSize wsize = [[CCDirector sharedDirector] winSize];
         
-        [[[CCDirector sharedDirector] touchDispatcher] addTargetedDelegate:self priority:0 swallowsTouches:NO];
         
         //don't schedule pop attack info
         //[self schedule:@selector(scheduleAddInfo) interval:5];
@@ -137,7 +137,8 @@
         //------------------- add pop menu layer event function
         menu = [TouchableSprite spriteWithSpriteFrameName:@"menu2.png"];
         menu.anchorPoint = ccp(0.5, 1);
-        menu.position = ccp(530,320);
+        
+        menu.position = ccp(wsize.width-38,320);
         [self addChild:menu z:2];
         
         //menu text
@@ -152,16 +153,32 @@
     
 }
 
+-(void) onEnter
+{
+    [[[CCDirector sharedDirector] touchDispatcher] addTargetedDelegate:self priority:0 swallowsTouches:NO];
+    [super onEnter];
+}
+
+-(void) onExit
+{
+    [[[CCDirector sharedDirector] touchDispatcher] removeDelegate:self];
+    [super onExit];
+}
+
 -(void) dealloc
 {
     [self unscheduleAllSelectors];
-    [[[CCDirector sharedDirector] touchDispatcher] removeDelegate:self];
+    
     if (uvi != nil) {
         [uvi removeFromSuperview];
     }
     [super dealloc];
 }
 
+
+//--------------------------------
+//  add real money
+//--------------------------------
 -(void) scheduleUpdateRes
 {
     //update gold, lumber, iron, time
@@ -253,7 +270,9 @@
     NSString* ystr = [NSString stringWithFormat:@"%d年%d月%d日",year,month,day];
     [ylabel setString:ystr];
     
+    //--------------------------
     //update money,wood,iron
+    //--------------------------
     _gold += 4000;
     _wood += 10;
     _iron += 10;
@@ -608,9 +627,17 @@
 -(void) performEnterCity:(NSNumber*)cid
 {
     int _cid = (int)[cid integerValue];
+    [[SimpleAudioEngine sharedEngine] playEffect:@"menu.caf"];
     //change to the city scene
     CCLOG(@"go into the city scene in cityid : %d",_cid);
+    [ShareGameManager shareGameManager].gold = _gold;
+    [ShareGameManager shareGameManager].wood = _wood;
+    [ShareGameManager shareGameManager].iron = _iron;
+    [ShareGameManager shareGameManager].year = year;
+    [ShareGameManager shareGameManager].month = month;
+    [ShareGameManager shareGameManager].day = day;
     
+    [[CCDirector sharedDirector] replaceScene:[CityScene nodeWithCityID:_cid]];
 }
 
 -(void) performFightToCity:(NSNumber*)cid
@@ -618,6 +645,20 @@
     int _cid = (int)[cid integerValue];
     //show fight dialog
     CCLOG(@"show fight dialog for cityid : %d",_cid);
+    
+    [[SimpleAudioEngine sharedEngine] playEffect:@"menu.caf"];
+    
+    CGSize wsize = [[CCDirector sharedDirector] winSize];
+    //410*205
+    CGPoint origin = ccp(wsize.width*0.5-205, wsize.height*0.5-103);
+    CGRect vrect = CGRectMake(origin.x, origin.y, 410, 206);
+    
+    FightLayer* ddlayer = [FightLayer slidingLayer:Vertically contentRect:vrect withTargetCityID:_cid];
+    CCScene* run = [[CCDirector sharedDirector] runningScene];
+    ddlayer.tag = 4;
+    [run addChild:ddlayer z:4];
+    
+    [self performSelector:@selector(removePopCityInfo) withObject:nil afterDelay:0.5];
     
 }
 

@@ -160,6 +160,18 @@
             <key>frames</key>
             <string>01,02,03,04</string>
         </dict>
+        <dict>
+            <key>animate_name</key>
+            <string>solider</string>
+            <key>filename</key>
+            <string>soliderwalk</string>
+            <key>fileext</key>
+            <string></string>
+            <key>delay</key>
+            <real>0.2</real>
+            <key>frames</key>
+            <string>01,02,03,04</string>
+        </dict>
 	</array>
 </dict>
 </plist>

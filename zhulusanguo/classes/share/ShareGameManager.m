@@ -22,6 +22,9 @@ NSString* const citynames[] = {@"",@"酒泉",@"张掖",@"武威",@"西海",@"天
 @synthesize gold = _gold;
 @synthesize wood = _wood;
 @synthesize iron = _iron;
+@synthesize year = _year;
+@synthesize month = _month;
+@synthesize day = _day;
 
 static id instance = nil;
 
@@ -183,6 +186,7 @@ static id instance = nil;
         }
         [an setDelayPerUnit:delay];
         [[CCAnimationCache sharedAnimationCache] addAnimation:an name:animate_name];
+        CCLOG(@"animation %@ add to cache",animate_name);
         //add to loading animate list
         //[loadingAnimateList addObject:[animate_name retain]];
     }
@@ -292,8 +296,10 @@ static id instance = nil;
     query = [NSString stringWithFormat:@"insert into playerInfo values(%d,189,1,1,'%@',%d,%d,%d,0,%d,%d",king_id,savetime,_gold,_wood,_iron,_gameDifficulty,initCityCount];
     sqlite3_exec(_database, [query UTF8String], nil, nil, nil);
     
-    query = [NSString stringWithFormat:@"update city set tower1=1,tower2=1,tower3=1,tower4=1 where flag<>%d and flag<>99",king_id];
-    sqlite3_exec(_database, [query UTF8String], nil, nil, nil);
+    //query = [NSString stringWithFormat:@"update city set tower1=1,tower2=1,tower3=1,tower4=1 where flag<>%d and flag<>99",king_id];
+    //now set all city tower the same , so no need to build tower again
+    //query = [NSString stringWithFormat:@"update city set tower1=1,tower2=1,tower3=1,tower4=1"];
+    //sqlite3_exec(_database, [query UTF8String], nil, nil, nil);
     
     sqlite3_close(_database);
 
@@ -423,6 +429,48 @@ static id instance = nil;
     return cio;
 }
 
+-(CityInfoObject*) getCityInfoForCityScene:(int)cityID
+{
+    NSString *rootpath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+    NSString *curdb = [rootpath stringByAppendingPathComponent:@"current.db"];
+    sqlite3* _database;
+    sqlite3_open([curdb UTF8String], &_database);
+    
+    CityInfoObject* cio = [[[CityInfoObject alloc] init] autorelease];
+    //insert into db , player select king id , and difficulty
+    
+    sqlite3_stmt *statement;
+    
+    NSString* query = [NSString stringWithFormat:@"select cname,hall,barrack,archer,cavalry,wizard,blacksmith,tavern,market,lumbermill,steelmill,magictower,tower1,tower2,tower3,tower4 from city  where id=%d",cityID];
+    if (sqlite3_prepare_v2(_database, [query UTF8String], -1, &statement, nil) == SQLITE_OK) {
+        sqlite3_step(statement);
+        char *cname = (char *) sqlite3_column_text(statement, 0);
+        NSString *cname2 = [[NSString alloc] initWithUTF8String:cname];
+        cio.cnName = cname2;
+        cio.hall =  sqlite3_column_int(statement, 1);
+        cio.barrack = sqlite3_column_int(statement, 2);
+        cio.archer =  sqlite3_column_int(statement, 3);
+        cio.cavalry =  sqlite3_column_int(statement, 4);
+        cio.wizard =  sqlite3_column_int(statement, 5);
+        cio.blacksmith =  sqlite3_column_int(statement, 6);
+        cio.tavern =  sqlite3_column_int(statement, 7);
+        cio.market =  sqlite3_column_int(statement, 8);
+        cio.lumbermill =  sqlite3_column_int(statement, 9);
+        cio.steelmill =  sqlite3_column_int(statement, 10);
+        cio.magictower =  sqlite3_column_int(statement, 11);
+        cio.tower1 =  sqlite3_column_int(statement, 12);
+        cio.tower2 =  sqlite3_column_int(statement, 13);
+        cio.tower3 =  sqlite3_column_int(statement, 14);
+        cio.tower4 =  sqlite3_column_int(statement, 15);
+    }
+    sqlite3_finalize(statement);
+    
+    sqlite3_close(_database);
+    
+    return cio;
+}
+
+
 -(NSArray*) selectHeroForDiaoDong:(int)king_id targetCityID:(int)cid
 {
     NSMutableArray* herolist = [[[NSMutableArray alloc] init] autorelease];
@@ -543,6 +591,121 @@ static id instance = nil;
     
     sqlite3_close(_database);
     return herolist;
+}
+
+-(int) calcHeroDiaoDongFeet:(int)heroID targetCityID:(int)tcid
+{
+    int result = 0;
+    NSString *rootpath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+    NSString *curdb = [rootpath stringByAppendingPathComponent:@"current.db"];
+    sqlite3* _database;
+    sqlite3_open([curdb UTF8String], &_database);
+    sqlite3_stmt *statement;
+    int hcid = 0;
+    NSString* query = [NSString stringWithFormat:@"select city from hero where id=%d",heroID];
+    sqlite3_prepare_v2(_database, [query UTF8String], -1, &statement, nil) ;
+    sqlite3_step(statement);
+    hcid = (int)sqlite3_column_int(statement,0);
+    sqlite3_finalize(statement);
+    
+    query = [NSString stringWithFormat:@"select xpos,ypos from city where id=%d",hcid];
+    sqlite3_prepare_v2(_database, [query UTF8String], -1, &statement, nil) ;
+    sqlite3_step(statement);
+    float xpos1 = (float)sqlite3_column_int(statement, 0);
+    float ypos1 = (float)sqlite3_column_int(statement, 1);
+    sqlite3_finalize(statement);
+    
+    query = [NSString stringWithFormat:@"select xpos,ypos from city where id=%d",tcid];
+    sqlite3_prepare_v2(_database, [query UTF8String], -1, &statement, nil) ;
+    sqlite3_step(statement);
+    float xpos2 = (float)sqlite3_column_int(statement, 0);
+    float ypos2 = (float)sqlite3_column_int(statement, 1);
+    sqlite3_finalize(statement);
+    
+    result = (int) sqrtf((xpos1-xpos2)*(xpos1-xpos2) + (ypos1-ypos2)*(ypos1-ypos2));
+    sqlite3_close(_database);
+    return result;
+}
+
+-(void) diaoDongHerolistToCity:(NSArray*)heroIDList targetCityID:(int)tcid
+{
+    NSString *rootpath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+    NSString *curdb = [rootpath stringByAppendingPathComponent:@"current.db"];
+    sqlite3* _database;
+    sqlite3_open([curdb UTF8String], &_database);
+    NSString* query;
+    NSMutableArray* clists = [[NSMutableArray alloc] init];
+    [clists addObject:[NSNumber numberWithInt:tcid]];
+    sqlite3_stmt *statement;
+    
+    for (NSNumber* heid in heroIDList) {
+        int hid = (int)[heid integerValue];
+        query = [NSString stringWithFormat:@"select city from hero where id=%d",hid];
+        sqlite3_prepare_v2(_database, [query UTF8String], -1, &statement, nil) ;
+        sqlite3_step(statement);
+        int ccid = sqlite3_column_int(statement, 0);
+        sqlite3_finalize(statement);
+        [clists addObject:[NSNumber numberWithInt:ccid]];
+        
+        query = [NSString stringWithFormat:@"update hero set city=%d where id=%d",tcid,hid];
+        sqlite3_exec(_database, [query UTF8String], nil, nil, nil);
+        
+        /*
+        if (hid<=11) {
+            //capital move
+            query = [NSString stringWithFormat:@"update city set capital=0 where id=%d",ccid];
+            sqlite3_exec(_database, [query UTF8String], nil, nil, nil);
+            query = [NSString stringWithFormat:@"update city set capital=1 where id=%d",tcid];
+            sqlite3_exec(_database, [query UTF8String], nil, nil, nil);
+        }
+         */
+    }
+    //-------------------------------------------
+    //now re calculate the owner city army count
+    //-------------------------------------------
+    int wsum = 0;
+    int asum = 0;
+    int csum = 0;
+    int wisum = 0;
+    int bsum = 0;
+    for (NSNumber* c  in clists) {
+        int cid = (int)[c integerValue];
+        query = [NSString stringWithFormat:@"select troopType,troopCount from hero where city=%d and owner=%d",cid,[ShareGameManager shareGameManager].kingID];
+        sqlite3_prepare_v2(_database, [query UTF8String], -1, &statement, nil) ;
+        while (sqlite3_step(statement)==SQLITE_ROW) {
+            int tt = sqlite3_column_int(statement, 0);
+            int tc = sqlite3_column_int(statement, 1);
+            switch (tt) {
+                case 1:
+                    wsum += tc;
+                    break;
+                case 2:
+                    asum += tc;
+                    break;
+                case 3:
+                    csum += tc;
+                    break;
+                case 4:
+                    wisum += tc;
+                    break;
+                case 5:
+                    bsum += tc;
+                    break;
+                default:
+                    break;
+            
+            }
+            
+        }
+        sqlite3_finalize(statement);
+        //update the city table set the new troop count
+        query = [NSString stringWithFormat:@"update city set warriorCount=%d,archerCount=%d,cavalryCount=%d,wizardCount=%d,ballistaCount=%d where id=%d",wsum,asum,csum,wisum,bsum,cid];
+        sqlite3_exec(_database, [query UTF8String], nil, nil, nil);
+        
+    }
+    
+    [clists release];
+    sqlite3_close(_database);
 }
 
 -(void) saveGameToRecord:(int)recID

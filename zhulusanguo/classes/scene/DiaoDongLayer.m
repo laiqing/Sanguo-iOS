@@ -19,23 +19,16 @@
 - (id) initSlidingLayer:(SlideDirection) slideDirection contentRect:(CGRect)contentRect withTargetCityID:(int)tcid{
     if ((self = [super init])) {
         slideDirection_ = slideDirection;
-        //[self setContentSize:contentSize];
+
+        _heroSelected = [[NSMutableArray alloc] init];
+        
         _targetCityID = tcid;
+        _payment = 0;
         isDragging_ = false;
         lasty = 0.0f;
         xvel = 0.0f;
         direction_ = BounceDirectionStayingStill;
         contentRect_ = contentRect;
-        //[self setAnchorPoint:CGPointZero];
-        //if(slideDirection_ == Vertically) {
-        //    CGPoint newPosition = CGPointMake(contentRect.origin.x, -1 * (self.contentSize.width - contentRect_.size.height));
-        //    [self setPosition:newPosition];
-        //}
-        //else if(slideDirection_ == Horizontally){
-        //    [self setPosition:ccp(contentRect.origin.x, contentRect.origin.y)];
-        //}
-        //[self scheduleUpdate];
-        // register touch
         
         virtualLayer = [CCNode node];
         [self addChild:virtualLayer z:1];
@@ -104,11 +97,12 @@
             [virtualLayer addChild:labelline2 z:2];
             
             //add check box
-            TouchableSprite* cb = [TouchableSprite spriteWithSpriteFrameName:@"checkbox.png"];
-            cb.position = ccp(hf.position.x + hf.boundingBox.size.width*0.5 + 20, hf.position.y);
+            MoveTouchStateSprite* mcb = [MoveTouchStateSprite spriteWithSpriteFrameName:@"checkbox.png"];
+            mcb.position = ccp(hf.position.x + hf.boundingBox.size.width*0.5 + 20, hf.position.y);
             
-            [virtualLayer addChild:cb z:2];
-            [cb initTheCallbackFunc:@selector(touchHeroWithID:) withCaller:self withTouchID:ho.heroID];
+            [virtualLayer addChild:mcb z:2];
+            [mcb initTheCallbackFunc0:@selector(selectHeroWithID:) withCallbackFunc1:@selector(unselectHeroWithID:) withCaller:self withTouchID:ho.heroID withState:0 withImage0:@"checkbox.png" withImage1:@"checkbox1.png"];
+            
             
         }
         maxBottomY = (hfheight+5)*len - contentRect.size.height + 10 ;
@@ -138,6 +132,7 @@
         CCLabelTTF* ggtext = [CCLabelTTF labelWithString:@"0" fontName:@"Arial" fontSize:12];
         ggtext.anchorPoint = ccp(0, 0.5);
         ggtext.position = ccp(gg.position.x + 15, gg.position.y);
+        ggtext.tag = PAYMENT_TEXT_TAG;
         [self addChild:ggtext z:2];
         
         
@@ -145,16 +140,87 @@
         TouchableSprite* btn = [TouchableSprite spriteWithSpriteFrameName:@"diaodong.png"];
         btn.position = ccp(bottom.position.x + bottom.boundingBox.size.width*0.4, bottom.position.y);
         [self addChild:btn z:2];
+        [btn initTheCallbackFunc:@selector(moveTheHeroListToTargetCity) withCaller:self withTouchID:-1];
         
         
     }
     return self;
 }
 
--(void) touchHeroWithID:(NSNumber*)heID
+
+//------------------------------------
+//  add hero id to select list, get hero city,
+//  count the distance hero city to target city, count the payment , addpayment to _payment,
+//  update payment text
+//------------------------------------
+-(void) selectHeroWithID:(NSNumber*)heID
 {
+    [[SimpleAudioEngine sharedEngine] playEffect:@"menu.caf"];
     int hid = (int)[heID integerValue];
     CCLOG(@"hid select : %d",hid);
+    //add hero id to the list
+    NSNumber* hh = [NSNumber numberWithInt:hid];
+    [_heroSelected addObject:hh];
+    //get the hero city pos and target city pos sqrt
+    int fee = [[ShareGameManager shareGameManager] calcHeroDiaoDongFeet:hid targetCityID:_targetCityID];
+    _payment += fee;
+    //update label
+    CCLabelTTF* ggtext = (CCLabelTTF*)[self getChildByTag:PAYMENT_TEXT_TAG];
+    [ggtext setString:[NSString stringWithFormat:@"%d",_payment]];
+    
+}
+
+-(void) unselectHeroWithID:(NSNumber*)heID
+{
+    [[SimpleAudioEngine sharedEngine] playEffect:@"menu.caf"];
+    int hid = (int)[heID integerValue];
+    CCLOG(@"hid unselect : %d",hid);
+    NSNumber* needRemove = nil;
+    for (NSNumber* h in _heroSelected) {
+        if ([h integerValue]==hid) {
+            needRemove = h;
+            break;
+        }
+    }
+    [_heroSelected removeObject:needRemove];
+    //calc the payment
+    int fee = [[ShareGameManager shareGameManager] calcHeroDiaoDongFeet:hid targetCityID:_targetCityID];
+    _payment -= fee;
+    if (_payment<0) {
+        _payment = 0;
+    }
+    //update label
+    CCLabelTTF* ggtext = (CCLabelTTF*)[self getChildByTag:PAYMENT_TEXT_TAG];
+    [ggtext setString:[NSString stringWithFormat:@"%d",_payment]];
+    
+}
+
+-(void) moveTheHeroListToTargetCity
+{
+    [[SimpleAudioEngine sharedEngine] playEffect:@"menu.caf"];
+    if (_payment > [ShareGameManager shareGameManager].gold) {
+        //show statusbar.png and a text
+        CGSize wszie = [[CCDirector sharedDirector] winSize];
+        CCSprite* stbar = [CCSprite spriteWithSpriteFrameName:@"statusbar.png"];
+        stbar.position = ccp(wszie.width*0.5, wszie.height*0.5);
+        [self addChild:stbar z:5];
+        [stbar performSelector:@selector(removeFromParent) withObject:nil afterDelay:1.2];
+        CCLabelTTF* warn = [CCLabelTTF labelWithString:@"无法调动，没有足够的金钱！" fontName:@"Arial" fontSize:16];
+        warn.color = ccRED;
+        warn.position = stbar.position;
+        [self addChild:warn z:6];
+        [warn performSelector:@selector(removeFromParent) withObject:nil afterDelay:1.2];
+        return;
+    }
+    //for heroid in _heroselected, update the hero table, set the hero to the target city.
+    [[ShareGameManager shareGameManager] diaoDongHerolistToCity:_heroSelected targetCityID:_targetCityID];
+    
+    //sharegamemanager remove money
+    [ShareGameManager shareGameManager].gold = [ShareGameManager shareGameManager].gold - _payment;
+    _payment = 0;
+    //self remove from parent
+    [self performSelector:@selector(removeFromParent) withObject:nil afterDelay:0.5];
+    
 }
 
 -(void) onEnter
@@ -165,11 +231,13 @@
 
 -(void) onExit
 {
+    CCLOG(@"call DiaoDongLayer onExit()....");
     [[[CCDirector sharedDirector] touchDispatcher] removeDelegate:self];
     [super onExit];
 }
 
 - (void) dealloc {
+    [_heroSelected release];
     [super dealloc];
 }
 

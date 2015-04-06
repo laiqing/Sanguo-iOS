@@ -13,6 +13,7 @@
 #import "TouchableSprite.h"
 #import "DiaoDongLayer.h"
 #import "FightLayer.h"
+#import "CityScene.h"
 
 
 @interface MapHUDLayer : CCLayer<MapHUDProtocol> {

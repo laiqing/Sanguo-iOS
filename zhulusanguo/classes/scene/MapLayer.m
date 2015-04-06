@@ -135,8 +135,8 @@
             [bnode addChild:ccsp z:3];
         }
         
-        //[[[CCDirector sharedDirector] touchDispatcher] addStandardDelegate:self priority:1];
-        [[[CCDirector sharedDirector] touchDispatcher] addTargetedDelegate:self priority:2 swallowsTouches:YES];
+        
+        
         
         
         //schedule update
@@ -152,6 +152,18 @@
         
     }
     return self;
+}
+
+-(void) onEnter
+{
+    [[[CCDirector sharedDirector] touchDispatcher] addTargetedDelegate:self priority:2 swallowsTouches:YES];
+    [super onEnter];
+}
+
+-(void) onExit
+{
+    [[[CCDirector sharedDirector] touchDispatcher] removeDelegate:self];
+    [super onExit];
 }
 
 -(void) moveMapToCity:(int)cityID
@@ -275,7 +287,7 @@
     int flagID = [ShareGameManager shareGameManager].kingID;
     [self popCityAddGoldText:flagID];
     
-    //schedule add enemy resource , distribute enemy's army , add enemy city's building
+    //schedule add enemy resource , distribute enemy's army , add enemy city's building , this function add in hud
     //----------------------------------------
     //----------------------------------------
     //schedule add inccident. flood, plage, thief.
@@ -335,7 +347,7 @@
 {
     [self unscheduleAllSelectors];
     
-    [[[CCDirector sharedDirector] touchDispatcher] removeDelegate:self];
+    
     
     //remove citys
     for (long i=[citySprites count]-1; i>=0; i--) {

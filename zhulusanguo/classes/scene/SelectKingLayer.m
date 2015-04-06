@@ -235,6 +235,9 @@
     else {
         [[ShareGameManager shareGameManager] initNewGameDBWithKingID:hid];
         [[ShareGameManager shareGameManager] initDefaultAllAnimationInScene];
+        [ShareGameManager shareGameManager].year = 189;
+        [ShareGameManager shareGameManager].month = 1;
+        [ShareGameManager shareGameManager].day = 1;
         
         [[CCDirector sharedDirector] replaceScene:[MapScene node]];
         

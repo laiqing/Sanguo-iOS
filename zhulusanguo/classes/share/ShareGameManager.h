@@ -16,6 +16,10 @@
 
 #define AUDIO_MAX_WAITTIME 150
 
+#define FRAME_RATE 60
+#define BOUNCE_TIME 0.2f
+#define PAYMENT_TEXT_TAG 9999
+
 typedef enum {
     kAudioManagerUninitialized=0,
     kAudioManagerFailed=1,
@@ -25,6 +29,28 @@ typedef enum {
     kAudioManagerReady=300
     
 } GameManagerSoundState;
+
+typedef enum{
+    Vertically,
+    Horizontally
+} SlideDirection;
+
+typedef enum{
+    BounceDirectionGoingUp = 1,
+    BounceDirectionStayingStill = 0,
+    BounceDirectionGoingDown = -1,
+    BounceDirectionGoingLeft = 2,
+    BounceDirectionGoingRight = 3
+} BounceDirection;
+
+
+typedef enum {
+    LeftLayerDrag = 1,
+    RightLayerDrag = 2,
+    DragSpriteFromLeftToRight = 3,
+    DragSpriteFromRightToLeft = 4,
+    DragSpriteFromRightToRight = 5
+} LayerDragMode;
 
 
 @protocol MapHUDProtocol
@@ -52,6 +78,10 @@ extern NSString* const citynames[];
     int _gold;
     int _wood;
     int _iron;
+    
+    int _year;
+    int _month;
+    int _day;
 }
 
 +(ShareGameManager*) shareGameManager;
@@ -77,10 +107,19 @@ extern NSString* const citynames[];
 -(void) initNewGameDBWithKingID:(int)king_id;
 
 -(int) getTheCapitalCityWithKingID:(int)king_id;
-
+//for the pop city info dialog
 -(CityInfoObject*) getCityInfoObjectFromID:(int)cityID;
 -(int) getCityHeroCount:(int)cityID withKingID:(int)kingid;
 -(int) getCityKingID:(int)cityID;
+
+-(int) calcHeroDiaoDongFeet:(int)heroID targetCityID:(int)tcid;
+
+-(void) diaoDongHerolistToCity:(NSArray*)heroIDList targetCityID:(int)tcid;
+
+//------------------
+//for city scene
+//------------------
+-(CityInfoObject*) getCityInfoForCityScene:(int)cityID;
 
 //-----------------------------------
 //  save game , del game , load game
@@ -101,6 +140,10 @@ extern NSString* const citynames[];
 @property (assign) int gold;
 @property (assign) int wood;
 @property (assign) int iron;
+
+@property (assign) int year;
+@property (assign) int month;
+@property (assign) int day;
 
 
 @end
