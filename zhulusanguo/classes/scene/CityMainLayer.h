@@ -17,6 +17,17 @@
 #import "LeftSoliderWalkSprite.h"
 
 #import "CityHallInfoLayer.h"
+#import "LumberMillInfoLayer.h"
+#import "SteelMillInfoLayer.h"
+#import "MarketInfoLayer.h"
+#import "BarrackInfoLayer.h"
+#import "ArcherInfoLayer.h"
+#import "CavalryInfoLayer.h"
+#import "WizardInfoLayer.h"
+#import "BlacksmithInfoLayer.h"
+#import "MagicTowerInfoLayer.h"
+#import "TavernInfoLayer.h"
+
 
 @interface CityMainLayer : CCLayer {
     int _cityID;

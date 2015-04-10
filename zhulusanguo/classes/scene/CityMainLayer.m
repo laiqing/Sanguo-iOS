@@ -7,6 +7,7 @@
 //
 
 #import "CityMainLayer.h"
+#import "MapScene.h"
 
 
 @implementation CityMainLayer
@@ -60,110 +61,130 @@
             barrackBuilding = [TouchableSprite spriteWithSpriteFrameName:@"barrack_gray.png"];
             barrackBuilding.position = ccp(wsize.width*0.3, wsize.height*0.42);
             [self addChild:barrackBuilding z:2];
+            [barrackBuilding initTheCallbackFunc:@selector(showBarrackInfo) withCaller:self withTouchID:-1];
         }
         else {
             barrackBuilding = [TouchableSprite spriteWithSpriteFrameName:@"barrack.png"];
             barrackBuilding.position = ccp(wsize.width*0.3, wsize.height*0.42);
             [self addChild:barrackBuilding z:2];
+            [barrackBuilding initTheCallbackFunc:@selector(showBarrackInfo) withCaller:self withTouchID:-1];
         }
         
         if (cio.archer == 0) {
             archerBuilding = [TouchableSprite spriteWithSpriteFrameName:@"archer_gray.png"];
             archerBuilding.position = ccp(wsize.width*0.4, wsize.height*0.42);
             [self addChild:archerBuilding z:2];
+            [archerBuilding initTheCallbackFunc:@selector(showArcherInfo) withCaller:self withTouchID:-1];
         }
         else {
             archerBuilding = [TouchableSprite spriteWithSpriteFrameName:@"archer.png"];
             archerBuilding.position = ccp(wsize.width*0.4, wsize.height*0.42);
             [self addChild:archerBuilding z:2];
+            [archerBuilding initTheCallbackFunc:@selector(showArcherInfo) withCaller:self withTouchID:-1];
         }
         
         if (cio.cavalry == 0) {
             cavalryBuilding = [TouchableSprite spriteWithSpriteFrameName:@"cavalry_gray.png"];
             cavalryBuilding.position = ccp(wsize.width*0.6, wsize.height*0.42);
             [self addChild:cavalryBuilding z:2];
+            [cavalryBuilding initTheCallbackFunc:@selector(showCavalryInfo) withCaller:self withTouchID:-1];
         }
         else {
             cavalryBuilding = [TouchableSprite spriteWithSpriteFrameName:@"cavalry.png"];
             cavalryBuilding.position = ccp(wsize.width*0.6, wsize.height*0.42);
             [self addChild:cavalryBuilding z:2];
+            [cavalryBuilding initTheCallbackFunc:@selector(showCavalryInfo) withCaller:self withTouchID:-1];
         }
         
         if (cio.wizard == 0) {
             wizardBuilding = [TouchableSprite spriteWithSpriteFrameName:@"wizard_gray.png"];
             wizardBuilding.position = ccp(wsize.width*0.7, wsize.height*0.42);
             [self addChild:wizardBuilding z:2];
+            [wizardBuilding initTheCallbackFunc:@selector(showWizardInfo) withCaller:self withTouchID:-1];
         }
         else {
             wizardBuilding = [TouchableSprite spriteWithSpriteFrameName:@"wizard.png"];
             wizardBuilding.position = ccp(wsize.width*0.7, wsize.height*0.42);
             [self addChild:wizardBuilding z:2];
+            [wizardBuilding initTheCallbackFunc:@selector(showWizardInfo) withCaller:self withTouchID:-1];
         }
         
         if (cio.blacksmith == 0) {
             blacksmithBuilding = [TouchableSprite spriteWithSpriteFrameName:@"blacksmith_gray.png"];
             blacksmithBuilding.position = ccp(wsize.width*0.3, wsize.height*0.68);
             [self addChild:blacksmithBuilding z:2];
+            [blacksmithBuilding initTheCallbackFunc:@selector(showBlacksmithInfo) withCaller:self withTouchID:-1];
         }
         else {
             blacksmithBuilding = [TouchableSprite spriteWithSpriteFrameName:@"blacksmith.png"];
             blacksmithBuilding.position = ccp(wsize.width*0.3, wsize.height*0.68);
             [self addChild:blacksmithBuilding z:2];
+            [blacksmithBuilding initTheCallbackFunc:@selector(showBlacksmithInfo) withCaller:self withTouchID:-1];
         }
         
         if (cio.steelmill == 0) {
             steelmillBuilding = [TouchableSprite spriteWithSpriteFrameName:@"steelmill_gray.png"];
             steelmillBuilding.position = ccp(wsize.width*0.4, wsize.height*0.68);
             [self addChild:steelmillBuilding z:2];
+            [steelmillBuilding initTheCallbackFunc:@selector(showSteelMillInfo) withCaller:self withTouchID:-1];
         }
         else {
             steelmillBuilding = [TouchableSprite spriteWithSpriteFrameName:@"steelmill.png"];
             steelmillBuilding.position = ccp(wsize.width*0.4, wsize.height*0.68);
             [self addChild:steelmillBuilding z:2];
+            [steelmillBuilding initTheCallbackFunc:@selector(showSteelMillInfo) withCaller:self withTouchID:-1];
         }
         
         if (cio.lumbermill == 0) {
             lumbermillBuilding = [TouchableSprite spriteWithSpriteFrameName:@"lumbermill_gray.png"];
             lumbermillBuilding.position = ccp(wsize.width*0.62, wsize.height*0.68);
             [self addChild:lumbermillBuilding z:2];
+            [lumbermillBuilding initTheCallbackFunc:@selector(showLumberMillInfo) withCaller:self withTouchID:-1];
         }
         else {
             lumbermillBuilding = [TouchableSprite spriteWithSpriteFrameName:@"lumbermill.png"];
             lumbermillBuilding.position = ccp(wsize.width*0.62, wsize.height*0.68);
             [self addChild:lumbermillBuilding z:2];
+            [lumbermillBuilding initTheCallbackFunc:@selector(showLumberMillInfo) withCaller:self withTouchID:-1];
         }
         
         if (cio.market == 0) {
             marketBuilding = [TouchableSprite spriteWithSpriteFrameName:@"market_gray.png"];
             marketBuilding.position = ccp(wsize.width*0.72, wsize.height*0.68);
             [self addChild:marketBuilding z:2];
+            [marketBuilding initTheCallbackFunc:@selector(showMarketInfo) withCaller:self withTouchID:-1];
         }
         else {
             marketBuilding = [TouchableSprite spriteWithSpriteFrameName:@"market.png"];
             marketBuilding.position = ccp(wsize.width*0.72, wsize.height*0.68);
             [self addChild:marketBuilding z:2];
+            [marketBuilding initTheCallbackFunc:@selector(showMarketInfo) withCaller:self withTouchID:-1];
         }
         
         if (cio.magictower == 0) {
             magictowerBuilding = [TouchableSprite spriteWithSpriteFrameName:@"magictower_gray.png"];
             magictowerBuilding.position = ccp(wsize.width*0.35, wsize.height*0.56);
             [self addChild:magictowerBuilding z:2];
+            [magictowerBuilding initTheCallbackFunc:@selector(showMagicTowerInfo) withCaller:self withTouchID:-1];
         }
         else {
             magictowerBuilding = [TouchableSprite spriteWithSpriteFrameName:@"magictower.png"];
             magictowerBuilding.position = ccp(wsize.width*0.35, wsize.height*0.56);
             [self addChild:magictowerBuilding z:2];
+            [magictowerBuilding initTheCallbackFunc:@selector(showMagicTowerInfo) withCaller:self withTouchID:-1];
         }
         
         if (cio.tavern == 0) {
             tavernBuilding = [TouchableSprite spriteWithSpriteFrameName:@"tavern_gray.png"];
             tavernBuilding.position = ccp(wsize.width*0.66, wsize.height*0.56);
             [self addChild:tavernBuilding z:2];
+            [tavernBuilding initTheCallbackFunc:@selector(showTavernInfo) withCaller:self withTouchID:-1];
         }
         else {
             tavernBuilding = [TouchableSprite spriteWithSpriteFrameName:@"tavern.png"];
             tavernBuilding.position = ccp(wsize.width*0.66, wsize.height*0.56);
             [self addChild:tavernBuilding z:2];
+            [tavernBuilding initTheCallbackFunc:@selector(showTavernInfo) withCaller:self withTouchID:-1];
         }
         
         
@@ -206,14 +227,14 @@
         //draw money infobar close.button up
         //add infobar
         CCSprite* infobg = [CCSprite spriteWithSpriteFrameName:@"infobar.png"];
-        infobg.position = ccp(230, 300);
+        infobg.position = ccp(230, 305);
         [self addChild:infobg z:2];
         
         //add hero capital icon
         int kkid = [ShareGameManager shareGameManager].kingID;
         NSString* kfile = [NSString stringWithFormat:@"capital%d.png",kkid];
         CCSprite *dragon = [CCSprite spriteWithSpriteFrameName:kfile];
-        dragon.position = ccp(15,300);
+        dragon.position = ccp(15,305);
         [self addChild:dragon z:3];
         
         _year = [ShareGameManager shareGameManager].year;
@@ -222,12 +243,12 @@
         //add year label
         NSString* ystr = [NSString stringWithFormat:@"%d年%d月%d日",_year,_month,_day];
         ylabel = [CCLabelTTF labelWithString:ystr fontName:@"Verdana" fontSize:12];
-        ylabel.position = ccp(70, 300);
+        ylabel.position = ccp(70, 305);
         [self addChild:ylabel z:3];
         
         //add cityname label
         CCLabelTTF* kingLabel = [CCLabelTTF labelWithString:citynames[_cityID] fontName:@"Verdana" fontSize:12];
-        kingLabel.position = ccp(130, 300);
+        kingLabel.position = ccp(130, 305);
         [self addChild:kingLabel z:3];
         
         _gold = [ShareGameManager shareGameManager].gold;
@@ -237,37 +258,37 @@
         //add gold icon
         CCSprite* money = [CCSprite spriteWithSpriteFrameName:@"gold.png"];
         money.scale = 0.5;
-        money.position = ccp(165, 300);
+        money.position = ccp(165, 305);
         [self addChild:money z:3];
         
         //add money text
         moneyLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%d",_gold] fontName:@"Verdana" fontSize:12];
         moneyLabel.anchorPoint = ccp(0, 0.5);
-        moneyLabel.position = ccp(180, 300);
+        moneyLabel.position = ccp(180, 305);
         [self addChild:moneyLabel z:3];
         
         //add wood icon
         CCSprite* wood = [CCSprite spriteWithSpriteFrameName:@"wood.png"];
         wood.scale = 0.5;
-        wood.position = ccp(265, 300);
+        wood.position = ccp(265, 305);
         [self addChild:wood z:3];
         
         //add wood text
         woodLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%d",_wood] fontName:@"Verdana" fontSize:12];
         woodLabel.anchorPoint = ccp(0, 0.5);
-        woodLabel.position = ccp(280, 300);
+        woodLabel.position = ccp(280, 305);
         [self addChild:woodLabel z:3];
         
         //add iron icon
         CCSprite* iron = [CCSprite spriteWithSpriteFrameName:@"iron.png"];
         iron.scale = 0.5;
-        iron.position = ccp(365, 300);
+        iron.position = ccp(365, 305);
         [self addChild:iron z:3];
         
         //add iron label
         ironLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%d",_iron] fontName:@"Verdana" fontSize:12];
         ironLabel.anchorPoint = ccp(0, 0.5);
-        ironLabel.position = ccp(380, 300);
+        ironLabel.position = ccp(380, 305);
         [self addChild:ironLabel z:3];
         
         //add close button
@@ -277,6 +298,7 @@
         //menu.scale = 1.5;
         menu.position = ccp(wsize.width-20,315);
         [self addChild:menu z:2];
+        [menu initTheCallbackFunc:@selector(backtoMap) withCaller:self withTouchID:-1];
         
         
         
@@ -311,6 +333,12 @@
     [super dealloc];
 }
 
+-(void) backtoMap
+{
+    [[ShareGameManager shareGameManager] initDefaultAllAnimationInScene];
+    [[CCDirector sharedDirector] replaceScene:[MapScene node]];
+}
+
 -(void) scheduleUpdateRes
 {
     //just copy the MapHUDLayer update res funciton to here
@@ -326,11 +354,227 @@
 
 -(void) showCityHallInfo
 {
-    //must remove the top layer whatever 
-    
+
     //use the _cityID
     CityHallInfoLayer* chlayer = [CityHallInfoLayer node];
+    chlayer.tag = 4;
     CCScene* run = [[CCDirector sharedDirector] runningScene];
+    
+    CCNode* anylayer = [run getChildByTag:4];
+    if (anylayer) {
+        [anylayer removeFromParentAndCleanup:YES];
+    }
+    
+    //chlayer.tag = 4;
+    [run addChild:chlayer z:4];
+    [chlayer setCityID:_cityID];
+    
+    [self disableBuildingTouchable];
+    
+}
+
+-(void) showLumberMillInfo
+{
+    
+    //use the _cityID
+    LumberMillInfoLayer* chlayer = [LumberMillInfoLayer node];
+    chlayer.tag = 4;
+    CCScene* run = [[CCDirector sharedDirector] runningScene];
+    
+    CCNode* anylayer = [run getChildByTag:4];
+    if (anylayer) {
+        [anylayer removeFromParentAndCleanup:YES];
+    }
+    
+    //chlayer.tag = 4;
+    [run addChild:chlayer z:4];
+    [chlayer setCityID:_cityID];
+    
+    [self disableBuildingTouchable];
+    
+}
+
+-(void) showSteelMillInfo
+{
+    
+    //use the _cityID
+    SteelMillInfoLayer* chlayer = [SteelMillInfoLayer node];
+    chlayer.tag = 4;
+    CCScene* run = [[CCDirector sharedDirector] runningScene];
+    
+    CCNode* anylayer = [run getChildByTag:4];
+    if (anylayer) {
+        [anylayer removeFromParentAndCleanup:YES];
+    }
+    
+    //chlayer.tag = 4;
+    [run addChild:chlayer z:4];
+    [chlayer setCityID:_cityID];
+    
+    [self disableBuildingTouchable];
+    
+}
+
+-(void) showMarketInfo
+{
+    
+    //use the _cityID
+    MarketInfoLayer* chlayer = [MarketInfoLayer node];
+    chlayer.tag = 4;
+    CCScene* run = [[CCDirector sharedDirector] runningScene];
+    
+    CCNode* anylayer = [run getChildByTag:4];
+    if (anylayer) {
+        [anylayer removeFromParentAndCleanup:YES];
+    }
+    
+    //chlayer.tag = 4;
+    [run addChild:chlayer z:4];
+    [chlayer setCityID:_cityID];
+    
+    [self disableBuildingTouchable];
+    
+}
+
+-(void) showBarrackInfo
+{
+    
+    //use the _cityID
+    BarrackInfoLayer* chlayer = [BarrackInfoLayer node];
+    chlayer.tag = 4;
+    CCScene* run = [[CCDirector sharedDirector] runningScene];
+    
+    CCNode* anylayer = [run getChildByTag:4];
+    if (anylayer) {
+        [anylayer removeFromParentAndCleanup:YES];
+    }
+    
+    //chlayer.tag = 4;
+    [run addChild:chlayer z:4];
+    [chlayer setCityID:_cityID];
+    
+    [self disableBuildingTouchable];
+    
+}
+
+-(void) showArcherInfo
+{
+    
+    //use the _cityID
+    ArcherInfoLayer* chlayer = [ArcherInfoLayer node];
+    chlayer.tag = 4;
+    CCScene* run = [[CCDirector sharedDirector] runningScene];
+    
+    CCNode* anylayer = [run getChildByTag:4];
+    if (anylayer) {
+        [anylayer removeFromParentAndCleanup:YES];
+    }
+    
+    //chlayer.tag = 4;
+    [run addChild:chlayer z:4];
+    [chlayer setCityID:_cityID];
+    
+    [self disableBuildingTouchable];
+    
+}
+
+-(void) showCavalryInfo
+{
+    
+    //use the _cityID
+    CavalryInfoLayer* chlayer = [CavalryInfoLayer node];
+    chlayer.tag = 4;
+    CCScene* run = [[CCDirector sharedDirector] runningScene];
+    
+    CCNode* anylayer = [run getChildByTag:4];
+    if (anylayer) {
+        [anylayer removeFromParentAndCleanup:YES];
+    }
+    
+    //chlayer.tag = 4;
+    [run addChild:chlayer z:4];
+    [chlayer setCityID:_cityID];
+    
+    [self disableBuildingTouchable];
+    
+}
+
+-(void) showWizardInfo
+{
+    
+    //use the _cityID
+    WizardInfoLayer* chlayer = [WizardInfoLayer node];
+    chlayer.tag = 4;
+    CCScene* run = [[CCDirector sharedDirector] runningScene];
+    
+    CCNode* anylayer = [run getChildByTag:4];
+    if (anylayer) {
+        [anylayer removeFromParentAndCleanup:YES];
+    }
+    
+    //chlayer.tag = 4;
+    [run addChild:chlayer z:4];
+    [chlayer setCityID:_cityID];
+    
+    [self disableBuildingTouchable];
+    
+}
+
+-(void) showBlacksmithInfo
+{
+    
+    //use the _cityID
+    BlacksmithInfoLayer* chlayer = [BlacksmithInfoLayer node];
+    chlayer.tag = 4;
+    CCScene* run = [[CCDirector sharedDirector] runningScene];
+    
+    CCNode* anylayer = [run getChildByTag:4];
+    if (anylayer) {
+        [anylayer removeFromParentAndCleanup:YES];
+    }
+    
+    //chlayer.tag = 4;
+    [run addChild:chlayer z:4];
+    [chlayer setCityID:_cityID];
+    
+    [self disableBuildingTouchable];
+    
+}
+
+-(void) showMagicTowerInfo
+{
+    
+    //use the _cityID
+    MagicTowerInfoLayer* chlayer = [MagicTowerInfoLayer node];
+    chlayer.tag = 4;
+    CCScene* run = [[CCDirector sharedDirector] runningScene];
+    
+    CCNode* anylayer = [run getChildByTag:4];
+    if (anylayer) {
+        [anylayer removeFromParentAndCleanup:YES];
+    }
+    
+    //chlayer.tag = 4;
+    [run addChild:chlayer z:4];
+    [chlayer setCityID:_cityID];
+    
+    [self disableBuildingTouchable];
+    
+}
+
+-(void) showTavernInfo
+{
+    
+    //use the _cityID
+    TavernInfoLayer* chlayer = [TavernInfoLayer node];
+    chlayer.tag = 4;
+    CCScene* run = [[CCDirector sharedDirector] runningScene];
+    
+    CCNode* anylayer = [run getChildByTag:4];
+    if (anylayer) {
+        [anylayer removeFromParentAndCleanup:YES];
+    }
+    
     //chlayer.tag = 4;
     [run addChild:chlayer z:4];
     [chlayer setCityID:_cityID];

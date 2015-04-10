@@ -1,8 +1,8 @@
 //
-//  CityHallInfoLayer.h
+//  TavernInfoLayer.h
 //  zhulusanguo
 //
-//  Created by qing on 15/4/8.
+//  Created by qing on 15/4/10.
 //  Copyright 2015年 qing lai. All rights reserved.
 //
 
@@ -14,7 +14,7 @@
 
 #import "TouchableSprite.h"
 
-@interface CityHallInfoLayer : CCLayer {
+@interface TavernInfoLayer : CCLayer {
     int _cityID;
     int _currentLevel;
     
@@ -34,12 +34,7 @@
     
     TouchableSprite* upgradeBtn;
     TouchableSprite* otherBtn;  //trade , recruit, hire, forge, skill, trade
-    
-    
-    
+
 }
-
 -(void) setCityID:(int)cid;
-
-
 @end

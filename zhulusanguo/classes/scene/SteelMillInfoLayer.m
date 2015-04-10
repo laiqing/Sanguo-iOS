@@ -1,23 +1,23 @@
 //
-//  CityHallInfoLayer.m
+//  SteelMillInfoLayer.m
 //  zhulusanguo
 //
-//  Created by qing on 15/4/8.
+//  Created by qing on 15/4/10.
 //  Copyright 2015年 qing lai. All rights reserved.
 //
 
-#import "CityHallInfoLayer.h"
+#import "SteelMillInfoLayer.h"
 
 
-@implementation CityHallInfoLayer
+@implementation SteelMillInfoLayer
 
 //int const MAXLEVEL = 5;
-int const goldcost[] = {0,0,1000,2000,4000,10000};
-int const woodcost[] = {0,0,0,0,10,20};
-int const ironcost[] = {0,0,0,0,10,20};
-int const goldprovide[] = {0,250,500,1000,2000,4000};
-int const woodprovide[] = {0,0,0,0,0,0};
-int const ironprovide[] = {0,0,0,0,0,0};
+int const goldcost3[] = {0,1000,2000,4000,6000,10000};
+int const woodcost3[] = {0,5,10,15,20,30};
+int const ironcost3[] = {0,5,10,15,20,30};
+int const goldprovide3[] = {0,0,0,0,0,0};
+int const woodprovide3[] = {0,0,0,0,0,0};
+int const ironprovide3[] = {0,2,4,5,6,10};
 
 
 -(id) init
@@ -32,13 +32,13 @@ int const ironprovide[] = {0,0,0,0,0,0};
         //add title "city hall level"
         
         //add cityhall.png scale 2.0
-        building = [CCSprite spriteWithSpriteFrameName:@"cityhall.png"];
+        building = [CCSprite spriteWithSpriteFrameName:@"steelmill.png"];
         building.scale = 2.0f;
         building.position = ccp(wsize.width*0.5-bg.boundingBox.size.width*0.5+building.contentSize.width+25, wsize.height*0.53);
         [self addChild:building z:1];
         
         //add text desc
-        desc = [CCSprite spriteWithSpriteFrameName:@"cityhalldesc.png"];
+        desc = [CCSprite spriteWithSpriteFrameName:@"steelmilldesc.png"];
         desc.anchorPoint = ccp(0, 0.5);
         //desc = [CCLabelTTF labelWithString:@"市政厅每天为你提供一定数量的金币。" fontName:@"Verdana" fontSize:16];
         desc.position = ccp(wsize.width*0.45, wsize.height*0.58);
@@ -81,11 +81,11 @@ int const ironprovide[] = {0,0,0,0,0,0};
     _cityID = cid;
     //now set the current info string , and next level info string
     CityInfoObject* cio = [[[ShareGameManager shareGameManager] getCityInfoForCityScene:cid] retain];
-    _currentLevel = cio.hall;
+    _currentLevel = cio.steelmill;
     
     //add title "city hall level"
     if (_currentLevel > 0) {
-        NSString* tstr = [NSString stringWithFormat:@"市政厅  %d级",_currentLevel];
+        NSString* tstr = [NSString stringWithFormat:@"铁矿场  %d级",_currentLevel];
         title = [CCLabelTTF labelWithString:tstr fontName:@"Verdana" fontSize:14];
         title.color = ccc3(215, 255, 0);
         title.position = ccp(wsize.width*0.5, bg.position.y+bg.boundingBox.size.height*0.5-12);
@@ -93,7 +93,7 @@ int const ironprovide[] = {0,0,0,0,0,0};
     }
     else {
         // == 0
-        title = [CCLabelTTF labelWithString:@"市政厅  未建造" fontName:@"Verdana" fontSize:14];
+        title = [CCLabelTTF labelWithString:@"铁矿场  未建造" fontName:@"Verdana" fontSize:14];
         title.color = ccc3(215, 255, 0);
         title.position = ccp(wsize.width*0.5, bg.position.y+bg.boundingBox.size.height*0.5-12);
         [self addChild:title z:1];
@@ -102,7 +102,7 @@ int const ironprovide[] = {0,0,0,0,0,0};
     //add current provide
     if (_currentLevel>0) {
         //
-        NSString* cprov = [NSString stringWithFormat:@"当前等级：%d金币/天", goldprovide[_currentLevel]];
+        NSString* cprov = [NSString stringWithFormat:@"当前等级：%d铁矿/天", ironprovide3[_currentLevel]];
         currentProvide = [CCLabelTTF labelWithString:cprov fontName:@"Verdana" fontSize:12];
         //currentProvide.color = ccORANGE;
         currentProvide.anchorPoint = ccp(0, 0.5);
@@ -126,7 +126,7 @@ int const ironprovide[] = {0,0,0,0,0,0};
     }
     else {
         //show _currentLevel+1 info
-        NSString* nstr = [NSString stringWithFormat:@"下一等级：%d金币/天",goldprovide[_currentLevel+1]];
+        NSString* nstr = [NSString stringWithFormat:@"下一等级：%d铁矿/天",ironprovide3[_currentLevel+1]];
         nextProvide = [CCLabelTTF labelWithString:nstr fontName:@"Verdana" fontSize:12];
         nextProvide.color = ccGREEN;
         nextProvide.anchorPoint = ccp(0, 0.5);
@@ -143,7 +143,7 @@ int const ironprovide[] = {0,0,0,0,0,0};
         nextgold.position = ccp(upgradeBtn.position.x - 70, upgradeBtn.position.y+16);
         [self addChild:nextgold z:1];
         
-        NSString* ngstr = [NSString stringWithFormat:@"%d",goldcost[_currentLevel+1]];
+        NSString* ngstr = [NSString stringWithFormat:@"%d",goldcost3[_currentLevel+1]];
         nextGoldCost = [CCLabelTTF labelWithString:ngstr fontName:@"Verdana" fontSize:10];
         nextGoldCost.anchorPoint = ccp(0, 0.5);
         nextGoldCost.position = ccp(nextgold.position.x+10, nextgold.position.y);
@@ -154,7 +154,7 @@ int const ironprovide[] = {0,0,0,0,0,0};
         nextwood.position = ccp(upgradeBtn.position.x - 70, upgradeBtn.position.y+4);
         [self addChild:nextwood z:1];
         
-        NSString* nwstr = [NSString stringWithFormat:@"%d",woodcost[_currentLevel+1]];
+        NSString* nwstr = [NSString stringWithFormat:@"%d",woodcost3[_currentLevel+1]];
         nextWoodCost = [CCLabelTTF labelWithString:nwstr fontName:@"Verdana" fontSize:10];
         nextWoodCost.anchorPoint = ccp(0, 0.5);
         nextWoodCost.position = ccp(nextwood.position.x+10, nextwood.position.y);
@@ -165,7 +165,7 @@ int const ironprovide[] = {0,0,0,0,0,0};
         nextiron.position = ccp(upgradeBtn.position.x-70, upgradeBtn.position.y-8);
         [self addChild:nextiron z:1];
         
-        NSString* nistr = [NSString stringWithFormat:@"%d",ironcost[_currentLevel+1]];
+        NSString* nistr = [NSString stringWithFormat:@"%d",ironcost3[_currentLevel+1]];
         nextIronCost = [CCLabelTTF labelWithString:nistr fontName:@"Verdana" fontSize:10];
         nextIronCost.anchorPoint = ccp(0, 0.5);
         nextIronCost.position = ccp(nextiron.position.x+10, nextiron.position.y);

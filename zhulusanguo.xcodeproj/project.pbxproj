@@ -162,6 +162,16 @@
 		266BB4C41AD4D853007AE253 /* CityHallInfoLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 266BB4C31AD4D853007AE253 /* CityHallInfoLayer.m */; };
 		267D319C1AD2C81000227C20 /* ArticleLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 267D319B1AD2C81000227C20 /* ArticleLayer.m */; };
 		2699812D1AC25CE900C13879 /* HeroObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 2699812C1AC25CE900C13879 /* HeroObject.m */; };
+		269AB8161AD772EC001125DB /* LumberMillInfoLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 269AB8151AD772EC001125DB /* LumberMillInfoLayer.m */; };
+		269AB8191AD772FF001125DB /* SteelMillInfoLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 269AB8181AD772FF001125DB /* SteelMillInfoLayer.m */; };
+		269AB81C1AD7731A001125DB /* MarketInfoLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 269AB81B1AD7731A001125DB /* MarketInfoLayer.m */; };
+		269AB81F1AD77330001125DB /* BarrackInfoLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 269AB81E1AD77330001125DB /* BarrackInfoLayer.m */; };
+		269AB8221AD7733F001125DB /* ArcherInfoLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 269AB8211AD7733F001125DB /* ArcherInfoLayer.m */; };
+		269AB8251AD77354001125DB /* CavalryInfoLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 269AB8241AD77354001125DB /* CavalryInfoLayer.m */; };
+		269AB8281AD77365001125DB /* WizardInfoLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 269AB8271AD77365001125DB /* WizardInfoLayer.m */; };
+		269AB82B1AD77374001125DB /* BlacksmithInfoLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 269AB82A1AD77374001125DB /* BlacksmithInfoLayer.m */; };
+		269AB82E1AD77382001125DB /* MagicTowerInfoLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 269AB82D1AD77382001125DB /* MagicTowerInfoLayer.m */; };
+		269AB8311AD773B8001125DB /* TavernInfoLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 269AB8301AD773B8001125DB /* TavernInfoLayer.m */; };
 		26A1A1D11AC1694000518A99 /* TouchableSprite.m in Sources */ = {isa = PBXBuildFile; fileRef = 26A1A1D01AC1694000518A99 /* TouchableSprite.m */; };
 		26B03CD71AC6E60D00AA039A /* sanguo.db in Resources */ = {isa = PBXBuildFile; fileRef = 26B03CD61AC6E60D00AA039A /* sanguo.db */; };
 		26BEA18E1AC4E0DD00B3ACAF /* DiaoDongLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 26BEA18D1AC4E0DD00B3ACAF /* DiaoDongLayer.m */; };
@@ -489,6 +499,26 @@
 		267D319B1AD2C81000227C20 /* ArticleLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ArticleLayer.m; sourceTree = "<group>"; };
 		2699812B1AC25CE800C13879 /* HeroObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HeroObject.h; sourceTree = "<group>"; };
 		2699812C1AC25CE900C13879 /* HeroObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HeroObject.m; sourceTree = "<group>"; };
+		269AB8141AD772EC001125DB /* LumberMillInfoLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LumberMillInfoLayer.h; sourceTree = "<group>"; };
+		269AB8151AD772EC001125DB /* LumberMillInfoLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LumberMillInfoLayer.m; sourceTree = "<group>"; };
+		269AB8171AD772FF001125DB /* SteelMillInfoLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SteelMillInfoLayer.h; sourceTree = "<group>"; };
+		269AB8181AD772FF001125DB /* SteelMillInfoLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SteelMillInfoLayer.m; sourceTree = "<group>"; };
+		269AB81A1AD7731A001125DB /* MarketInfoLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MarketInfoLayer.h; sourceTree = "<group>"; };
+		269AB81B1AD7731A001125DB /* MarketInfoLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MarketInfoLayer.m; sourceTree = "<group>"; };
+		269AB81D1AD77330001125DB /* BarrackInfoLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BarrackInfoLayer.h; sourceTree = "<group>"; };
+		269AB81E1AD77330001125DB /* BarrackInfoLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BarrackInfoLayer.m; sourceTree = "<group>"; };
+		269AB8201AD7733F001125DB /* ArcherInfoLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ArcherInfoLayer.h; sourceTree = "<group>"; };
+		269AB8211AD7733F001125DB /* ArcherInfoLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ArcherInfoLayer.m; sourceTree = "<group>"; };
+		269AB8231AD77354001125DB /* CavalryInfoLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CavalryInfoLayer.h; sourceTree = "<group>"; };
+		269AB8241AD77354001125DB /* CavalryInfoLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CavalryInfoLayer.m; sourceTree = "<group>"; };
+		269AB8261AD77365001125DB /* WizardInfoLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WizardInfoLayer.h; sourceTree = "<group>"; };
+		269AB8271AD77365001125DB /* WizardInfoLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WizardInfoLayer.m; sourceTree = "<group>"; };
+		269AB8291AD77374001125DB /* BlacksmithInfoLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BlacksmithInfoLayer.h; sourceTree = "<group>"; };
+		269AB82A1AD77374001125DB /* BlacksmithInfoLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BlacksmithInfoLayer.m; sourceTree = "<group>"; };
+		269AB82C1AD77382001125DB /* MagicTowerInfoLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MagicTowerInfoLayer.h; sourceTree = "<group>"; };
+		269AB82D1AD77382001125DB /* MagicTowerInfoLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MagicTowerInfoLayer.m; sourceTree = "<group>"; };
+		269AB82F1AD773B8001125DB /* TavernInfoLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TavernInfoLayer.h; sourceTree = "<group>"; };
+		269AB8301AD773B8001125DB /* TavernInfoLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TavernInfoLayer.m; sourceTree = "<group>"; };
 		26A1A1CF1AC1694000518A99 /* TouchableSprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TouchableSprite.h; sourceTree = "<group>"; };
 		26A1A1D01AC1694000518A99 /* TouchableSprite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TouchableSprite.m; sourceTree = "<group>"; };
 		26B03CD61AC6E60D00AA039A /* sanguo.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = sanguo.db; sourceTree = "<group>"; };
@@ -605,6 +635,26 @@
 				267D319B1AD2C81000227C20 /* ArticleLayer.m */,
 				266BB4C21AD4D853007AE253 /* CityHallInfoLayer.h */,
 				266BB4C31AD4D853007AE253 /* CityHallInfoLayer.m */,
+				269AB8141AD772EC001125DB /* LumberMillInfoLayer.h */,
+				269AB8151AD772EC001125DB /* LumberMillInfoLayer.m */,
+				269AB8171AD772FF001125DB /* SteelMillInfoLayer.h */,
+				269AB8181AD772FF001125DB /* SteelMillInfoLayer.m */,
+				269AB81A1AD7731A001125DB /* MarketInfoLayer.h */,
+				269AB81B1AD7731A001125DB /* MarketInfoLayer.m */,
+				269AB81D1AD77330001125DB /* BarrackInfoLayer.h */,
+				269AB81E1AD77330001125DB /* BarrackInfoLayer.m */,
+				269AB8201AD7733F001125DB /* ArcherInfoLayer.h */,
+				269AB8211AD7733F001125DB /* ArcherInfoLayer.m */,
+				269AB8231AD77354001125DB /* CavalryInfoLayer.h */,
+				269AB8241AD77354001125DB /* CavalryInfoLayer.m */,
+				269AB8261AD77365001125DB /* WizardInfoLayer.h */,
+				269AB8271AD77365001125DB /* WizardInfoLayer.m */,
+				269AB8291AD77374001125DB /* BlacksmithInfoLayer.h */,
+				269AB82A1AD77374001125DB /* BlacksmithInfoLayer.m */,
+				269AB82C1AD77382001125DB /* MagicTowerInfoLayer.h */,
+				269AB82D1AD77382001125DB /* MagicTowerInfoLayer.m */,
+				269AB82F1AD773B8001125DB /* TavernInfoLayer.h */,
+				269AB8301AD773B8001125DB /* TavernInfoLayer.m */,
 			);
 			path = scene;
 			sourceTree = "<group>";
@@ -1154,6 +1204,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				263D05BD1AC03FE100248FFA /* CCTexturePVR.m in Sources */,
+				269AB81C1AD7731A001125DB /* MarketInfoLayer.m in Sources */,
 				261FE2041AC8E20800191275 /* SkillsLayer.m in Sources */,
 				263D060D1AC03FE100248FFA /* ccUtils.c in Sources */,
 				263D055E1AC03FE000248FFA /* CCLayer.m in Sources */,
@@ -1163,6 +1214,8 @@
 				263D05371AC03FE000248FFA /* ccDeprecated.m in Sources */,
 				263D05F21AC03FE100248FFA /* CCDirectorMac.m in Sources */,
 				263D054C1AC03FE000248FFA /* ccGLStateCache.m in Sources */,
+				269AB8311AD773B8001125DB /* TavernInfoLayer.m in Sources */,
+				269AB82E1AD77382001125DB /* MagicTowerInfoLayer.m in Sources */,
 				262145C61AC148ED00E0D550 /* CitySprite.m in Sources */,
 				263D061E1AC03FE100248FFA /* TransformUtils.m in Sources */,
 				2643F7BE1AC39B58001FD1AA /* BattleHUDLayer.m in Sources */,
@@ -1176,6 +1229,7 @@
 				266BB4C41AD4D853007AE253 /* CityHallInfoLayer.m in Sources */,
 				263D05581AC03FE000248FFA /* CCLabelBMFont.m in Sources */,
 				263D06051AC03FE100248FFA /* ccCArray.m in Sources */,
+				269AB8251AD77354001125DB /* CavalryInfoLayer.m in Sources */,
 				263D062F1AC03FE100248FFA /* CDXMacOSXSupport.m in Sources */,
 				26D43BE91AC7A7BF002CF592 /* SoliderWalkSprite.m in Sources */,
 				263D06231AC03FE100248FFA /* ZipUtils.m in Sources */,
@@ -1205,6 +1259,8 @@
 				263D06021AC03FE100248FFA /* CCArray.m in Sources */,
 				263D065F1AC03FE200248FFA /* plane.c in Sources */,
 				263D060B1AC03FE100248FFA /* CCProfiling.m in Sources */,
+				269AB8161AD772EC001125DB /* LumberMillInfoLayer.m in Sources */,
+				269AB8221AD7733F001125DB /* ArcherInfoLayer.m in Sources */,
 				263D05A21AC03FE000248FFA /* CCShaderCache.m in Sources */,
 				263D05A81AC03FE000248FFA /* CCSprite.m in Sources */,
 				263D054F1AC03FE000248FFA /* CCGrabber.m in Sources */,
@@ -1255,6 +1311,7 @@
 				263D05301AC03FDF00248FFA /* CCClippingNode.m in Sources */,
 				263D05B41AC03FE100248FFA /* CCTexture2D.m in Sources */,
 				263D05C91AC03FE100248FFA /* CCTMXTiledMap.m in Sources */,
+				269AB82B1AD77374001125DB /* BlacksmithInfoLayer.m in Sources */,
 				263D058A1AC03FE000248FFA /* CCRenderTexture.m in Sources */,
 				263D05121AC03FDF00248FFA /* CCActionInterval.m in Sources */,
 				263D05801AC03FE000248FFA /* CCPhysicsDebugNode.m in Sources */,
@@ -1263,6 +1320,7 @@
 				263D05831AC03FE000248FFA /* CCPhysicsSprite.mm in Sources */,
 				262145C51AC148ED00E0D550 /* CityInfoObject.m in Sources */,
 				263D06671AC03FE200248FFA /* vec2.c in Sources */,
+				269AB8281AD77365001125DB /* WizardInfoLayer.m in Sources */,
 				26CEA5DA1AC3196700649827 /* MapHUDLayer.m in Sources */,
 				263D06571AC03FE200248FFA /* matrix.c in Sources */,
 				263D053D1AC03FE000248FFA /* CCDrawingPrimitives.m in Sources */,
@@ -1274,12 +1332,14 @@
 				263D06081AC03FE100248FFA /* CCFileUtils.m in Sources */,
 				263D05F51AC03FE100248FFA /* CCEventDispatcher.m in Sources */,
 				263D05AB1AC03FE100248FFA /* CCSpriteBatchNode.m in Sources */,
+				269AB8191AD772FF001125DB /* SteelMillInfoLayer.m in Sources */,
 				263D05341AC03FE000248FFA /* CCConfiguration.m in Sources */,
 				263D05901AC03FE000248FFA /* CCScheduler.m in Sources */,
 				262145CA1AC14A4400E0D550 /* SelectKingLayer.m in Sources */,
 				263D05E01AC03FE100248FFA /* CCDirectorIOS.m in Sources */,
 				263D05621AC03FE000248FFA /* CCMenu.m in Sources */,
 				263D066B1AC03FE200248FFA /* vec4.c in Sources */,
+				269AB81F1AD77330001125DB /* BarrackInfoLayer.m in Sources */,
 				263D052D1AC03FDF00248FFA /* CCCamera.m in Sources */,
 				263D05271AC03FDF00248FFA /* CCAnimationCache.m in Sources */,
 				263D05491AC03FE000248FFA /* CCGLProgram.m in Sources */,
