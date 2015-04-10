@@ -15,13 +15,15 @@
     id caller;
     SEL callbackFunc;
     int touchID;
+    
+    BOOL _touchable;
 }
 
 
 
 -(void) initTheCallbackFunc:(SEL)cbfunc_ withCaller:(id)caller_ withTouchID:(int)tid;
 
-
+-(void) setTouchable:(BOOL)t;
 
 - (BOOL)ccTouchBegan:(UITouch *)touch withEvent:(UIEvent *)event;
 

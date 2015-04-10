@@ -159,6 +159,8 @@
 		2651FB631AC645A70076E0A0 /* cityscene-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 2651FB621AC645A70076E0A0 /* cityscene-hd.png */; };
 		2651FB661AC645CB0076E0A0 /* CityScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 2651FB651AC645CB0076E0A0 /* CityScene.m */; };
 		2651FB691AC645E00076E0A0 /* CityMainLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 2651FB681AC645E00076E0A0 /* CityMainLayer.m */; };
+		266BB4C41AD4D853007AE253 /* CityHallInfoLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 266BB4C31AD4D853007AE253 /* CityHallInfoLayer.m */; };
+		267D319C1AD2C81000227C20 /* ArticleLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 267D319B1AD2C81000227C20 /* ArticleLayer.m */; };
 		2699812D1AC25CE900C13879 /* HeroObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 2699812C1AC25CE900C13879 /* HeroObject.m */; };
 		26A1A1D11AC1694000518A99 /* TouchableSprite.m in Sources */ = {isa = PBXBuildFile; fileRef = 26A1A1D01AC1694000518A99 /* TouchableSprite.m */; };
 		26B03CD71AC6E60D00AA039A /* sanguo.db in Resources */ = {isa = PBXBuildFile; fileRef = 26B03CD61AC6E60D00AA039A /* sanguo.db */; };
@@ -481,6 +483,10 @@
 		2651FB651AC645CB0076E0A0 /* CityScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CityScene.m; sourceTree = "<group>"; };
 		2651FB671AC645E00076E0A0 /* CityMainLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CityMainLayer.h; sourceTree = "<group>"; };
 		2651FB681AC645E00076E0A0 /* CityMainLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CityMainLayer.m; sourceTree = "<group>"; };
+		266BB4C21AD4D853007AE253 /* CityHallInfoLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CityHallInfoLayer.h; sourceTree = "<group>"; };
+		266BB4C31AD4D853007AE253 /* CityHallInfoLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CityHallInfoLayer.m; sourceTree = "<group>"; };
+		267D319A1AD2C81000227C20 /* ArticleLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ArticleLayer.h; sourceTree = "<group>"; };
+		267D319B1AD2C81000227C20 /* ArticleLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ArticleLayer.m; sourceTree = "<group>"; };
 		2699812B1AC25CE800C13879 /* HeroObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HeroObject.h; sourceTree = "<group>"; };
 		2699812C1AC25CE900C13879 /* HeroObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HeroObject.m; sourceTree = "<group>"; };
 		26A1A1CF1AC1694000518A99 /* TouchableSprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TouchableSprite.h; sourceTree = "<group>"; };
@@ -595,6 +601,10 @@
 				2651FB681AC645E00076E0A0 /* CityMainLayer.m */,
 				261FE2021AC8E20800191275 /* SkillsLayer.h */,
 				261FE2031AC8E20800191275 /* SkillsLayer.m */,
+				267D319A1AD2C81000227C20 /* ArticleLayer.h */,
+				267D319B1AD2C81000227C20 /* ArticleLayer.m */,
+				266BB4C21AD4D853007AE253 /* CityHallInfoLayer.h */,
+				266BB4C31AD4D853007AE253 /* CityHallInfoLayer.m */,
 			);
 			path = scene;
 			sourceTree = "<group>";
@@ -1163,6 +1173,7 @@
 				26CEA5D41AC3193B00649827 /* MapScene.m in Sources */,
 				263D05FE1AC03FE100248FFA /* base64.c in Sources */,
 				263D05211AC03FDF00248FFA /* CCActionTween.m in Sources */,
+				266BB4C41AD4D853007AE253 /* CityHallInfoLayer.m in Sources */,
 				263D05581AC03FE000248FFA /* CCLabelBMFont.m in Sources */,
 				263D06051AC03FE100248FFA /* ccCArray.m in Sources */,
 				263D062F1AC03FE100248FFA /* CDXMacOSXSupport.m in Sources */,
@@ -1209,6 +1220,7 @@
 				263D05091AC03FDF00248FFA /* CCActionGrid.m in Sources */,
 				263D05521AC03FE000248FFA /* CCGrid.m in Sources */,
 				263D06611AC03FE200248FFA /* quaternion.c in Sources */,
+				267D319C1AD2C81000227C20 /* ArticleLayer.m in Sources */,
 				263D05AE1AC03FE100248FFA /* CCSpriteFrame.m in Sources */,
 				263D051B1AC03FDF00248FFA /* CCActionProgressTimer.m in Sources */,
 				263D04FD1AC03FDF00248FFA /* CCAction.m in Sources */,

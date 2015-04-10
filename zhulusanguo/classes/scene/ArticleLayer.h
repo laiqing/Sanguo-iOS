@@ -1,8 +1,8 @@
 //
-//  SkillsLayer.h
+//  ArticleLayer.h
 //  zhulusanguo
 //
-//  Created by qing on 15/3/30.
+//  Created by qing on 15/4/6.
 //  Copyright 2015年 qing lai. All rights reserved.
 //
 
@@ -14,10 +14,7 @@
 #import "HeroObject.h"
 #import "MoveTouchStateSprite.h"
 
-@interface SkillsLayer : CCLayer {
-    //int _dragging;
-    //int _moveLeftLayer;
-    //int _moveRightLayer;
+@interface ArticleLayer : CCLayer {
     int _dragItemID;  //for item in left layer id , or in right layer id.
     LayerDragMode layerDragState;
     
@@ -33,6 +30,5 @@
 - (id) initcontentRect1:(CGRect)left contentRect2:(CGRect)right withCityID:(int)tcid;
 -(void) updateLeftChildVisible:(CCNode*)ch;
 -(void) updateRightChildVisible:(CCNode*)ch;
-
 
 @end

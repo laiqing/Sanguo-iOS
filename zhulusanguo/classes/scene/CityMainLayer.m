@@ -53,6 +53,7 @@
             hallBuilding = [TouchableSprite spriteWithSpriteFrameName:@"cityhall.png"];
             hallBuilding.position = ccp(wsize.width*0.51, wsize.height*0.68);
             [self addChild:hallBuilding z:2];
+            [hallBuilding initTheCallbackFunc:@selector(showCityHallInfo) withCaller:self withTouchID:-1];
         }
         
         if (cio.barrack == 0) {
@@ -321,6 +322,51 @@
     //schedule other enemy fight each other.
     //"刘备，据探马来报，董卓正在集结部队，准备10天后对xx城进攻，请做好准备。"
     
+}
+
+-(void) showCityHallInfo
+{
+    //must remove the top layer whatever 
+    
+    //use the _cityID
+    CityHallInfoLayer* chlayer = [CityHallInfoLayer node];
+    CCScene* run = [[CCDirector sharedDirector] runningScene];
+    //chlayer.tag = 4;
+    [run addChild:chlayer z:4];
+    [chlayer setCityID:_cityID];
+    
+    [self disableBuildingTouchable];
+    
+}
+
+-(void) enableBuildingTouchable
+{
+    [hallBuilding setTouchable:YES];
+    [barrackBuilding setTouchable:YES];
+    [archerBuilding setTouchable:YES];
+    [cavalryBuilding setTouchable:YES];
+    [wizardBuilding setTouchable:YES];
+    [blacksmithBuilding setTouchable:YES];
+    [steelmillBuilding setTouchable:YES];
+    [lumbermillBuilding setTouchable:YES];
+    [marketBuilding setTouchable:YES];
+    [magictowerBuilding setTouchable:YES];
+    [tavernBuilding setTouchable:YES];
+}
+
+-(void) disableBuildingTouchable
+{
+    [hallBuilding setTouchable:NO];
+    [barrackBuilding setTouchable:NO];
+    [archerBuilding setTouchable:NO];
+    [cavalryBuilding setTouchable:NO];
+    [wizardBuilding setTouchable:NO];
+    [blacksmithBuilding setTouchable:NO];
+    [steelmillBuilding setTouchable:NO];
+    [lumbermillBuilding setTouchable:NO];
+    [marketBuilding setTouchable:NO];
+    [magictowerBuilding setTouchable:NO];
+    [tavernBuilding setTouchable:NO];
 }
 
 @end

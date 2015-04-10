@@ -15,6 +15,16 @@
 {
     if ((self = [super init])) {
         touchID = -1;
+        _touchable = YES;
+    }
+    return self;
+}
+
+-(id)initWithSpriteFrame:(CCSpriteFrame *)spriteFrame
+{
+    if((self=[super initWithSpriteFrame:spriteFrame])) {
+        touchID = -1;
+        _touchable = YES;
     }
     return self;
 }
@@ -24,6 +34,7 @@
     caller = caller_;
     callbackFunc = cbfunc_;
     touchID = tid;
+    _touchable = YES;
 }
 
 -(void) dealloc
@@ -41,6 +52,11 @@
     [super onExit];
 }
 
+-(void) setTouchable:(BOOL)t
+{
+    _touchable = t;
+}
+
 - (BOOL)containsTouchLocation:(UITouch *)touch
 {
     CGPoint location = [touch locationInView:[touch view]];
@@ -54,7 +70,7 @@
         return NO;
     }
     else {
-        return YES;
+        return _touchable;
     }
 }
 

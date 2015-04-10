@@ -123,7 +123,7 @@
         
         //add easy , normal , hard , nightmare text and checkbox on the screen
         CCLabelTTF* easy = [CCLabelTTF labelWithString:@"容易" fontName:@"Arial" fontSize:15];
-        easy.position = ccp(wsize.width*0.25, wsize.height*0.12);
+        easy.position = ccp(wsize.width*0.26, wsize.height*0.12);
         [self addChild:easy z:1];
         
         TouchableSprite* checkbox1 = [TouchableSprite spriteWithSpriteFrameName:@"checkbox.png"];
@@ -133,7 +133,7 @@
         [checkbox1 initTheCallbackFunc:@selector(touchCheckbox:) withCaller:self withTouchID:0];
         
         CCLabelTTF* normal = [CCLabelTTF labelWithString:@"普通" fontName:@"Arial" fontSize:15];
-        normal.position = ccp(wsize.width*0.42, wsize.height*0.12);
+        normal.position = ccp(wsize.width*0.43, wsize.height*0.12);
         [self addChild:normal z:1];
         
         TouchableSprite* checkbox2 = [TouchableSprite spriteWithSpriteFrameName:@"checkbox.png"];
@@ -143,7 +143,7 @@
         [checkbox2 initTheCallbackFunc:@selector(touchCheckbox:) withCaller:self withTouchID:1];
         
         CCLabelTTF* hard = [CCLabelTTF labelWithString:@"困难" fontName:@"Arial" fontSize:15];
-        hard.position = ccp(wsize.width*0.58, wsize.height*0.12);
+        hard.position = ccp(wsize.width*0.59, wsize.height*0.12);
         [self addChild:hard z:1];
         
         TouchableSprite* checkbox3 = [TouchableSprite spriteWithSpriteFrameName:@"checkbox.png"];
@@ -153,7 +153,7 @@
         [checkbox3 initTheCallbackFunc:@selector(touchCheckbox:) withCaller:self withTouchID:2];
         
         CCLabelTTF* nightmare = [CCLabelTTF labelWithString:@"梦魇" fontName:@"Arial" fontSize:15];
-        nightmare.position = ccp(wsize.width*0.75, wsize.height*0.12);
+        nightmare.position = ccp(wsize.width*0.76, wsize.height*0.12);
         [self addChild:nightmare z:1];
         
         TouchableSprite* checkbox4 = [TouchableSprite spriteWithSpriteFrameName:@"checkbox.png"];

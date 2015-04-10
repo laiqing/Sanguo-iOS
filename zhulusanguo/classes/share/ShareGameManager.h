@@ -45,6 +45,7 @@ typedef enum{
 
 
 typedef enum {
+    LayerNoDrag = 0,
     LeftLayerDrag = 1,
     RightLayerDrag = 2,
     DragSpriteFromLeftToRight = 3,
@@ -63,6 +64,9 @@ typedef enum {
 extern NSString* const skillnames[];
 extern NSString* const trooptypes[];
 extern NSString* const citynames[];
+
+
+
 
 @interface ShareGameManager : NSObject {
     BOOL hasAudioBeenInitialized;

@@ -16,6 +16,8 @@
 #import "SoliderWalkSprite.h"
 #import "LeftSoliderWalkSprite.h"
 
+#import "CityHallInfoLayer.h"
+
 @interface CityMainLayer : CCLayer {
     int _cityID;
     CityInfoObject* cio;
@@ -68,6 +70,9 @@
 
 
 -(id)initWithCityID:(int)cid;
+
+-(void) enableBuildingTouchable;
+-(void) disableBuildingTouchable;
 
 
 @end
