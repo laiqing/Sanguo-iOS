@@ -36,6 +36,7 @@
         bnode = [CCSpriteBatchNode batchNodeWithFile:@"sanguo.pvr.ccz"];
         //init sprite cache
         [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"sanguo.plist"];
+        [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"sanguoeffect.plist"];
         //sb.tag = 1000;
         [self addChild:bnode z:2];
         
@@ -303,6 +304,18 @@
     {
         if (controlUnit.flagID == flagID) {
             //add text up effect
+            CCSprite* addpic = [CCSprite spriteWithSpriteFrameName:@"increase.png"];
+            addpic.position = ccp(controlUnit.position.x - 40, controlUnit.position.y);
+            [self addChild:addpic z:2];
+            
+            CCMoveBy *mv0 = [CCMoveBy actionWithDuration:1.2f position:ccp(0,60)];
+            CCFadeOut *fo0 = [CCFadeOut actionWithDuration:1.5f];
+            CCSpawn *sp0 = [CCSpawn actions:mv0,fo0, nil];
+            [addpic runAction:sp0];
+            [addpic performSelector:@selector(removeFromParent) withObject:nil afterDelay:1.8];
+            
+            
+            
             CCSprite* gold = [CCSprite spriteWithSpriteFrameName:@"gold.png"];
             gold.scale = 0.5;
             gold.position = ccp(controlUnit.position.x - 20, controlUnit.position.y);

@@ -45,8 +45,10 @@
         [[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"sanguo_menu2.aifc" loop:YES];
         
         [[SimpleAudioEngine sharedEngine] preloadEffect:@"menu.caf"];
+        [[SimpleAudioEngine sharedEngine] preloadEffect:@"upgrade.caf"];
         
         [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"sanguo.plist"];
+        [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"sanguoeffect.plist"];
         
         CGSize size = [[CCDirector sharedDirector] winSize];
         

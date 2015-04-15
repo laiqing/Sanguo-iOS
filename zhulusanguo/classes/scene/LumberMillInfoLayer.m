@@ -49,6 +49,7 @@ int const ironprovide2[] = {0,0,0,0,0,0};
         upgradeBtn = [TouchableSprite spriteWithSpriteFrameName:@"buildupgbtn.png"];
         upgradeBtn.position = ccp(bg.position.x + bg.boundingBox.size.width*0.5-35, bg.position.y - bg.boundingBox.size.height*0.5 + 20);
         [self addChild:upgradeBtn z:1];
+        [upgradeBtn initTheCallbackFunc:@selector(touchUpgrade) withCaller:self withTouchID:-1];
         
     }
     return self;
@@ -68,7 +69,7 @@ int const ironprovide2[] = {0,0,0,0,0,0};
 
 -(void) onExit
 {
-    CCLOG(@"call CityHallInfoLayer onExit()....");
+    CCLOG(@"call LumberMillLayer onExit()....");
     [[[CCDirector sharedDirector] touchDispatcher] removeDelegate:self];
     [super onExit];
 }
@@ -82,6 +83,7 @@ int const ironprovide2[] = {0,0,0,0,0,0};
     //now set the current info string , and next level info string
     CityInfoObject* cio = [[[ShareGameManager shareGameManager] getCityInfoForCityScene:cid] retain];
     _currentLevel = cio.lumbermill;
+    _cityLevel = cio.level;
     
     //add title "city hall level"
     if (_currentLevel > 0) {
@@ -118,7 +120,7 @@ int const ironprovide2[] = {0,0,0,0,0,0};
     if (_currentLevel==5) {
         //next provide = already max level
         nextProvide = [CCLabelTTF labelWithString:@"已经是最高等级" fontName:@"Verdana" fontSize:12];
-        nextProvide.color = ccMAGENTA;
+        nextProvide.color = ccGREEN;
         nextProvide.anchorPoint = ccp(0, 0.5);
         nextProvide.position = ccp(desc.position.x, wsize.height*0.4);
         [self addChild:nextProvide z:1];
@@ -174,6 +176,10 @@ int const ironprovide2[] = {0,0,0,0,0,0};
         
         
     }
+    else {
+        [upgradeBtn setTouchable:NO];
+        upgradeBtn.visible = NO;
+    }
     
     
 }
@@ -200,12 +206,48 @@ int const ironprovide2[] = {0,0,0,0,0,0};
 {
     if (_currentLevel<5) {
         //if money enough
-        
-        //show build upgrade animation
-        
-        //update the sql set city hall = +1
-        
-        //close self
+        int needgold = goldcost2[_currentLevel+1];
+        int needwood = woodcost2[_currentLevel+1];
+        int neediron = ironcost2[_currentLevel+1];
+        if (([ShareGameManager shareGameManager].gold >= needgold)&&([ShareGameManager shareGameManager].wood>= needwood)&&([ShareGameManager shareGameManager].iron >= neediron)) {
+            
+            [[SimpleAudioEngine sharedEngine] playEffect:@"upgrade.caf"];
+            //
+            //update the sql set city hall = +1 and citylevel +1
+            CCLOG(@"current city level: %d",_cityLevel);
+            [[ShareGameManager shareGameManager] upgradeCityBuilding:7 withNewLevel:_currentLevel+1 withCityID:_cityID withNewCityLevel:_cityLevel+1];
+            
+            //set sharegamemanage gold,wood,iron -
+            [ShareGameManager shareGameManager].gold -= needgold;
+            [ShareGameManager shareGameManager].wood -= needwood;
+            [ShareGameManager shareGameManager].iron -= neediron;
+            
+            //close self
+            [self touchOutside];
+            
+            //update hud show and play animation
+            CCScene* sc = [[CCDirector sharedDirector] runningScene];
+            CCLayer<CityHUDProtocol>* cl = (CCLayer<CityHUDProtocol>*) [sc getChildByTag:1];
+            if (cl) {
+                [cl updateResourceLabel];
+                [cl upgradeBuildAnimation:7];
+            }
+            
+        }
+        else {
+            //not enough money
+            CGSize wszie = [[CCDirector sharedDirector] winSize];
+            CCSprite* stbar = [CCSprite spriteWithSpriteFrameName:@"statusbar.png"];
+            stbar.position = ccp(wszie.width*0.5, wszie.height*0.5);
+            [self addChild:stbar z:5];
+            [stbar performSelector:@selector(removeFromParent) withObject:nil afterDelay:1.2];
+            CCLabelTTF* warn = [CCLabelTTF labelWithString:@"资源不足，无法完成升级！" fontName:@"Arial" fontSize:16];
+            warn.color = ccRED;
+            warn.position = stbar.position;
+            [self addChild:warn z:6];
+            [warn performSelector:@selector(removeFromParent) withObject:nil afterDelay:1.2];
+            
+        }
         
     }
 }

@@ -29,7 +29,7 @@
 #import "TavernInfoLayer.h"
 
 
-@interface CityMainLayer : CCLayer {
+@interface CityMainLayer : CCLayer<CityHUDProtocol> {
     int _cityID;
     CityInfoObject* cio;
     
@@ -84,6 +84,8 @@
 
 -(void) enableBuildingTouchable;
 -(void) disableBuildingTouchable;
+
+-(void) updateGoldLabel:(int)g woodLabel:(int)w ironLabel:(int)i;
 
 
 @end

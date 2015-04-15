@@ -18,6 +18,9 @@
     if ((self = [super init])) {
         _cityID = cid;
         
+        [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"sanguo.plist"];
+        [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"sanguoeffect.plist"];
+        
         [[ShareGameManager shareGameManager] initDefaultAllAnimationInScene];
         
         CGSize wsize = [[CCDirector sharedDirector] winSize];
@@ -72,26 +75,26 @@
         
         if (cio.archer == 0) {
             archerBuilding = [TouchableSprite spriteWithSpriteFrameName:@"archer_gray.png"];
-            archerBuilding.position = ccp(wsize.width*0.4, wsize.height*0.42);
+            archerBuilding.position = ccp(wsize.width*0.4, wsize.height*0.43);
             [self addChild:archerBuilding z:2];
             [archerBuilding initTheCallbackFunc:@selector(showArcherInfo) withCaller:self withTouchID:-1];
         }
         else {
             archerBuilding = [TouchableSprite spriteWithSpriteFrameName:@"archer.png"];
-            archerBuilding.position = ccp(wsize.width*0.4, wsize.height*0.42);
+            archerBuilding.position = ccp(wsize.width*0.4, wsize.height*0.43);
             [self addChild:archerBuilding z:2];
             [archerBuilding initTheCallbackFunc:@selector(showArcherInfo) withCaller:self withTouchID:-1];
         }
         
         if (cio.cavalry == 0) {
             cavalryBuilding = [TouchableSprite spriteWithSpriteFrameName:@"cavalry_gray.png"];
-            cavalryBuilding.position = ccp(wsize.width*0.6, wsize.height*0.42);
+            cavalryBuilding.position = ccp(wsize.width*0.6, wsize.height*0.43);
             [self addChild:cavalryBuilding z:2];
             [cavalryBuilding initTheCallbackFunc:@selector(showCavalryInfo) withCaller:self withTouchID:-1];
         }
         else {
             cavalryBuilding = [TouchableSprite spriteWithSpriteFrameName:@"cavalry.png"];
-            cavalryBuilding.position = ccp(wsize.width*0.6, wsize.height*0.42);
+            cavalryBuilding.position = ccp(wsize.width*0.6, wsize.height*0.43);
             [self addChild:cavalryBuilding z:2];
             [cavalryBuilding initTheCallbackFunc:@selector(showCavalryInfo) withCaller:self withTouchID:-1];
         }
@@ -339,6 +342,126 @@
     [[CCDirector sharedDirector] replaceScene:[MapScene node]];
 }
 
+-(void) updateResourceLabel
+{
+    _gold = [ShareGameManager shareGameManager].gold;
+    _wood = [ShareGameManager shareGameManager].wood;
+    _iron = [ShareGameManager shareGameManager].iron;
+    [moneyLabel setString:[NSString stringWithFormat:@"%d",_gold]];
+    [woodLabel setString:[NSString stringWithFormat:@"%d",_wood]];
+    [ironLabel setString:[NSString stringWithFormat:@"%d",_iron]];
+}
+
+-(void) upgradeBuildAnimation:(int)buildID
+{
+    CGPoint startP;
+    switch (buildID) {
+        case 1:
+            startP = hallBuilding.position;
+            [hallBuilding setDisplayFrame:[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:@"cityhall.png"]];
+            break;
+        case 2:
+            startP = barrackBuilding.position;
+            [barrackBuilding setDisplayFrame:[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:@"barrack.png"]];
+            break;
+        case 3:
+            startP = archerBuilding.position;
+            [archerBuilding setDisplayFrame:[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:@"archer.png"]];
+            break;
+        case 4:
+            startP = cavalryBuilding.position;
+            [cavalryBuilding setDisplayFrame:[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:@"cavalry.png"]];
+            break;
+        case 5:
+            startP = wizardBuilding.position;
+            [wizardBuilding setDisplayFrame:[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:@"wizard.png"]];
+            break;
+        case 6:
+            startP = blacksmithBuilding.position;
+            [blacksmithBuilding setDisplayFrame:[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:@"blacksmith.png"]];
+            break;
+        case 7:
+            startP = lumbermillBuilding.position;
+            [lumbermillBuilding setDisplayFrame:[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:@"lumbermill.png"]];
+            break;
+        case 8:
+            startP = steelmillBuilding.position;
+            [steelmillBuilding setDisplayFrame:[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:@"steelmill.png"]];
+            break;
+        case 9:
+            startP = marketBuilding.position;
+            [marketBuilding setDisplayFrame:[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:@"market.png"]];
+            break;
+        case 10:
+            startP = magictowerBuilding.position;
+            [magictowerBuilding setDisplayFrame:[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:@"magictower.png"]];
+            break;
+        case 11:
+            startP = tavernBuilding.position;
+            [tavernBuilding setDisplayFrame:[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:@"tavern.png"]];
+            break;
+        default:
+            break;
+    }
+    
+    //
+    CCSprite* upg = [CCSprite spriteWithSpriteFrameName:@"bupgrade01.png"];
+    upg.position = startP;
+    [self addChild:upg z:3];
+    CCAnimation *aniact = [[CCAnimationCache sharedAnimationCache] animationByName:@"buildupgrade"];
+    aniact.restoreOriginalFrame = NO;
+    CCAnimate *a1 = [CCAnimate actionWithAnimation:aniact];
+    CCCallFunc* cf = [CCCallFunc actionWithTarget:upg selector:@selector(removeFromParent)];
+    CCSequence* se = [CCSequence actions:a1,cf, nil];
+    [upg runAction:se];
+    
+    //show money move up effect
+    CCSprite* decpic = [CCSprite spriteWithSpriteFrameName:@"reduce.png"];
+    decpic.position = ccp(startP.x - 40, startP.y);
+    [self addChild:decpic z:3];
+    CCMoveBy *mv0 = [CCMoveBy actionWithDuration:1.2f position:ccp(0,60)];
+    CCFadeOut *fo0 = [CCFadeOut actionWithDuration:1.5f];
+    CCSpawn *sp0 = [CCSpawn actions:mv0,fo0, nil];
+    [decpic runAction:sp0];
+    [decpic performSelector:@selector(removeFromParent) withObject:nil afterDelay:1.8];
+    
+    
+    CCSprite* gold = [CCSprite spriteWithSpriteFrameName:@"gold.png"];
+    gold.scale = 0.5;
+    gold.position = ccp(startP.x - 20, startP.y);
+    [self addChild:gold z:3];
+    
+    CCMoveBy *mv = [CCMoveBy actionWithDuration:1.2f position:ccp(0,60)];
+    CCFadeOut *fo = [CCFadeOut actionWithDuration:1.5f];
+    CCSpawn *sp = [CCSpawn actions:mv,fo, nil];
+    [gold runAction:sp];
+    [gold performSelector:@selector(removeFromParent) withObject:nil afterDelay:1.8];
+    
+    CCSprite* wood = [CCSprite spriteWithSpriteFrameName:@"wood.png"];
+    wood.scale = 0.5;
+    wood.position = ccp(startP.x, startP.y);
+    [self addChild:wood z:3];
+    
+    CCMoveBy *mv1 = [CCMoveBy actionWithDuration:1.2f position:ccp(0,60)];
+    CCFadeOut *fo1 = [CCFadeOut actionWithDuration:1.5f];
+    CCSpawn *sp1 = [CCSpawn actions:mv1,fo1, nil];
+    [wood runAction:sp1];
+    [wood performSelector:@selector(removeFromParent) withObject:nil afterDelay:1.8];
+    
+    
+    CCSprite* iron = [CCSprite spriteWithSpriteFrameName:@"iron.png"];
+    iron.scale = 0.5;
+    iron.position = ccp(startP.x + 20, startP.y);
+    [self addChild:iron z:3];
+    
+    CCMoveBy *mv2 = [CCMoveBy actionWithDuration:1.2f position:ccp(0,60)];
+    CCFadeOut *fo2 = [CCFadeOut actionWithDuration:1.5f];
+    CCSpawn *sp2 = [CCSpawn actions:mv2,fo2, nil];
+    [iron runAction:sp2];
+    [iron performSelector:@selector(removeFromParent) withObject:nil afterDelay:1.8];
+    
+}
+
 -(void) scheduleUpdateRes
 {
     //just copy the MapHUDLayer update res funciton to here
@@ -348,7 +471,7 @@
     //----------------------------------------
     //schedule add inccident. flood, plage, thief.
     //schedule other enemy fight each other.
-    //"刘备，据探马来报，董卓正在集结部队，准备10天后对xx城进攻，请做好准备。"
+    //"刘备，据探马来报，董卓正在xx集结部队，准备10天后对xx城进攻，请做好准备。"
     
 }
 

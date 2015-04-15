@@ -7,6 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2601C4391AD7CE65006F8C09 /* BarrackRecruitLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 2601C4381AD7CE65006F8C09 /* BarrackRecruitLayer.m */; };
+		2601C43C1AD7CE7C006F8C09 /* ArcherRecruitLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 2601C43B1AD7CE7C006F8C09 /* ArcherRecruitLayer.m */; };
+		2601C43F1AD7CE93006F8C09 /* CavalryRecruitLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 2601C43E1AD7CE93006F8C09 /* CavalryRecruitLayer.m */; };
+		2601C4421AD7CEA4006F8C09 /* WizardRecruitLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 2601C4411AD7CEA4006F8C09 /* WizardRecruitLayer.m */; };
+		2601C4451AD7CEB4006F8C09 /* BallistaRecruitLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 2601C4441AD7CEB4006F8C09 /* BallistaRecruitLayer.m */; };
+		2601C44A1AD7CF6D006F8C09 /* AllRecruitLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 2601C4491AD7CF6D006F8C09 /* AllRecruitLayer.m */; };
+		2601C44D1AD7CF89006F8C09 /* ForgeLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 2601C44C1AD7CF89006F8C09 /* ForgeLayer.m */; };
+		2601C4501AD7CFB9006F8C09 /* DistributeLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 2601C44F1AD7CFB9006F8C09 /* DistributeLayer.m */; };
+		2601C4531AD7CFEC006F8C09 /* HireLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 2601C4521AD7CFEC006F8C09 /* HireLayer.m */; };
+		2601C4561AD7D001006F8C09 /* TradeLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 2601C4551AD7D001006F8C09 /* TradeLayer.m */; };
 		261FE2041AC8E20800191275 /* SkillsLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 261FE2031AC8E20800191275 /* SkillsLayer.m */; };
 		262145AE1AC13F0F00E0D550 /* ShareGameManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 262145AD1AC13F0F00E0D550 /* ShareGameManager.m */; };
 		262145B21AC13F6E00E0D550 /* animate_all.plist in Resources */ = {isa = PBXBuildFile; fileRef = 262145B01AC13F6E00E0D550 /* animate_all.plist */; };
@@ -19,6 +29,8 @@
 		262145C61AC148ED00E0D550 /* CitySprite.m in Sources */ = {isa = PBXBuildFile; fileRef = 262145C21AC148ED00E0D550 /* CitySprite.m */; };
 		262145C71AC148ED00E0D550 /* CloudSprite.m in Sources */ = {isa = PBXBuildFile; fileRef = 262145C41AC148ED00E0D550 /* CloudSprite.m */; };
 		262145CA1AC14A4400E0D550 /* SelectKingLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 262145C91AC14A4400E0D550 /* SelectKingLayer.m */; };
+		263174B61AD7EFB100190F08 /* HeroListLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 263174B51AD7EFB100190F08 /* HeroListLayer.m */; };
+		263174B91AD7F15D00190F08 /* ContinueLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 263174B81AD7F15D00190F08 /* ContinueLayer.m */; };
 		2634E73C1AC19B0E00E90006 /* fire.png in Resources */ = {isa = PBXBuildFile; fileRef = 2634E73B1AC19B0E00E90006 /* fire.png */; };
 		2634E73E1AC1ABDD00E90006 /* menu.caf in Resources */ = {isa = PBXBuildFile; fileRef = 2634E73D1AC1ABDD00E90006 /* menu.caf */; };
 		263D04CD1AC03FDF00248FFA /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 263D04CC1AC03FDF00248FFA /* QuartzCore.framework */; };
@@ -154,13 +166,18 @@
 		263D06701AC03FE200248FFA /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 263D066F1AC03FE200248FFA /* main.m */; };
 		263D06731AC03FE200248FFA /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 263D06721AC03FE200248FFA /* AppDelegate.m */; };
 		263D06791AC03FE200248FFA /* IntroLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 263D06781AC03FE200248FFA /* IntroLayer.m */; };
+		263F07AC1AD8ED9E002C712F /* sanguoeffect.plist in Resources */ = {isa = PBXBuildFile; fileRef = 263F07AA1AD8ED9E002C712F /* sanguoeffect.plist */; };
+		263F07AD1AD8ED9E002C712F /* sanguoeffect.png in Resources */ = {isa = PBXBuildFile; fileRef = 263F07AB1AD8ED9E002C712F /* sanguoeffect.png */; };
 		2643F7BE1AC39B58001FD1AA /* BattleHUDLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 2643F7BD1AC39B58001FD1AA /* BattleHUDLayer.m */; };
+		2646085A1ADBB334008102C4 /* HeroUnit.m in Sources */ = {isa = PBXBuildFile; fileRef = 264608591ADBB334008102C4 /* HeroUnit.m */; };
 		2651FB611AC630200076E0A0 /* MoveTouchStateSprite.m in Sources */ = {isa = PBXBuildFile; fileRef = 2651FB601AC630200076E0A0 /* MoveTouchStateSprite.m */; };
 		2651FB631AC645A70076E0A0 /* cityscene-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 2651FB621AC645A70076E0A0 /* cityscene-hd.png */; };
 		2651FB661AC645CB0076E0A0 /* CityScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 2651FB651AC645CB0076E0A0 /* CityScene.m */; };
 		2651FB691AC645E00076E0A0 /* CityMainLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 2651FB681AC645E00076E0A0 /* CityMainLayer.m */; };
 		266BB4C41AD4D853007AE253 /* CityHallInfoLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 266BB4C31AD4D853007AE253 /* CityHallInfoLayer.m */; };
+		26796A741ADC0708007A8C08 /* SkillObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 26796A731ADC0708007A8C08 /* SkillObject.m */; };
 		267D319C1AD2C81000227C20 /* ArticleLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 267D319B1AD2C81000227C20 /* ArticleLayer.m */; };
+		2698D85D1AD93AE400596350 /* upgrade.caf in Resources */ = {isa = PBXBuildFile; fileRef = 2698D85C1AD93AE400596350 /* upgrade.caf */; };
 		2699812D1AC25CE900C13879 /* HeroObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 2699812C1AC25CE900C13879 /* HeroObject.m */; };
 		269AB8161AD772EC001125DB /* LumberMillInfoLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 269AB8151AD772EC001125DB /* LumberMillInfoLayer.m */; };
 		269AB8191AD772FF001125DB /* SteelMillInfoLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 269AB8181AD772FF001125DB /* SteelMillInfoLayer.m */; };
@@ -185,6 +202,26 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2601C4371AD7CE65006F8C09 /* BarrackRecruitLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BarrackRecruitLayer.h; sourceTree = "<group>"; };
+		2601C4381AD7CE65006F8C09 /* BarrackRecruitLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BarrackRecruitLayer.m; sourceTree = "<group>"; };
+		2601C43A1AD7CE7C006F8C09 /* ArcherRecruitLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ArcherRecruitLayer.h; sourceTree = "<group>"; };
+		2601C43B1AD7CE7C006F8C09 /* ArcherRecruitLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ArcherRecruitLayer.m; sourceTree = "<group>"; };
+		2601C43D1AD7CE93006F8C09 /* CavalryRecruitLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CavalryRecruitLayer.h; sourceTree = "<group>"; };
+		2601C43E1AD7CE93006F8C09 /* CavalryRecruitLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CavalryRecruitLayer.m; sourceTree = "<group>"; };
+		2601C4401AD7CEA4006F8C09 /* WizardRecruitLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WizardRecruitLayer.h; sourceTree = "<group>"; };
+		2601C4411AD7CEA4006F8C09 /* WizardRecruitLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WizardRecruitLayer.m; sourceTree = "<group>"; };
+		2601C4431AD7CEB4006F8C09 /* BallistaRecruitLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BallistaRecruitLayer.h; sourceTree = "<group>"; };
+		2601C4441AD7CEB4006F8C09 /* BallistaRecruitLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BallistaRecruitLayer.m; sourceTree = "<group>"; };
+		2601C4481AD7CF6D006F8C09 /* AllRecruitLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AllRecruitLayer.h; sourceTree = "<group>"; };
+		2601C4491AD7CF6D006F8C09 /* AllRecruitLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AllRecruitLayer.m; sourceTree = "<group>"; };
+		2601C44B1AD7CF89006F8C09 /* ForgeLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForgeLayer.h; sourceTree = "<group>"; };
+		2601C44C1AD7CF89006F8C09 /* ForgeLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ForgeLayer.m; sourceTree = "<group>"; };
+		2601C44E1AD7CFB9006F8C09 /* DistributeLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DistributeLayer.h; sourceTree = "<group>"; };
+		2601C44F1AD7CFB9006F8C09 /* DistributeLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DistributeLayer.m; sourceTree = "<group>"; };
+		2601C4511AD7CFEC006F8C09 /* HireLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HireLayer.h; sourceTree = "<group>"; };
+		2601C4521AD7CFEC006F8C09 /* HireLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HireLayer.m; sourceTree = "<group>"; };
+		2601C4541AD7D001006F8C09 /* TradeLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TradeLayer.h; sourceTree = "<group>"; };
+		2601C4551AD7D001006F8C09 /* TradeLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TradeLayer.m; sourceTree = "<group>"; };
 		261FE2021AC8E20800191275 /* SkillsLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SkillsLayer.h; sourceTree = "<group>"; };
 		261FE2031AC8E20800191275 /* SkillsLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SkillsLayer.m; sourceTree = "<group>"; };
 		262145AC1AC13F0F00E0D550 /* ShareGameManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShareGameManager.h; sourceTree = "<group>"; };
@@ -203,6 +240,10 @@
 		262145C41AC148ED00E0D550 /* CloudSprite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CloudSprite.m; sourceTree = "<group>"; };
 		262145C81AC14A4400E0D550 /* SelectKingLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectKingLayer.h; sourceTree = "<group>"; };
 		262145C91AC14A4400E0D550 /* SelectKingLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectKingLayer.m; sourceTree = "<group>"; };
+		263174B41AD7EFB100190F08 /* HeroListLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HeroListLayer.h; sourceTree = "<group>"; };
+		263174B51AD7EFB100190F08 /* HeroListLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HeroListLayer.m; sourceTree = "<group>"; };
+		263174B71AD7F15D00190F08 /* ContinueLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContinueLayer.h; sourceTree = "<group>"; };
+		263174B81AD7F15D00190F08 /* ContinueLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContinueLayer.m; sourceTree = "<group>"; };
 		2634E73B1AC19B0E00E90006 /* fire.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fire.png; sourceTree = "<group>"; };
 		2634E73D1AC1ABDD00E90006 /* menu.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = menu.caf; sourceTree = "<group>"; };
 		263D04C91AC03FDF00248FFA /* zhulusanguo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = zhulusanguo.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -484,8 +525,12 @@
 		263D06721AC03FE200248FFA /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		263D06771AC03FE200248FFA /* IntroLayer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IntroLayer.h; sourceTree = "<group>"; };
 		263D06781AC03FE200248FFA /* IntroLayer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IntroLayer.m; sourceTree = "<group>"; };
+		263F07AA1AD8ED9E002C712F /* sanguoeffect.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = sanguoeffect.plist; sourceTree = "<group>"; };
+		263F07AB1AD8ED9E002C712F /* sanguoeffect.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sanguoeffect.png; sourceTree = "<group>"; };
 		2643F7BC1AC39B58001FD1AA /* BattleHUDLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BattleHUDLayer.h; sourceTree = "<group>"; };
 		2643F7BD1AC39B58001FD1AA /* BattleHUDLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BattleHUDLayer.m; sourceTree = "<group>"; };
+		264608581ADBB334008102C4 /* HeroUnit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HeroUnit.h; sourceTree = "<group>"; };
+		264608591ADBB334008102C4 /* HeroUnit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HeroUnit.m; sourceTree = "<group>"; };
 		2651FB5F1AC630200076E0A0 /* MoveTouchStateSprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoveTouchStateSprite.h; sourceTree = "<group>"; };
 		2651FB601AC630200076E0A0 /* MoveTouchStateSprite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoveTouchStateSprite.m; sourceTree = "<group>"; };
 		2651FB621AC645A70076E0A0 /* cityscene-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cityscene-hd.png"; sourceTree = "<group>"; };
@@ -495,8 +540,11 @@
 		2651FB681AC645E00076E0A0 /* CityMainLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CityMainLayer.m; sourceTree = "<group>"; };
 		266BB4C21AD4D853007AE253 /* CityHallInfoLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CityHallInfoLayer.h; sourceTree = "<group>"; };
 		266BB4C31AD4D853007AE253 /* CityHallInfoLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CityHallInfoLayer.m; sourceTree = "<group>"; };
+		26796A721ADC0708007A8C08 /* SkillObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SkillObject.h; sourceTree = "<group>"; };
+		26796A731ADC0708007A8C08 /* SkillObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SkillObject.m; sourceTree = "<group>"; };
 		267D319A1AD2C81000227C20 /* ArticleLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ArticleLayer.h; sourceTree = "<group>"; };
 		267D319B1AD2C81000227C20 /* ArticleLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ArticleLayer.m; sourceTree = "<group>"; };
+		2698D85C1AD93AE400596350 /* upgrade.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = upgrade.caf; sourceTree = "<group>"; };
 		2699812B1AC25CE800C13879 /* HeroObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HeroObject.h; sourceTree = "<group>"; };
 		2699812C1AC25CE900C13879 /* HeroObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HeroObject.m; sourceTree = "<group>"; };
 		269AB8141AD772EC001125DB /* LumberMillInfoLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LumberMillInfoLayer.h; sourceTree = "<group>"; };
@@ -561,6 +609,82 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2601C4461AD7CEDF006F8C09 /* Map */ = {
+			isa = PBXGroup;
+			children = (
+				26CEA5D21AC3193B00649827 /* MapScene.h */,
+				26CEA5D31AC3193B00649827 /* MapScene.m */,
+				26CEA5D51AC3195900649827 /* MapLayer.h */,
+				26CEA5D61AC3195900649827 /* MapLayer.m */,
+				26CEA5D81AC3196700649827 /* MapHUDLayer.h */,
+				26CEA5D91AC3196700649827 /* MapHUDLayer.m */,
+				26BEA18C1AC4E0DD00B3ACAF /* DiaoDongLayer.h */,
+				26BEA18D1AC4E0DD00B3ACAF /* DiaoDongLayer.m */,
+				26CFBD651AC58D45009CF983 /* FightLayer.h */,
+				26CFBD661AC58D45009CF983 /* FightLayer.m */,
+			);
+			name = Map;
+			sourceTree = "<group>";
+		};
+		2601C4471AD7CF03006F8C09 /* City */ = {
+			isa = PBXGroup;
+			children = (
+				2651FB641AC645CB0076E0A0 /* CityScene.h */,
+				2651FB651AC645CB0076E0A0 /* CityScene.m */,
+				2651FB671AC645E00076E0A0 /* CityMainLayer.h */,
+				2651FB681AC645E00076E0A0 /* CityMainLayer.m */,
+				266BB4C21AD4D853007AE253 /* CityHallInfoLayer.h */,
+				266BB4C31AD4D853007AE253 /* CityHallInfoLayer.m */,
+				269AB8141AD772EC001125DB /* LumberMillInfoLayer.h */,
+				269AB8151AD772EC001125DB /* LumberMillInfoLayer.m */,
+				269AB8171AD772FF001125DB /* SteelMillInfoLayer.h */,
+				269AB8181AD772FF001125DB /* SteelMillInfoLayer.m */,
+				269AB81A1AD7731A001125DB /* MarketInfoLayer.h */,
+				269AB81B1AD7731A001125DB /* MarketInfoLayer.m */,
+				269AB81D1AD77330001125DB /* BarrackInfoLayer.h */,
+				269AB81E1AD77330001125DB /* BarrackInfoLayer.m */,
+				269AB8201AD7733F001125DB /* ArcherInfoLayer.h */,
+				269AB8211AD7733F001125DB /* ArcherInfoLayer.m */,
+				269AB8231AD77354001125DB /* CavalryInfoLayer.h */,
+				269AB8241AD77354001125DB /* CavalryInfoLayer.m */,
+				269AB8261AD77365001125DB /* WizardInfoLayer.h */,
+				269AB8271AD77365001125DB /* WizardInfoLayer.m */,
+				269AB8291AD77374001125DB /* BlacksmithInfoLayer.h */,
+				269AB82A1AD77374001125DB /* BlacksmithInfoLayer.m */,
+				269AB82C1AD77382001125DB /* MagicTowerInfoLayer.h */,
+				269AB82D1AD77382001125DB /* MagicTowerInfoLayer.m */,
+				269AB82F1AD773B8001125DB /* TavernInfoLayer.h */,
+				269AB8301AD773B8001125DB /* TavernInfoLayer.m */,
+				2601C4371AD7CE65006F8C09 /* BarrackRecruitLayer.h */,
+				2601C4381AD7CE65006F8C09 /* BarrackRecruitLayer.m */,
+				2601C43A1AD7CE7C006F8C09 /* ArcherRecruitLayer.h */,
+				2601C43B1AD7CE7C006F8C09 /* ArcherRecruitLayer.m */,
+				2601C43D1AD7CE93006F8C09 /* CavalryRecruitLayer.h */,
+				2601C43E1AD7CE93006F8C09 /* CavalryRecruitLayer.m */,
+				2601C4401AD7CEA4006F8C09 /* WizardRecruitLayer.h */,
+				2601C4411AD7CEA4006F8C09 /* WizardRecruitLayer.m */,
+				2601C4431AD7CEB4006F8C09 /* BallistaRecruitLayer.h */,
+				2601C4441AD7CEB4006F8C09 /* BallistaRecruitLayer.m */,
+				2601C4481AD7CF6D006F8C09 /* AllRecruitLayer.h */,
+				2601C4491AD7CF6D006F8C09 /* AllRecruitLayer.m */,
+				261FE2021AC8E20800191275 /* SkillsLayer.h */,
+				261FE2031AC8E20800191275 /* SkillsLayer.m */,
+				267D319A1AD2C81000227C20 /* ArticleLayer.h */,
+				267D319B1AD2C81000227C20 /* ArticleLayer.m */,
+				2601C44B1AD7CF89006F8C09 /* ForgeLayer.h */,
+				2601C44C1AD7CF89006F8C09 /* ForgeLayer.m */,
+				2601C44E1AD7CFB9006F8C09 /* DistributeLayer.h */,
+				2601C44F1AD7CFB9006F8C09 /* DistributeLayer.m */,
+				2601C4511AD7CFEC006F8C09 /* HireLayer.h */,
+				2601C4521AD7CFEC006F8C09 /* HireLayer.m */,
+				2601C4541AD7D001006F8C09 /* TradeLayer.h */,
+				2601C4551AD7D001006F8C09 /* TradeLayer.m */,
+				263174B41AD7EFB100190F08 /* HeroListLayer.h */,
+				263174B51AD7EFB100190F08 /* HeroListLayer.m */,
+			);
+			name = City;
+			sourceTree = "<group>";
+		};
 		262145AA1AC13F0F00E0D550 /* classes */ = {
 			isa = PBXGroup;
 			children = (
@@ -585,6 +709,8 @@
 		262145AF1AC13F6D00E0D550 /* plist */ = {
 			isa = PBXGroup;
 			children = (
+				263F07AA1AD8ED9E002C712F /* sanguoeffect.plist */,
+				263F07AB1AD8ED9E002C712F /* sanguoeffect.png */,
 				2651FB621AC645A70076E0A0 /* cityscene-hd.png */,
 				262145BB1AC147BF00E0D550 /* map-hd.png */,
 				262145B71AC1467A00E0D550 /* sanguo-hd.plist */,
@@ -599,6 +725,7 @@
 		262145B41AC13FA100E0D550 /* sound */ = {
 			isa = PBXGroup;
 			children = (
+				2698D85C1AD93AE400596350 /* upgrade.caf */,
 				2634E73D1AC1ABDD00E90006 /* menu.caf */,
 				262145B51AC13FA100E0D550 /* sanguo_menu2.aifc */,
 			);
@@ -613,48 +740,11 @@
 				263D06781AC03FE200248FFA /* IntroLayer.m */,
 				262145C81AC14A4400E0D550 /* SelectKingLayer.h */,
 				262145C91AC14A4400E0D550 /* SelectKingLayer.m */,
-				26CEA5D21AC3193B00649827 /* MapScene.h */,
-				26CEA5D31AC3193B00649827 /* MapScene.m */,
-				26CEA5D51AC3195900649827 /* MapLayer.h */,
-				26CEA5D61AC3195900649827 /* MapLayer.m */,
-				26CEA5D81AC3196700649827 /* MapHUDLayer.h */,
-				26CEA5D91AC3196700649827 /* MapHUDLayer.m */,
-				2643F7BC1AC39B58001FD1AA /* BattleHUDLayer.h */,
-				2643F7BD1AC39B58001FD1AA /* BattleHUDLayer.m */,
-				26BEA18C1AC4E0DD00B3ACAF /* DiaoDongLayer.h */,
-				26BEA18D1AC4E0DD00B3ACAF /* DiaoDongLayer.m */,
-				26CFBD651AC58D45009CF983 /* FightLayer.h */,
-				26CFBD661AC58D45009CF983 /* FightLayer.m */,
-				2651FB641AC645CB0076E0A0 /* CityScene.h */,
-				2651FB651AC645CB0076E0A0 /* CityScene.m */,
-				2651FB671AC645E00076E0A0 /* CityMainLayer.h */,
-				2651FB681AC645E00076E0A0 /* CityMainLayer.m */,
-				261FE2021AC8E20800191275 /* SkillsLayer.h */,
-				261FE2031AC8E20800191275 /* SkillsLayer.m */,
-				267D319A1AD2C81000227C20 /* ArticleLayer.h */,
-				267D319B1AD2C81000227C20 /* ArticleLayer.m */,
-				266BB4C21AD4D853007AE253 /* CityHallInfoLayer.h */,
-				266BB4C31AD4D853007AE253 /* CityHallInfoLayer.m */,
-				269AB8141AD772EC001125DB /* LumberMillInfoLayer.h */,
-				269AB8151AD772EC001125DB /* LumberMillInfoLayer.m */,
-				269AB8171AD772FF001125DB /* SteelMillInfoLayer.h */,
-				269AB8181AD772FF001125DB /* SteelMillInfoLayer.m */,
-				269AB81A1AD7731A001125DB /* MarketInfoLayer.h */,
-				269AB81B1AD7731A001125DB /* MarketInfoLayer.m */,
-				269AB81D1AD77330001125DB /* BarrackInfoLayer.h */,
-				269AB81E1AD77330001125DB /* BarrackInfoLayer.m */,
-				269AB8201AD7733F001125DB /* ArcherInfoLayer.h */,
-				269AB8211AD7733F001125DB /* ArcherInfoLayer.m */,
-				269AB8231AD77354001125DB /* CavalryInfoLayer.h */,
-				269AB8241AD77354001125DB /* CavalryInfoLayer.m */,
-				269AB8261AD77365001125DB /* WizardInfoLayer.h */,
-				269AB8271AD77365001125DB /* WizardInfoLayer.m */,
-				269AB8291AD77374001125DB /* BlacksmithInfoLayer.h */,
-				269AB82A1AD77374001125DB /* BlacksmithInfoLayer.m */,
-				269AB82C1AD77382001125DB /* MagicTowerInfoLayer.h */,
-				269AB82D1AD77382001125DB /* MagicTowerInfoLayer.m */,
-				269AB82F1AD773B8001125DB /* TavernInfoLayer.h */,
-				269AB8301AD773B8001125DB /* TavernInfoLayer.m */,
+				263174B71AD7F15D00190F08 /* ContinueLayer.h */,
+				263174B81AD7F15D00190F08 /* ContinueLayer.m */,
+				2601C4461AD7CEDF006F8C09 /* Map */,
+				263174BA1AD7F79600190F08 /* Battle */,
+				2601C4471AD7CF03006F8C09 /* City */,
 			);
 			path = scene;
 			sourceTree = "<group>";
@@ -680,6 +770,19 @@
 				26D43BEB1AC7ADC4002CF592 /* LeftSoliderWalkSprite.m */,
 			);
 			path = objects;
+			sourceTree = "<group>";
+		};
+		263174BA1AD7F79600190F08 /* Battle */ = {
+			isa = PBXGroup;
+			children = (
+				2643F7BC1AC39B58001FD1AA /* BattleHUDLayer.h */,
+				2643F7BD1AC39B58001FD1AA /* BattleHUDLayer.m */,
+				264608581ADBB334008102C4 /* HeroUnit.h */,
+				264608591ADBB334008102C4 /* HeroUnit.m */,
+				26796A721ADC0708007A8C08 /* SkillObject.h */,
+				26796A731ADC0708007A8C08 /* SkillObject.m */,
+			);
+			name = Battle;
 			sourceTree = "<group>";
 		};
 		263D04C01AC03FDE00248FFA = {
@@ -1140,7 +1243,7 @@
 		263D04C11AC03FDE00248FFA /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0610;
+				LastUpgradeCheck = 0630;
 				ORGANIZATIONNAME = "qing lai";
 				TargetAttributes = {
 					263D04C81AC03FDF00248FFA = {
@@ -1172,12 +1275,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				262145B21AC13F6E00E0D550 /* animate_all.plist in Resources */,
+				2698D85D1AD93AE400596350 /* upgrade.caf in Resources */,
 				263D04F31AC03FDF00248FFA /* Icon.png in Resources */,
 				263D06511AC03FE200248FFA /* ChangeLog in Resources */,
 				263D04E51AC03FDF00248FFA /* Default@2x.png in Resources */,
 				262145BC1AC147BF00E0D550 /* map-hd.png in Resources */,
 				263D04EF1AC03FDF00248FFA /* Icon-Small.png in Resources */,
 				263D04EB1AC03FDF00248FFA /* Icon-72.png in Resources */,
+				263F07AC1AD8ED9E002C712F /* sanguoeffect.plist in Resources */,
 				263D04E31AC03FDF00248FFA /* Default.png in Resources */,
 				26B03CD71AC6E60D00AA039A /* sanguo.db in Resources */,
 				263D04ED1AC03FDF00248FFA /* Icon-Small-50.png in Resources */,
@@ -1191,6 +1296,7 @@
 				263D04E91AC03FDF00248FFA /* Default-Landscape~ipad.png in Resources */,
 				263D04E71AC03FDF00248FFA /* Default-568h@2x.png in Resources */,
 				263D04F51AC03FDF00248FFA /* Icon@2x.png in Resources */,
+				263F07AD1AD8ED9E002C712F /* sanguoeffect.png in Resources */,
 				262145BA1AC1467A00E0D550 /* sanguo-hd.pvr.ccz in Resources */,
 				262145B91AC1467A00E0D550 /* sanguo-hd.plist in Resources */,
 			);
@@ -1203,6 +1309,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2601C4451AD7CEB4006F8C09 /* BallistaRecruitLayer.m in Sources */,
 				263D05BD1AC03FE100248FFA /* CCTexturePVR.m in Sources */,
 				269AB81C1AD7731A001125DB /* MarketInfoLayer.m in Sources */,
 				261FE2041AC8E20800191275 /* SkillsLayer.m in Sources */,
@@ -1216,6 +1323,7 @@
 				263D054C1AC03FE000248FFA /* ccGLStateCache.m in Sources */,
 				269AB8311AD773B8001125DB /* TavernInfoLayer.m in Sources */,
 				269AB82E1AD77382001125DB /* MagicTowerInfoLayer.m in Sources */,
+				26796A741ADC0708007A8C08 /* SkillObject.m in Sources */,
 				262145C61AC148ED00E0D550 /* CitySprite.m in Sources */,
 				263D061E1AC03FE100248FFA /* TransformUtils.m in Sources */,
 				2643F7BE1AC39B58001FD1AA /* BattleHUDLayer.m in Sources */,
@@ -1228,6 +1336,8 @@
 				263D05211AC03FDF00248FFA /* CCActionTween.m in Sources */,
 				266BB4C41AD4D853007AE253 /* CityHallInfoLayer.m in Sources */,
 				263D05581AC03FE000248FFA /* CCLabelBMFont.m in Sources */,
+				2601C43C1AD7CE7C006F8C09 /* ArcherRecruitLayer.m in Sources */,
+				2601C4421AD7CEA4006F8C09 /* WizardRecruitLayer.m in Sources */,
 				263D06051AC03FE100248FFA /* ccCArray.m in Sources */,
 				269AB8251AD77354001125DB /* CavalryInfoLayer.m in Sources */,
 				263D062F1AC03FE100248FFA /* CDXMacOSXSupport.m in Sources */,
@@ -1239,6 +1349,7 @@
 				26F1279C1AC500A900DADFD9 /* ExternCCAction.m in Sources */,
 				263D05401AC03FE000248FFA /* CCDrawNode.m in Sources */,
 				263D05D21AC03FE100248FFA /* CCTransitionPageTurn.m in Sources */,
+				263174B91AD7F15D00190F08 /* ContinueLayer.m in Sources */,
 				263D05031AC03FDF00248FFA /* CCActionCatmullRom.m in Sources */,
 				263D057A1AC03FE000248FFA /* CCParticleSystem.m in Sources */,
 				263D05CF1AC03FE100248FFA /* CCTransition.m in Sources */,
@@ -1251,6 +1362,7 @@
 				263D06651AC03FE200248FFA /* utility.c in Sources */,
 				263D06111AC03FE100248FFA /* CCVertex.m in Sources */,
 				26D43BEC1AC7ADC4002CF592 /* LeftSoliderWalkSprite.m in Sources */,
+				2601C4561AD7D001006F8C09 /* TradeLayer.m in Sources */,
 				263D06171AC03FE100248FFA /* NSThread+performBlock.m in Sources */,
 				263D051E1AC03FDF00248FFA /* CCActionTiledGrid.m in Sources */,
 				263D05651AC03FE000248FFA /* CCMenuItem.m in Sources */,
@@ -1263,13 +1375,16 @@
 				269AB8221AD7733F001125DB /* ArcherInfoLayer.m in Sources */,
 				263D05A21AC03FE000248FFA /* CCShaderCache.m in Sources */,
 				263D05A81AC03FE000248FFA /* CCSprite.m in Sources */,
+				2601C44D1AD7CF89006F8C09 /* ForgeLayer.m in Sources */,
 				263D054F1AC03FE000248FFA /* CCGrabber.m in Sources */,
 				263D06591AC03FE200248FFA /* mat3.c in Sources */,
 				26CFBD671AC58D45009CF983 /* FightLayer.m in Sources */,
+				2601C4531AD7CFEC006F8C09 /* HireLayer.m in Sources */,
 				263D06731AC03FE200248FFA /* AppDelegate.m in Sources */,
 				263D05E31AC03FE100248FFA /* CCES2Renderer.m in Sources */,
 				263D05551AC03FE000248FFA /* CCLabelAtlas.m in Sources */,
 				263D05711AC03FE000248FFA /* CCParallaxNode.m in Sources */,
+				2601C44A1AD7CF6D006F8C09 /* AllRecruitLayer.m in Sources */,
 				26A1A1D11AC1694000518A99 /* TouchableSprite.m in Sources */,
 				263D06791AC03FE200248FFA /* IntroLayer.m in Sources */,
 				262145AE1AC13F0F00E0D550 /* ShareGameManager.m in Sources */,
@@ -1284,8 +1399,10 @@
 				263D05BA1AC03FE100248FFA /* CCTextureCache.m in Sources */,
 				263D065D1AC03FE200248FFA /* neon_matrix_impl.c in Sources */,
 				2651FB691AC645E00076E0A0 /* CityMainLayer.m in Sources */,
+				2601C4391AD7CE65006F8C09 /* BarrackRecruitLayer.m in Sources */,
 				26CEA5D71AC3195900649827 /* MapLayer.m in Sources */,
 				263D058D1AC03FE000248FFA /* CCScene.m in Sources */,
+				2601C43F1AD7CE93006F8C09 /* CavalryRecruitLayer.m in Sources */,
 				263D050C1AC03FDF00248FFA /* CCActionGrid3D.m in Sources */,
 				263D06551AC03FE200248FFA /* mat4stack.c in Sources */,
 				263D05B11AC03FE100248FFA /* CCSpriteFrameCache.m in Sources */,
@@ -1303,6 +1420,7 @@
 				263D05241AC03FDF00248FFA /* CCAnimation.m in Sources */,
 				263D064F1AC03FE200248FFA /* aabb.c in Sources */,
 				263D05C61AC03FE100248FFA /* CCTMXObjectGroup.m in Sources */,
+				263174B61AD7EFB100190F08 /* HeroListLayer.m in Sources */,
 				263D06281AC03FE100248FFA /* CDAudioManager.m in Sources */,
 				263D05D51AC03FE100248FFA /* CCTransitionProgress.m in Sources */,
 				263D05F81AC03FE100248FFA /* CCGLView.m in Sources */,
@@ -1315,6 +1433,7 @@
 				263D058A1AC03FE000248FFA /* CCRenderTexture.m in Sources */,
 				263D05121AC03FDF00248FFA /* CCActionInterval.m in Sources */,
 				263D05801AC03FE000248FFA /* CCPhysicsDebugNode.m in Sources */,
+				2601C4501AD7CFB9006F8C09 /* DistributeLayer.m in Sources */,
 				263D05061AC03FDF00248FFA /* CCActionEase.m in Sources */,
 				263D05431AC03FE000248FFA /* CCFontDefinition.m in Sources */,
 				263D05831AC03FE000248FFA /* CCPhysicsSprite.mm in Sources */,
@@ -1334,6 +1453,7 @@
 				263D05AB1AC03FE100248FFA /* CCSpriteBatchNode.m in Sources */,
 				269AB8191AD772FF001125DB /* SteelMillInfoLayer.m in Sources */,
 				263D05341AC03FE000248FFA /* CCConfiguration.m in Sources */,
+				2646085A1ADBB334008102C4 /* HeroUnit.m in Sources */,
 				263D05901AC03FE000248FFA /* CCScheduler.m in Sources */,
 				262145CA1AC14A4400E0D550 /* SelectKingLayer.m in Sources */,
 				263D05E01AC03FE100248FFA /* CCDirectorIOS.m in Sources */,
@@ -1355,9 +1475,17 @@
 		263D067A1AC03FE200248FFA /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					DEBUG,
@@ -1365,9 +1493,14 @@
 				);
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -1376,15 +1509,27 @@
 		263D067B1AC03FE200248FFA /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					NDEBUG,
 					"NS_BLOCK_ASSERTIONS=1",
 				);
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				SDKROOT = iphoneos;
@@ -1396,7 +1541,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD)";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
@@ -1422,7 +1566,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD)";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;

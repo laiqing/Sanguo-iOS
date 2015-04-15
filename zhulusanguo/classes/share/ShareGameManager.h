@@ -20,6 +20,18 @@
 #define BOUNCE_TIME 0.2f
 #define PAYMENT_TEXT_TAG 9999
 
+#define BUILDING_HALL_ID 1
+#define BUILDING_BARRACK_ID 2
+#define BUILDING_ARCHER_ID 3
+#define BUILDING_CAVALRY_ID 4
+#define BUILDING_WIZARD_ID 5
+#define BUILDING_BLACKSMITH_ID 6
+#define BUILDING_LUMBERMILL_ID 7
+#define BUILDING_STEELMILL_ID 8
+#define BUILDING_MARKET_ID 9
+#define BUILDING_MAGICTOWER_ID 10
+#define BUILDING_TAVERN_ID 11
+
 typedef enum {
     kAudioManagerUninitialized=0,
     kAudioManagerFailed=1,
@@ -60,6 +72,16 @@ typedef enum {
 -(void) removePopCityInfo;
 
 @end
+
+
+@protocol CityHUDProtocol
+
+-(void) updateResourceLabel;
+-(void) upgradeBuildAnimation:(int)buildID;
+
+
+@end
+
 
 extern NSString* const skillnames[];
 extern NSString* const trooptypes[];
@@ -124,6 +146,7 @@ extern NSString* const citynames[];
 //for city scene
 //------------------
 -(CityInfoObject*) getCityInfoForCityScene:(int)cityID;
+-(void) upgradeCityBuilding:(int)buildID withNewLevel:(int)lev withCityID:(int)cid withNewCityLevel:(int)nlev;
 
 //-----------------------------------
 //  save game , del game , load game

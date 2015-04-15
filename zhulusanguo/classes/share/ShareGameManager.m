@@ -387,6 +387,56 @@ static id instance = nil;
     return result;
 }
 
+-(void) upgradeCityBuilding:(int)buildID withNewLevel:(int)lev withCityID:(int)cid withNewCityLevel:(int)nlev
+{
+    NSString *rootpath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+    NSString *curdb = [rootpath stringByAppendingPathComponent:@"current.db"];
+    sqlite3* _database;
+    sqlite3_open([curdb UTF8String], &_database);
+    NSString* query;
+    switch (buildID) {
+        case 1:
+            query = [NSString stringWithFormat:@"update city set hall=%d,level=%d where id=%d",lev,nlev,cid];
+            break;
+        case 2:
+            query = [NSString stringWithFormat:@"update city set barrack=%d,level=%d where id=%d",lev,nlev,cid];
+            break;
+        case 3:
+            query = [NSString stringWithFormat:@"update city set archer=%d,level=%d where id=%d",lev,nlev,cid];
+            break;
+        case 4:
+            query = [NSString stringWithFormat:@"update city set cavalry=%d,level=%d where id=%d",lev,nlev,cid];
+            break;
+        case 5:
+            query = [NSString stringWithFormat:@"update city set wizard=%d,level=%d where id=%d",lev,nlev,cid];
+            break;
+        case 6:
+            query = [NSString stringWithFormat:@"update city set blacksmith=%d,level=%d where id=%d",lev,nlev,cid];
+            break;
+        case 7:
+            query = [NSString stringWithFormat:@"update city set lumbermill=%d,level=%d where id=%d",lev,nlev,cid];
+            break;
+        case 8:
+            query = [NSString stringWithFormat:@"update city set steelmill=%d,level=%d where id=%d",lev,nlev,cid];
+            break;
+        case 9:
+            query = [NSString stringWithFormat:@"update city set market=%d,level=%d where id=%d",lev,nlev,cid];
+            break;
+        case 10:
+            query = [NSString stringWithFormat:@"update city set magictower=%d,level=%d where id=%d",lev,nlev,cid];
+            break;
+        case 11:
+            query = [NSString stringWithFormat:@"update city set tavern=%d,level=%d where id=%d",lev,nlev,cid];
+            break;
+        default:
+            query = [NSString stringWithFormat:@"update city set hall=%d,level=%d where id=%d",lev,nlev,cid];
+            break;
+    }
+    sqlite3_exec(_database, [query UTF8String], nil, nil, nil);
+    sqlite3_close(_database);
+
+}
+
 -(CityInfoObject*) getCityInfoObjectFromID:(int)cityID
 {
     NSString *rootpath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
@@ -441,7 +491,7 @@ static id instance = nil;
     
     sqlite3_stmt *statement;
     
-    NSString* query = [NSString stringWithFormat:@"select cname,hall,barrack,archer,cavalry,wizard,blacksmith,tavern,market,lumbermill,steelmill,magictower,tower1,tower2,tower3,tower4 from city  where id=%d",cityID];
+    NSString* query = [NSString stringWithFormat:@"select cname,hall,barrack,archer,cavalry,wizard,blacksmith,tavern,market,lumbermill,steelmill,magictower,tower1,tower2,tower3,tower4,level from city  where id=%d",cityID];
     if (sqlite3_prepare_v2(_database, [query UTF8String], -1, &statement, nil) == SQLITE_OK) {
         sqlite3_step(statement);
         char *cname = (char *) sqlite3_column_text(statement, 0);
@@ -462,6 +512,7 @@ static id instance = nil;
         cio.tower2 =  sqlite3_column_int(statement, 13);
         cio.tower3 =  sqlite3_column_int(statement, 14);
         cio.tower4 =  sqlite3_column_int(statement, 15);
+        cio.level = sqlite3_column_int(statement, 16);
     }
     sqlite3_finalize(statement);
     

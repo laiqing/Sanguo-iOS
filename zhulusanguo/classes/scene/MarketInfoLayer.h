@@ -17,6 +17,7 @@
 @interface MarketInfoLayer : CCLayer {
     int _cityID;
     int _currentLevel;
+    int _cityLevel;
     
     CCSprite* bg;
     CCLabelTTF* title;

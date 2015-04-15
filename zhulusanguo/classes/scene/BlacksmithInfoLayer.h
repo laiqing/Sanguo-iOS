@@ -17,6 +17,7 @@
 @interface BlacksmithInfoLayer : CCLayer {
     int _cityID;
     int _currentLevel;
+    int _cityLevel;
     
     CCSprite* bg;
     CCLabelTTF* title;
@@ -34,6 +35,7 @@
     
     TouchableSprite* upgradeBtn;
     TouchableSprite* otherBtn;  //trade , recruit, hire, forge, skill, trade
+    TouchableSprite* forgeBtn;
 
 }
 -(void) setCityID:(int)cid;

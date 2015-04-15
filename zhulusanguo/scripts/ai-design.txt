@@ -1,0 +1,199 @@
+select hero from heroes list where hero owner == player owner id
+创建一个视图，当需要进攻某个城市的时候，显示哪些武将可以攻击
+
+select hero from heroes list where city id == cityid , 
+显示某个城市有几个武将，以及进入城市时载入武将列表
+
+
+select hero from my heroes list where hero skill == 0 , 1 , 2 ... , then get the cityid
+当每月增加金钱时，需要查询，并增加适当的数量
+如果有突发事件的时候，需要查询
+
+select hero from my heroes list where city id != xxx
+当需要把武将调动到一个xxx的城市的时候
+
+
+当武将被调动到一个新城市后
+update hero set city id = new city id
+update city info struct , set the hero count -1
+update new city info struct, set the hero count +1
+
+如果该武将有 治安／治水／医师 技能，update cityWithSpecialHero 表
+
+金钱等资源只有在存盘时才写入数据库中，平时不用放在share instance里。
+
+
+
+
+在城市里，招募了一个新武将，需要update city list 里对应的city， 武将number + 1
+同时需要 update hero , set owner id = player id
+
+在城市里，招募了一个新武将，该武将如果有 add gold/wood/iron 这三样技能，则增加到autoIncResource表纪录里
+                        该武将如果有 security/water_wheel/doctor 这三样技能，则增加到cityWithSpecialHero表里
+
+在城市里，武将学习到了新技能，则 update hero表，把skill2或skill8调整为该技能id
+
+
+
+
+战胜后，需要将新城市的ownerID 设置为 自己
+原城市里的所有武将的 ownerID 变为 99 ， 去流浪，君主则死亡
+所带军队的 city id 改为新城市 id
+
+
+存盘数据：
+当前玩家信息：金钱，木材，铁矿，游戏里的时间，存盘文件生成的时间，存盘时是在战争还是在平时
+所有武将列表，要包括其带兵信息，武将等级，经验等
+所有城市列表，要包括城市里有什么建筑，当前城市等级
+
+如果存盘时在战争，则需要：
+战争回合数，天气，我方是攻方还是守方，
+我方部队所在位置，部队的人数，武将当前的hp,mp（包括帐篷位置）
+我方已撤退的部队和武将情况（敌方获得的经验值）
+敌方所在的位置，人数，敌方武将的hp,mp（包括箭塔的hp）
+敌方已撤退的部队和武将情况（我方获得的经验值）
+
+heroid , state 1 alive, -1 leave, hp, mp, posx, posy, belong 1 self -1 enemy , troop before fight count, troop current count, troop last one hp
+ +++ hero record in hero table
+-----
+towerid state 1 alive, -1 destory, current hp, level. -- from the citybuild table.
+camp posx, posy.
+
+
+
+
+调动的费用，城市的距离 累加 = sqrt((xpos1-xpos2)^2+(ypos1-ypos2)^2) 累加
+
+战斗中主动撤退不会损失武将
+战败会损失武将，武将成为流浪
+守城战中，如果有君主，如果还有城市，那么君主会撤退到另一个城市，其他武将则流浪。君主所在的新城市成为首都，被占据的首都变为普通城市
+君主如果随同作战，战胜后，君主自动回到原来的城市，其他武将留下
+如果没有城市了，则君主死亡，游戏结束
+雇佣武将的费用公式  2000*1.25^(武将等级－1)+武将武力*(武将等级)+武将智力*等级
+
+
+数据库表
+玩家信息表
+战场信息表
+武将升级经验值表
+技能表
+宝物表
+武将表
+城市表
+城市建设表 --等级，hall等级，barrack等级，archer等级，
+
+首都：35,5,12,32,56,50,76,72,52,61,65,66
+
+君主初始资金，5000-10000,100,100
+董卓：20000，200，200
+马腾：10000,100,100
+刘章：15000,150,150
+刘表：12000,120,120
+孙坚：15000,120,120
+曹操：18000,120,120
+陶谦：10000,100,100
+孔融：9000,150,150
+袁术：14000,200,200
+袁绍：25000,250,250
+刘备：8000,80,80
+公孙瓒：15000,150,150
+
+假设15天后，都能达到最高等级，每天4000金，10木材，10铁矿，50*x + 100*y+1*y  + 300*z+2*z+2*z  + 200*u+1*u+1*u + 400*v+3*v+3*v
+   52 warrior  1 archer 1 cavalry 1 wizard 2 ballista
+   max 80 warrior max 40 archer max 13 cavalry max 20 wizard  max 10 ballista
+   40 , 20 , 6 , 10 , 5 最高难度，电脑每天增加这些兵力
+   30 , 15 , 4 , 8 , 3
+   15 , 8 , 2, 4 , 1
+   8 , 3 , 2 , 2 , 1
+
+
+选择武将的外框
+选择框
+打勾
+
+
+-董卓初期给50000大军
+-刘备4000
+-公孙瓒30000
+-袁绍50000
+-曹操10000
+-刘表15000
+-孙坚10000
+-刘章15000
+-陶潜12000
+-孔融12000
+-袁术20000
+-马腾10000
+
+
+
+
+
+//get all bot list
+
+//check every bot who can attack the most player
+
+bot1 can attack: {1,2,3}
+bot2 can attack: {2,3}
+bot3 can attack: {4,5}
+
+policy 1:
+bot1 & bot2 vs 2
+bot3 vs 5
+
+policy 2:
+bot1 & bot2 vs 3
+bot3 vs 4
+
+...
+
+get each policy points.
+which is the highest then it is ok.
+
+
+defend policy , not move at first. 
+
+bot  1   2    3     4     5     6      7     8     9      10
+p    1   2    3     4     5     6      7     8     9      10
+
+for b in bots:
+b can reach p 1 2 3 4 ...?
+move to p 1 2 3 4 ...
+reduce the position free to occupy
+
+bot { id , pos(1,1), attack, mp attack, magic1, magic2, magic3, hp, number, move, attack range}
+
+array of  {bot id , current pos ,  goto pos , do what , player lost how much , player remain}
+
+坐标系：iphone, 20*10, 24*12
+
+                                                                                       
+选择 -- 有敌人吗 －－ 有， 最近的敌人进攻，－－物理攻击，法术1，法术2，法术3，评分方法：敌人hp减少数，
+                                                                           自己hp增加数，
+                                                                           对敌人造成（混乱、中毒、恐惧、威压、陷阱）
+                                                                           对自己造成（强攻、箭术、炮术、疾行、仁义、残酷、冲锋）
+                                                                           对自己驱散负面效果
+                                                                           对敌人驱散其正面效果（如果对方有这个正面效果会多给造成多少的伤害）--强攻、仁义、残酷、冲锋
+                                                 如果自己的hp不足40%，尽量远离，然后优先补自己
+                                                 如果在守城战中，对方离开了大营，优先使用地道
+
+
+                   (混乱、中毒、恐惧、威压、陷阱、hp不满)
+                  （自己能协助吗）
+       没有敌人 －－ 有友方需要协助吗 －－ 能否移动到附近 －－ 能 －－ 移动到附近协助（沉着、解毒、驱散、治疗）
+                                                  －－不能 －－ 向敌人靠近 －－ 有能给自己加的魔法吗 －－ 有 －－ 加上
+                                                                                             －－没有 －－
+                                                                                            有可以让同伴施展火、水、雷吗
+                                                                                            有，变天
+                                                                                            没有，中止
+
+
+use attack or spell ??
+
+check if player in some efficient state, dispel it. then who use ?
+
+check if some bot low hp, heal it, then who use ?
+
+point , player lost the most hp , self lost the min hp.
+
+
