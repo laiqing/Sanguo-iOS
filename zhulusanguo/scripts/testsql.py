@@ -1,3 +1,5 @@
+#coding=utf-8
+
 import sqlite3
 import json
 import time
@@ -26,7 +28,7 @@ for city in citydata:
 db.commit()
 
 #now create hero table
-cu.execute('create table hero(id integer primary key, cname text, ename text, owner integer, headImage integer, skill1 integer, skill2 integer, skill3 integer, attackImage integer, defendImage integer, city integer, strength integer, intelligence integer, level integer, move integer, article1 integer, article2 integer, attackRange integer, experience integer, alive integer, troopAttack integer, troopMental integer, troopType integer, troopCount integer)')
+cu.execute('create table hero(id integer primary key, cname text, ename text, owner integer, headImage integer, skill1 integer, skill2 integer, skill3 integer, skill4 integer, skill5 integer, armyType integer, attackImage integer, defendImage integer, city integer, strength integer, intelligence integer, level integer, move integer, article1 integer, article2 integer, attackRange integer, experience integer, alive integer, troopAttack integer, troopMental integer, troopType integer, troopCount integer)')
 db.commit()
 
 #create index on hero
@@ -42,7 +44,7 @@ f = open('heroes.json')
 herodata = json.loads(f.read())
 f.close()
 for hero in herodata:
-	sql = "insert into hero values("+str(hero["id"])+",'"+hero["cname"]+"','"+hero["ename"]+"',"+str(hero["owner"])+","+str(hero["headImage"])+","+str(hero["skill1"])+","+str(hero["skill2"])+","+str(hero["skill3"])+","+str(hero["armyAttackImage"])+","+str(hero["armyDefendImage"])+","+str(hero["city"])+","+str(hero["strength"])+","+str(hero["intelligence"])+","+str(hero["level"])+","+str(hero["move"])+","+str(hero["article1"])+","+str(hero["article2"])+","+str(hero["attackRange"])+","+str(hero["experience"])+","+str(hero["alive"])+","+str(hero["troopAttack"])+","+str(hero["troopMental"])+","+str(hero["troopType"])+","+str(hero["troopCount"]) +")"
+	sql = "insert into hero values("+str(hero["id"])+",'"+hero["cname"]+"','"+hero["ename"]+"',"+str(hero["owner"])+","+str(hero["headImage"])+","+str(hero["skill1"])+","+str(hero["skill2"])+","+str(hero["skill3"])+","+str(hero["skill4"])+","+str(hero["skill5"])+","+str(hero["armyType"]) + ","+str(hero["armyAttackImage"])+","+str(hero["armyDefendImage"])+","+str(hero["city"])+","+str(hero["strength"])+","+str(hero["intelligence"])+","+str(hero["level"])+","+str(hero["move"])+","+str(hero["article1"])+","+str(hero["article2"])+","+str(hero["attackRange"])+","+str(hero["experience"])+","+str(hero["alive"])+","+str(hero["troopAttack"])+","+str(hero["troopMental"])+","+str(hero["troopType"])+","+str(hero["troopCount"]) +")"
 	cu.execute(sql)
 db.commit()
 
@@ -106,7 +108,7 @@ for r in res:
 
 
 
-#create table experience
+#create table experience for hero upgrade compare
 cu.execute('create table experience(id integer primary key, exp integer)')
 cu.execute('create index experience_exp_index on experience(exp)')
 db.commit()
@@ -194,6 +196,37 @@ db.commit()
 # troopState 1 not attack , 2 attacked , 3 defeated
 cu.execute('create table battleHeroInfo(heroID integer primary key, heroState integer, hp integer, mp integer, posx integer, posy integer, troopType integer, troopInitCount integer, troopLost integer, troopPosx integer, troopPosy integer, troopState integer)')
 db.commit()
+
+#tips table
+cu.execute('create table tips(id integer primary key, etip text, ctip text, nrange text, hrange text)')
+db.commit()
+f = open('tips.json')
+tipdata = json.loads(f.read())
+f.close()
+for tt in tipdata:
+	sql = "insert into tips values("+str(tt["id"])+",'"+tt["etip"]+"','"+tt["ctip"]+"','"+tt["nrange"]+"','"+tt["hrange"]+"')"
+	cu.execute(sql)
+db.commit()
+
+
+
+#article table
+cu.execute('create table articles(id integer primary key AUTOINCREMENT, aid integer, ename text, cname text, edesc text, cdesc text, attack integer, hp integer, mp integer, attackRange integer, moveRange integer, multiAttack integer, doubleAttack integer, gold integer, wood integer, iron integer, requireArmyType integer, effectTypeID integer, articleType integer)')
+db.commit()
+
+#article template table
+cu.execute('create table articleList(id integer primary key, ename text, cname text, edesc text, cdesc text, attack integer, hp integer, mp integer, attackRange integer, moveRange integer, multiAttack integer, doubleAttack integer, gold integer, wood integer, iron integer, requireArmyType integer, effectTypeID integer, articleType integer)')
+db.commit()
+
+#now insert int artilceList 
+f = open('articles2.json')
+articleData = json.loads(f.read())
+f.close()
+for sk in articleData:
+	sql = "insert into articleList values("+str(sk["id"])+",'"+sk["ename"]+"','"+sk["cname"]+"','"+sk["edesc"]+"','"+sk["cdesc"]+"'," +str(sk["attack"])+","+str(sk["hp"])+","+str(sk["mp"])+","+str(sk["attackRange"])+","+str(sk["moveRange"])+","+str(sk["multiAttack"])+","+str(sk["doubleAttack"])+","+str(sk["gold"])+","+str(sk["wood"])+","+str(sk["iron"])+","+str(sk["requireArmyType"])+","+str(sk["effectTypeID"])+","+str(sk["articleType"])+")"
+	cu.execute(sql)
+db.commit()
+
 
 #on select new king,
 cu.execute('create table kingInit(kingid integer primary key, gold integer, lumber integer, iron integer, cityCount integer)')

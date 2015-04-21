@@ -12,13 +12,21 @@
 #import "SimpleAudioEngine.h"
 #import "CityInfoObject.h"
 #import "HeroObject.h"
+#import "TipObject.h"
 
 
 #define AUDIO_MAX_WAITTIME 150
 
 #define FRAME_RATE 60
 #define BOUNCE_TIME 0.2f
+
+//payment_text_tag used in diaodong layer and fight layer , when select hero or unselect hero, it will change cost text
 #define PAYMENT_TEXT_TAG 9999
+
+//tip text in city scene
+#define TIP_SOLIDER_HEAD_TAG 2000
+#define TIP_SOLIDER_SPEECH_BG_TAG 2001
+
 
 #define BUILDING_HALL_ID 1
 #define BUILDING_BARRACK_ID 2
@@ -86,6 +94,7 @@ typedef enum {
 extern NSString* const skillnames[];
 extern NSString* const trooptypes[];
 extern NSString* const citynames[];
+extern NSString* const armytypes[];
 
 
 
@@ -147,6 +156,8 @@ extern NSString* const citynames[];
 //------------------
 -(CityInfoObject*) getCityInfoForCityScene:(int)cityID;
 -(void) upgradeCityBuilding:(int)buildID withNewLevel:(int)lev withCityID:(int)cid withNewCityLevel:(int)nlev;
+-(TipObject*) getRandomTip;
+
 
 //-----------------------------------
 //  save game , del game , load game

@@ -81,8 +81,22 @@
             else {
                 sk3 = skillnames[ho.skill3];
             }
+            NSString* sk4;
+            if (ho.skill4==99) {
+                sk4 = @"无";
+            }
+            else {
+                sk4 = skillnames[ho.skill4];
+            }
+            NSString* sk5;
+            if (ho.skill5==99) {
+                sk5 = @"无";
+            }
+            else {
+                sk5 = skillnames[ho.skill5];
+            }
             NSString* cin = citynames[ho.cityID];
-            NSString* line1 = [NSString stringWithFormat:@"%@  %@  等级:%d  武力:%d  智力:%d  %@  %@  %@",ho.cname,cin,ho.level,ho.strength,ho.intelligence,sk1,sk2,sk3];
+            NSString* line1 = [NSString stringWithFormat:@"%@ %@ %d级 武:%d 智:%d %@ %@ %@ %@ %@",ho.cname,cin,ho.level,ho.strength,ho.intelligence,sk1,sk2,sk3,sk4,sk5];
             CCLabelTTF* labelline1 = [CCLabelTTF labelWithString:line1 fontName:@"Arial" fontSize:12];
             labelline1.anchorPoint = ccp(0, 0.5);
             labelline1.color = ccYELLOW;

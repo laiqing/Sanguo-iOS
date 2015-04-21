@@ -42,6 +42,9 @@
     CCRepeatForever* rfe = [CCRepeatForever actionWithAction:seq];
     [self runAction:rfe];
     
+    
+    _touchable = YES;
+    uvi = nil;
 }
 
 -(void) turnLeft
@@ -53,6 +56,107 @@
 {
     self.flipX = NO;
 }
+
+-(void)onEnter {
+    [[[CCDirector sharedDirector] touchDispatcher] addTargetedDelegate:self priority:2 swallowsTouches:NO];
+    [super onEnter];
+}
+
+-(void)onExit {
+    [[[CCDirector sharedDirector] touchDispatcher] removeDelegate:self];
+    [super onExit];
+}
+
+- (BOOL)ccTouchBegan:(UITouch *)touch withEvent:(UIEvent *)event {
+    CGPoint location = [touch locationInView:[touch view]];
+    location = [[CCDirector sharedDirector] convertToGL:location];
+    BOOL c = CGRectContainsPoint([self boundingBox], location);
+    if (c) {
+        return _touchable;
+    }
+    else {
+        return NO;
+    }
+}
+
+- (void)ccTouchMoved:(UITouch *)touch withEvent:(UIEvent *)event
+{
+    
+}
+
+- (void)ccTouchEnded:(UITouch *)touch withEvent:(UIEvent *)event
+{
+    //show the dialog , then close the dialog after a while , then resume move , reset Touch
+    CCLOG(@"right solider touched....");
+    [self showTip];
+}
+
+- (void)ccTouchCancelled:(UITouch *)touch withEvent:(UIEvent *)event
+{
+    
+}
+
+
+
+-(void) showTip
+{
+    _touchable = NO;
+    [self pauseSchedulerAndActions];
+    
+    
+    CGSize wsize = [[CCDirector sharedDirector] winSize];
+    CCSprite* tipbg = [CCSprite spriteWithSpriteFrameName:@"speech4.png"];
+    tipbg.position = ccp(wsize.width*0.5, self.position.y + 50);
+    tipbg.tag = TIP_SOLIDER_SPEECH_BG_TAG;
+    
+    
+    
+    CCLayer* cmlayer = (CCLayer*)[[[CCDirector sharedDirector] runningScene] getChildByTag:1];
+    if (cmlayer) {
+        [cmlayer addChild:tipbg z:4];
+    }
+    
+    float topx = tipbg.boundingBox.origin.x + 28;
+    float topy = wsize.height - tipbg.boundingBox.origin.y - tipbg.boundingBox.size.height + 32;
+    float rwidth = tipbg.boundingBox.size.width - 60;
+    float rheight = tipbg.boundingBox.size.height -5;
+    CGRect cr = CGRectMake(topx, topy, rwidth, rheight);
+    
+    //select for the db , get the tip desc
+    TipObject* to = [[ShareGameManager shareGameManager] getRandomTip];
+    
+    uvi = [[UIView alloc] initWithFrame:cr ];
+    
+    UILabel* label = [[ShareGameManager shareGameManager] addLabelWithString:to.ctip dimension:cr normalColor:[UIColor blackColor] highColor:[UIColor redColor] nrange:to.nrange hrange:to.hrange];
+    
+    [uvi addSubview:label];
+    [[[CCDirector sharedDirector] view] addSubview:uvi];
+    
+    [self performSelector:@selector(closeTip) withObject:nil afterDelay:5];
+    
+}
+
+-(void) closeTip
+{
+    [self resumeSchedulerAndActions];
+    
+    CCLayer* cmlayer = (CCLayer*)[[[CCDirector sharedDirector] runningScene] getChildByTag:1];
+    if (cmlayer) {
+        [cmlayer removeChildByTag:TIP_SOLIDER_SPEECH_BG_TAG];
+    }
+    if (uvi) {
+        [uvi removeFromSuperview];
+        uvi = nil;
+    }
+    
+    _touchable = YES;
+}
+
+-(void) cleanupBeforeRelease
+{
+    [NSObject cancelPreviousPerformRequestsWithTarget:self];
+}
+
 
 -(void) dealloc
 {

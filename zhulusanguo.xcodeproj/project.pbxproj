@@ -176,6 +176,7 @@
 		2651FB691AC645E00076E0A0 /* CityMainLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 2651FB681AC645E00076E0A0 /* CityMainLayer.m */; };
 		266BB4C41AD4D853007AE253 /* CityHallInfoLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 266BB4C31AD4D853007AE253 /* CityHallInfoLayer.m */; };
 		26796A741ADC0708007A8C08 /* SkillObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 26796A731ADC0708007A8C08 /* SkillObject.m */; };
+		267A598E1AE6721B0049104D /* TipObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 267A598D1AE6721B0049104D /* TipObject.m */; };
 		267D319C1AD2C81000227C20 /* ArticleLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 267D319B1AD2C81000227C20 /* ArticleLayer.m */; };
 		2698D85D1AD93AE400596350 /* upgrade.caf in Resources */ = {isa = PBXBuildFile; fileRef = 2698D85C1AD93AE400596350 /* upgrade.caf */; };
 		2699812D1AC25CE900C13879 /* HeroObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 2699812C1AC25CE900C13879 /* HeroObject.m */; };
@@ -542,6 +543,8 @@
 		266BB4C31AD4D853007AE253 /* CityHallInfoLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CityHallInfoLayer.m; sourceTree = "<group>"; };
 		26796A721ADC0708007A8C08 /* SkillObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SkillObject.h; sourceTree = "<group>"; };
 		26796A731ADC0708007A8C08 /* SkillObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SkillObject.m; sourceTree = "<group>"; };
+		267A598C1AE6721B0049104D /* TipObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TipObject.h; sourceTree = "<group>"; };
+		267A598D1AE6721B0049104D /* TipObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TipObject.m; sourceTree = "<group>"; };
 		267D319A1AD2C81000227C20 /* ArticleLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ArticleLayer.h; sourceTree = "<group>"; };
 		267D319B1AD2C81000227C20 /* ArticleLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ArticleLayer.m; sourceTree = "<group>"; };
 		2698D85C1AD93AE400596350 /* upgrade.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = upgrade.caf; sourceTree = "<group>"; };
@@ -768,6 +771,8 @@
 				26D43BE81AC7A7BF002CF592 /* SoliderWalkSprite.m */,
 				26D43BEA1AC7ADC4002CF592 /* LeftSoliderWalkSprite.h */,
 				26D43BEB1AC7ADC4002CF592 /* LeftSoliderWalkSprite.m */,
+				267A598C1AE6721B0049104D /* TipObject.h */,
+				267A598D1AE6721B0049104D /* TipObject.m */,
 			);
 			path = objects;
 			sourceTree = "<group>";
@@ -1381,6 +1386,7 @@
 				26CFBD671AC58D45009CF983 /* FightLayer.m in Sources */,
 				2601C4531AD7CFEC006F8C09 /* HireLayer.m in Sources */,
 				263D06731AC03FE200248FFA /* AppDelegate.m in Sources */,
+				267A598E1AE6721B0049104D /* TipObject.m in Sources */,
 				263D05E31AC03FE100248FFA /* CCES2Renderer.m in Sources */,
 				263D05551AC03FE000248FFA /* CCLabelAtlas.m in Sources */,
 				263D05711AC03FE000248FFA /* CCParallaxNode.m in Sources */,

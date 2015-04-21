@@ -306,12 +306,12 @@
         
         
         //draw walker animation
-        SoliderWalkSprite* swsp = [SoliderWalkSprite spriteWithSpriteFrameName:@"soliderwalk01.png"];
+        swsp = [SoliderWalkSprite spriteWithSpriteFrameName:@"soliderwalk01.png"];
         swsp.position = ccp(wsize.width*0.5+70, wsize.height*0.5-100);
         [self addChild:swsp z:1];
         [swsp initRange:140];
         
-        LeftSoliderWalkSprite* swsp1 = [LeftSoliderWalkSprite spriteWithSpriteFrameName:@"soliderwalk01.png"];
+        swsp1 = [LeftSoliderWalkSprite spriteWithSpriteFrameName:@"soliderwalk01.png"];
         swsp1.position = ccp(wsize.width*0.5-70, wsize.height*0.5-100);
         [self addChild:swsp1 z:1];
         [swsp1 initRange:140];
@@ -332,6 +332,8 @@
 
 -(void) dealloc
 {
+    [swsp cleanupBeforeRelease];
+    [swsp1 cleanupBeforeRelease];
     [cio release];
     [super dealloc];
 }

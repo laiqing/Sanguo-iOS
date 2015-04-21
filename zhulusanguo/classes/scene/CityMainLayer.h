@@ -77,6 +77,9 @@
     CCLabelTTF* woodLabel;
     CCLabelTTF* ironLabel;
     
+    SoliderWalkSprite* swsp;
+    LeftSoliderWalkSprite* swsp1;
+    
 }
 
 

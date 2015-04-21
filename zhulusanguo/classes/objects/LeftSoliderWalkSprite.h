@@ -9,12 +9,19 @@
 #import <Foundation/Foundation.h>
 #import "cocos2d.h"
 
-@interface LeftSoliderWalkSprite : CCSprite {
+#import "ShareGameManager.h"
+#import "TipObject.h"
+
+@interface LeftSoliderWalkSprite : CCSprite<CCTouchOneByOneDelegate> {
     float walkRangeX;
     CGPoint startPos;
     CGPoint endPos;
+    
+    BOOL _touchable;
+    UIView* uvi;
 }
 
 -(void) initRange:(float)range_;
+-(void) cleanupBeforeRelease;
 
 @end

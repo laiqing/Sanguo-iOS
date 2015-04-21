@@ -31,6 +31,8 @@ int const ironcost5[] = {0,0};
         
         //add title "city hall level"
         
+        
+        
         //add cityhall.png scale 2.0
         building = [CCSprite spriteWithSpriteFrameName:@"barrack.png"];
         building.scale = 2.0f;
@@ -43,6 +45,12 @@ int const ironcost5[] = {0,0};
         //desc = [CCLabelTTF labelWithString:@"市政厅每天为你提供一定数量的金币。" fontName:@"Verdana" fontSize:16];
         desc.position = ccp(wsize.width*0.45, wsize.height*0.58);
         [self addChild:desc z:1];
+        
+        //add a ccsprite on the right top
+        CCSprite* sp = [CCSprite spriteWithSpriteFrameName:@"troop1_right_01.png"];
+        sp.position = ccp(bg.position.x + bg.boundingBox.size.width*0.5 - 30, desc.position.y);
+        sp.scale = 1.5;
+        [self addChild:sp z:1];
         
         
         

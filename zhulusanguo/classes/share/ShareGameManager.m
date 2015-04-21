@@ -11,6 +11,7 @@
 NSString* const skillnames[] = {@"冶炼",@"土豪",@"伐木",@"伏兵",@"箭术",@"刺杀",@"强攻",@"砲术",@"沉着",@"冲锋",@"水神",@"助火",@"反制",@"残酷",@"驱散",@"医师",@"爆击",@"激怒",@"反馈",@"火计",@"火箭",@"治疗",@"威压",@"恐惧",@"铁壁",@"合击",@"诏书",@"雷击",@"机甲",@"仁义",@"迷魂",@"误导",@"解毒",@"毒术",@"雨天",@"援兵",@"反计",@"复仇",@"谣言",@"疾行",@"地道",@"治安",@"晴天",@"雷神",@"陷阱",@"群射",@"治水",@"水计"};
 
 NSString* const trooptypes[] = {@"",@"步兵",@"弓兵",@"骑兵",@"策士",@"弩车"};
+NSString* const armytypes[] = {@"",@"步",@"弓",@"骑"};
 
 NSString* const citynames[] = {@"",@"酒泉",@"张掖",@"武威",@"西海",@"天水",@"陇西",@"汉中",@"巴西",@"梓潼",@"巴郡",@"广汉",@"成都",@"江阳",@"永安",@"江州",@"建宁",@"云南",@"交趾",@"郁林",@"扶风",@"京兆",@"长安",@"上庸",@"武陵",@"零陵",@"桂阳",@"苍梧",@"合浦",@"晋阳",@"平阳",@"弘农",@"襄阳",@"雁门",@"常山",@"洛阳",@"宛城",@"新野",@"江陵",@"长沙",@"南海",@"朱崖",@"上谷",@"范阳",@"代郡",@"邺城",@"巨鹿",@"河内",@"濮阳",@"颖川",@"许昌",@"陈留",@"汝南",@"寿春",@"江夏",@"庐江",@"柴桑",@"鄱阳",@"豫章",@"建安",@"庐陵",@"蓟城",@"渔阳",@"清河",@"泰山",@"平原",@"北平",@"辽西",@"襄平",@"乐浪",@"南皮",@"东莱",@"北海",@"小沛",@"琅邪",@"东海",@"徐州",@"下邳",@"广陵",@"建业",@"毗陵",@"吴郡",@"会稽",@"临海",@"夷州"};
 
@@ -202,9 +203,11 @@ static id instance = nil;
     
     //add a uilabel
     UILabel *label = [[[UILabel alloc] initWithFrame:labelRect] autorelease];
-    label.font = [UIFont boldSystemFontOfSize:16];
+    label.font = [UIFont boldSystemFontOfSize:12];
     label.backgroundColor = [UIColor clearColor];
     label.lineBreakMode = NSLineBreakByWordWrapping;
+    //label.lineBreakMode = UILineBreakModeWordWrap;
+    label.numberOfLines = 0;
     
     NSMutableAttributedString *ntxt = [[[NSMutableAttributedString alloc] initWithString:text] autorelease];
     
@@ -521,6 +524,39 @@ static id instance = nil;
     return cio;
 }
 
+-(TipObject*) getRandomTip
+{
+    //2 is the max tips for test table
+    int ran = arc4random()%2;
+    
+    NSString *rootpath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+    NSString *curdb = [rootpath stringByAppendingPathComponent:@"current.db"];
+    sqlite3* _database;
+    sqlite3_open([curdb UTF8String], &_database);
+    
+    TipObject* to = [[[TipObject alloc] init] autorelease];
+
+    sqlite3_stmt *statement;
+    NSString* query = [NSString stringWithFormat:@"select ctip,nrange,hrange from tips where id=%d",ran];
+    if (sqlite3_prepare_v2(_database, [query UTF8String], -1, &statement, nil) == SQLITE_OK) {
+        sqlite3_step(statement);
+        char *ctip = (char *) sqlite3_column_text(statement, 0);
+        NSString *strctip = [[NSString alloc] initWithUTF8String:ctip];
+        to.ctip = strctip;
+        
+        char *nr = (char *) sqlite3_column_text(statement, 1);
+        NSString *strnr = [[NSString alloc] initWithUTF8String:nr];
+        to.nrange = strnr;
+        
+        char *hr = (char *) sqlite3_column_text(statement, 2);
+        NSString *strhr = [[NSString alloc] initWithUTF8String:hr];
+        to.hrange = strhr;
+    }
+    sqlite3_finalize(statement);
+    sqlite3_close(_database);
+    return to;
+}
+
 
 -(NSArray*) selectHeroForDiaoDong:(int)king_id targetCityID:(int)cid
 {
@@ -533,7 +569,7 @@ static id instance = nil;
 
     sqlite3_stmt *statement;
     
-    NSString* query = [NSString stringWithFormat:@"select id,cname,city,headImage,strength,intelligence,level,skill1,skill2,skill3,troopAttack,troopMental,troopType,troopCount from hero  where owner=%d and city<>%d",king_id,cid];
+    NSString* query = [NSString stringWithFormat:@"select id,cname,city,headImage,strength,intelligence,level,skill1,skill2,skill3,skill4,skill5,troopAttack,troopMental,troopType,troopCount from hero  where owner=%d and city<>%d",king_id,cid];
     if (sqlite3_prepare_v2(_database, [query UTF8String], -1, &statement, nil) == SQLITE_OK) {
         while (sqlite3_step(statement) == SQLITE_ROW) {
             int hid = (int) sqlite3_column_int(statement, 0);
@@ -547,10 +583,12 @@ static id instance = nil;
             int skill1 = (int) sqlite3_column_int(statement, 7);
             int skill2 = (int) sqlite3_column_int(statement, 8);
             int skill3 = (int) sqlite3_column_int(statement, 9);
-            int tatt = (int) sqlite3_column_int(statement, 10);
-            int tmental = (int) sqlite3_column_int(statement, 11);
-            int ttype = (int) sqlite3_column_int(statement, 12);
-            int tcount = (int) sqlite3_column_int(statement, 13);
+            int skill4 = (int) sqlite3_column_int(statement, 10);
+            int skill5 = (int) sqlite3_column_int(statement, 11);
+            int tatt = (int) sqlite3_column_int(statement, 12);
+            int tmental = (int) sqlite3_column_int(statement, 13);
+            int ttype = (int) sqlite3_column_int(statement, 14);
+            int tcount = (int) sqlite3_column_int(statement, 15);
             
             HeroObject* ho = [[HeroObject alloc] init];
             ho.cname = cname2;
@@ -563,6 +601,8 @@ static id instance = nil;
             ho.skill1 = skill1;
             ho.skill2 = skill2;
             ho.skill3 = skill3;
+            ho.skill4 = skill4;
+            ho.skill5 = skill5;
             ho.troopAttack = tatt;
             ho.troopMental = tmental;
             ho.troopType = ttype;
@@ -594,7 +634,7 @@ static id instance = nil;
     
     sqlite3_stmt *statement;
     
-    NSString* query = [NSString stringWithFormat:@"select id,cname,city,headImage,strength,intelligence,level,skill1,skill2,skill3,troopAttack,troopMental,troopType,troopCount from hero  where owner=%d",king_id];
+    NSString* query = [NSString stringWithFormat:@"select id,cname,city,headImage,strength,intelligence,level,skill1,skill2,skill3,skill4,skill5,troopAttack,troopMental,troopType,troopCount from hero  where owner=%d",king_id];
     if (sqlite3_prepare_v2(_database, [query UTF8String], -1, &statement, nil) == SQLITE_OK) {
         while (sqlite3_step(statement) == SQLITE_ROW) {
             int hid = (int) sqlite3_column_int(statement, 0);
@@ -608,10 +648,12 @@ static id instance = nil;
             int skill1 = (int) sqlite3_column_int(statement, 7);
             int skill2 = (int) sqlite3_column_int(statement, 8);
             int skill3 = (int) sqlite3_column_int(statement, 9);
-            int tatt = (int) sqlite3_column_int(statement, 10);
-            int tmental = (int) sqlite3_column_int(statement, 11);
-            int ttype = (int) sqlite3_column_int(statement, 12);
-            int tcount = (int) sqlite3_column_int(statement, 13);
+            int skill4 = (int) sqlite3_column_int(statement, 10);
+            int skill5 = (int) sqlite3_column_int(statement, 11);
+            int tatt = (int) sqlite3_column_int(statement, 12);
+            int tmental = (int) sqlite3_column_int(statement, 13);
+            int ttype = (int) sqlite3_column_int(statement, 14);
+            int tcount = (int) sqlite3_column_int(statement, 15);
             
             HeroObject* ho = [[HeroObject alloc] init];
             ho.cname = cname2;
@@ -624,6 +666,8 @@ static id instance = nil;
             ho.skill1 = skill1;
             ho.skill2 = skill2;
             ho.skill3 = skill3;
+            ho.skill4 = skill4;
+            ho.skill5 = skill5;
             ho.troopAttack = tatt;
             ho.troopMental = tmental;
             ho.troopType = ttype;

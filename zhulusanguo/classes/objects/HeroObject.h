@@ -18,6 +18,9 @@
     int _skill1;
     int _skill2;
     int _skill3;
+    int _skill4;
+    int _skill5;
+    int _armyType;
     int _armyAttackImageID;
     int _armyDefendImageID;
     int _cityID;
@@ -45,6 +48,9 @@
 @property (nonatomic,assign) int skill1;
 @property (nonatomic,assign) int skill2;
 @property (nonatomic,assign) int skill3;
+@property (nonatomic,assign) int skill4;
+@property (nonatomic,assign) int skill5;
+@property (nonatomic,assign) int armyType;
 @property (nonatomic,assign) int armyAttackImageID;
 @property (nonatomic,assign) int armyDefendImageID;
 @property (nonatomic,assign) int cityID;

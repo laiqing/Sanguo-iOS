@@ -45,7 +45,11 @@ int const ironcost6[] = {0,5};
         desc.position = ccp(wsize.width*0.45, wsize.height*0.58);
         [self addChild:desc z:1];
         
-        
+        //add a ccsprite on the right top
+        CCSprite* sp = [CCSprite spriteWithSpriteFrameName:@"troop3_right_01.png"];
+        sp.position = ccp(bg.position.x + bg.boundingBox.size.width*0.5 - 30, desc.position.y);
+        sp.scale = 1.5;
+        [self addChild:sp z:1];
         
         
         
