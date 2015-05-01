@@ -527,7 +527,7 @@ static id instance = nil;
 -(TipObject*) getRandomTip
 {
     //2 is the max tips for test table
-    int ran = arc4random()%2;
+    int ran = arc4random()%37;
     
     NSString *rootpath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
     NSString *curdb = [rootpath stringByAppendingPathComponent:@"current.db"];

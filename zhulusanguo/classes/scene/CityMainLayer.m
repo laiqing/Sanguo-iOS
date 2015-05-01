@@ -306,13 +306,15 @@
         
         
         //draw walker animation
-        swsp = [SoliderWalkSprite spriteWithSpriteFrameName:@"soliderwalk01.png"];
+        swsp = [SoliderWalkSprite spriteWithSpriteFrameName:@"troop1_right_01.png"];
         swsp.position = ccp(wsize.width*0.5+70, wsize.height*0.5-100);
+        swsp.scale = 0.6;
         [self addChild:swsp z:1];
         [swsp initRange:140];
         
         swsp1 = [LeftSoliderWalkSprite spriteWithSpriteFrameName:@"soliderwalk01.png"];
         swsp1.position = ccp(wsize.width*0.5-70, wsize.height*0.5-100);
+        //swsp1.scale = 0.6;
         [self addChild:swsp1 z:1];
         [swsp1 initRange:140];
         

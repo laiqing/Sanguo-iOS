@@ -176,12 +176,12 @@ for hero in herodata:
 
 
 #table skillList
-cu.execute('create table skillList(skillID integer primary key, cname text, ename text, passive integer, filename text)')
+cu.execute('create table skillList(skillID integer primary key, cname text, ename text, passive integer, skillLevel integer, cdesc text, strengthRequire integer, intelligenceRequire integer, requireWeather integer, cost integer)')
 f = open('skills.json')
 skilldata = json.loads(f.read())
 f.close()
 for sk in skilldata:
-	sql = "insert into skillList values("+str(sk["id"])+",'"+sk["cname"]+"','"+sk["ename"]+"',"+str(sk["passive"])+",'"+str(sk["skillIcon"]) +"')"
+	sql = "insert into skillList values("+str(sk["id"])+",'"+sk["cname"]+"','"+sk["ename"]+"',"+str(sk["passive"])+","+str(sk["skillLevel"]) + ",'"+ sk["cdesc"] + "',"+ str(sk["strengthRequire"]) + ","+ str(sk["intelligenceRequire"])+ ","+ str(sk["requireWeather"])+ ","+ str(sk["cost"]) +")"
 	cu.execute(sql)
 db.commit()
 
@@ -253,6 +253,9 @@ cu.execute('insert into kingInit values(11,15000,110,110,'+ str(kingCityCount[11
 
 
 #table ai, every turn ai read this table, then increase new resource and troop
+#----------------------------------
+#  need re consider
+#----------------------------------
 cu.execute('create table aiIncrease(difficulty integer primary key, goldInc integer, lumberInc integer, ironInc integer, warriorInc integer, archerInc integer, cavalryInc integer, wizardInc integer, ballistaInc integer)')
 cu.execute('insert into aiIncrease values(1,4000,10,10,8,3,2,2,1)')
 cu.execute('insert into aiIncrease values(2,4000,10,10,15,8,2,4,1)')

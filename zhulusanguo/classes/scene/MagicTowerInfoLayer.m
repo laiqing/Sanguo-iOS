@@ -19,7 +19,7 @@ int const goldprovide10[] = {0,0,0,0};
 int const woodprovide10[] = {0,0,0,0};
 int const ironprovide10[] = {0,0,0,0};
 
-int const scounts[] = {0,16,32,43};
+int const scounts[] = {0,8,12,14};
 
 
 -(id) init

@@ -14,13 +14,15 @@
 //startpos in the right
 -(void) initRange:(float)range_
 {
+    self.flipX = YES;
+    
     walkRangeX = range_;
     startPos = self.position;
     endPos = ccp(self.position.x-range_, self.position.y);
     //get the animation from cache
     //Repeat animation , walk to left , idle, turn back , repeat animation, walk to right, idle, turn back. again
     //range 160, 40*4 = 2.4 second
-    CCAnimation *walk = [[CCAnimationCache sharedAnimationCache] animationByName:@"solider"];
+    CCAnimation *walk = [[CCAnimationCache sharedAnimationCache] animationByName:@"solider2"];
     walk.restoreOriginalFrame = YES;
     CCAnimate *wa = [CCAnimate actionWithAnimation:walk];
     CCRepeat *rwa = [CCRepeat actionWithAction:wa times:8];
@@ -29,7 +31,7 @@
     CCDelayTime *dt = [CCDelayTime actionWithDuration:0.5];
     CCCallFunc* cf1 = [CCCallFunc actionWithTarget:self selector:@selector(turnLeft)];
     
-    CCAnimation *walk1 = [[CCAnimationCache sharedAnimationCache] animationByName:@"solider"];
+    CCAnimation *walk1 = [[CCAnimationCache sharedAnimationCache] animationByName:@"solider2"];
     walk1.restoreOriginalFrame = YES;
     CCAnimate *wa1 = [CCAnimate actionWithAnimation:walk1];
     CCRepeat *rwa1 = [CCRepeat actionWithAction:wa1 times:8];
@@ -49,12 +51,14 @@
 
 -(void) turnLeft
 {
-    self.flipX = YES;
+    //self.flipX = YES;
+    self.flipX = NO;
 }
 
 -(void) turnRight
 {
-    self.flipX = NO;
+    //self.flipX = NO;
+    self.flipX = YES;
 }
 
 -(void)onEnter {
@@ -142,7 +146,10 @@
     
     CCLayer* cmlayer = (CCLayer*)[[[CCDirector sharedDirector] runningScene] getChildByTag:1];
     if (cmlayer) {
-        [cmlayer removeChildByTag:TIP_SOLIDER_SPEECH_BG_TAG];
+        CCNode* speech = [cmlayer getChildByTag:TIP_SOLIDER_SPEECH_BG_TAG];
+        if (speech) {
+            [cmlayer removeChildByTag:TIP_SOLIDER_SPEECH_BG_TAG];
+        }
     }
     if (uvi) {
         [uvi removeFromSuperview];
@@ -160,7 +167,22 @@
 
 -(void) dealloc
 {
+    
+    
     [self stopAllActions];
+    //remove the tip
+    CCLayer* cmlayer = (CCLayer*)[[[CCDirector sharedDirector] runningScene] getChildByTag:1];
+    if (cmlayer) {
+        CCNode* speech = [cmlayer getChildByTag:TIP_SOLIDER_SPEECH_BG_TAG];
+        if (speech) {
+            [cmlayer removeChildByTag:TIP_SOLIDER_SPEECH_BG_TAG];
+        }
+    }
+    if (uvi) {
+        [uvi removeFromSuperview];
+        uvi = nil;
+    }
+    
     [super dealloc];
 }
 

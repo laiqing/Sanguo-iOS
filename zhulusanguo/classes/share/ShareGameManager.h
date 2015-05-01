@@ -40,6 +40,26 @@
 #define BUILDING_MAGICTOWER_ID 10
 #define BUILDING_TAVERN_ID 11
 
+
+#define ARMY_TYPE_FOOTMAN 1
+#define ARMY_TYPE_ARCHER 2
+#define ARMY_TYPE_CAVALRY 3
+
+#define ARMY_FRIEND_FOOTMAN 1
+#define ARMY_FRIEND_ARCHER 2
+#define ARMY_FRIEND_CAVALRY 3
+#define ARMY_FRIEND_WIZARD 4
+#define ARMY_FRIEND_BALLISTA 5
+#define ARMY_FRIEND_HERO 6
+
+#define ARMY_ENEMY_FOOTMAN 11
+#define ARMY_ENEMY_ARCHER 12
+#define ARMY_ENEMY_CAVALRY 13
+#define ARMY_ENEMY_WIZARD 14
+#define ARMY_ENEMY_BALLISTA 15
+#define ARMY_ENEMY_HERO 16
+
+
 typedef enum {
     kAudioManagerUninitialized=0,
     kAudioManagerFailed=1,

@@ -15,7 +15,7 @@
 int const goldcost[] = {0,0,1000,2000,4000,10000};
 int const woodcost[] = {0,0,0,0,10,20};
 int const ironcost[] = {0,0,0,0,10,20};
-int const goldprovide[] = {0,250,500,1000,2000,4000};
+int const goldprovide[] = {0,250,500,1000,1500,2000};
 int const woodprovide[] = {0,0,0,0,0,0};
 int const ironprovide[] = {0,0,0,0,0,0};
 
