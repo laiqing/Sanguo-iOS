@@ -12,7 +12,13 @@
 #import "ShareGameManager.h"
 #import "TouchableSprite.h"
 #import "HeroObject.h"
-#import "MoveTouchStateSprite.h"
+#import "MoveTouchStateSprite.h"  //for info button
+
+#import "DragableTouchSprite.h"   //for skill icon button
+#import "ReceiveDropSprite.h"     //for hero skill receive button
+#import "ArticleDragSprite.h"     //for skill icon drag
+//#import "CCLabelTTFWithInfo.h"    //no need
+
 
 @interface SkillsLayer : CCLayer {
     //int _dragging;
@@ -22,17 +28,41 @@
     LayerDragMode layerDragState;
     
     int _cityID;
+    int needClose;
     
     CCNode* leftLayer;
     CCNode* rightLayer;
     CGRect leftContent;
     CGRect rightContent;
+    
+    float bounceDistance;
+    
+    float minTopLeftY;
+    float maxBottomLeftY;
+    float minTopRightY;
+    float maxBootomRightY;
+    
+    
+    CCArray* receivers;
+    
+    
 }
 
 + (id) contentRect1:(CGRect)left contentRect2:(CGRect)right withCityID:(int)tcid;
 - (id) initcontentRect1:(CGRect)left contentRect2:(CGRect)right withCityID:(int)tcid;
 -(void) updateLeftChildVisible:(CCNode*)ch;
 -(void) updateRightChildVisible:(CCNode*)ch;
+
+-(void) updateLeftLayerVisible;
+-(void) updateRightLayerVisible;
+
+
+-(void) showSkillDetail:(int)skID;
+-(void) refreshLeftLayer;
+//-(void) updateArticleItemForHero:(int)hid withArticle:(int)aid articlePos:(int)apid;
+-(void) updateHeroSkill:(int)hid skill:(int)skid skillPos:(int)skposID;
+
+-(void) checkReceiveSprite:(ArticleDragSprite*)_drag;
 
 
 @end

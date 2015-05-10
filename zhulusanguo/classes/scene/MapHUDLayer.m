@@ -90,6 +90,7 @@
                 kingstr = @"公孙瓒";
                 break;
             default:
+                kingstr = @"董卓";
                 break;
         }
         
@@ -482,6 +483,7 @@
             kingstr = @"无";
             break;
         default:
+            kingstr = @"无";
             break;
     }
     heroName = [CCLabelTTF labelWithString:kingstr fontName:@"Verdana" fontSize:12];

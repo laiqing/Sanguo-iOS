@@ -281,6 +281,9 @@ int const scounts[] = {0,8,12,14};
             CCLOG(@"current city level: %d",_cityLevel);
             [[ShareGameManager shareGameManager] upgradeCityBuilding:10 withNewLevel:_currentLevel+1 withCityID:_cityID withNewCityLevel:_cityLevel+1];
             
+            //for magic tower it need update the citySkills table also
+            [[ShareGameManager shareGameManager] generateRandomMagicTower:_cityID towerLevel:_currentLevel+1];
+            
             //set sharegamemanage gold,wood,iron -
             [ShareGameManager shareGameManager].gold -= needgold;
             [ShareGameManager shareGameManager].wood -= needwood;

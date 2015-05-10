@@ -201,6 +201,7 @@
         articleBtn = [TouchableSprite spriteWithSpriteFrameName:@"articlebtn.png"];
         articleBtn.position = ccp(wsize.width*0.14, 22);
         [self addChild:articleBtn z:2];
+        [articleBtn initTheCallbackFunc:@selector(showArticleWindow) withCaller:self withTouchID:-1];
         
         recruitBtn = [TouchableSprite spriteWithSpriteFrameName:@"recruitbtn.png"];
         recruitBtn.position = ccp(wsize.width*0.26, 22);
@@ -312,9 +313,15 @@
         [self addChild:swsp z:1];
         [swsp initRange:140];
         
-        swsp1 = [LeftSoliderWalkSprite spriteWithSpriteFrameName:@"soliderwalk01.png"];
+        //npc1 = [NPC1WalkerSprite spriteWithSpriteFrameName:@"Npc_4_Walk_1.png"];
+        //npc1.position = ccp(wsize.width*0.5+100, wsize.height*0.5+80);
+        //[self addChild:npc1 z:1];
+        //[npc1 initRange:200 range2:100];
+        
+        
+        swsp1 = [LeftSoliderWalkSprite spriteWithSpriteFrameName:@"troop1_right_01.png"];
         swsp1.position = ccp(wsize.width*0.5-70, wsize.height*0.5-100);
-        //swsp1.scale = 0.6;
+        swsp1.scale = 0.6;
         [self addChild:swsp1 z:1];
         [swsp1 initRange:140];
         
@@ -492,6 +499,8 @@
         [anylayer removeFromParentAndCleanup:YES];
     }
     
+    [swsp closeTipIfTipOpened];
+    
     //chlayer.tag = 4;
     [run addChild:chlayer z:4];
     [chlayer setCityID:_cityID];
@@ -512,6 +521,8 @@
     if (anylayer) {
         [anylayer removeFromParentAndCleanup:YES];
     }
+    
+    [swsp closeTipIfTipOpened];
     
     //chlayer.tag = 4;
     [run addChild:chlayer z:4];
@@ -534,6 +545,8 @@
         [anylayer removeFromParentAndCleanup:YES];
     }
     
+    [swsp closeTipIfTipOpened];
+    
     //chlayer.tag = 4;
     [run addChild:chlayer z:4];
     [chlayer setCityID:_cityID];
@@ -555,6 +568,8 @@
         [anylayer removeFromParentAndCleanup:YES];
     }
     
+    [swsp closeTipIfTipOpened];
+    
     //chlayer.tag = 4;
     [run addChild:chlayer z:4];
     [chlayer setCityID:_cityID];
@@ -575,6 +590,7 @@
     if (anylayer) {
         [anylayer removeFromParentAndCleanup:YES];
     }
+    [swsp closeTipIfTipOpened];
     
     //chlayer.tag = 4;
     [run addChild:chlayer z:4];
@@ -597,6 +613,8 @@
         [anylayer removeFromParentAndCleanup:YES];
     }
     
+    [swsp closeTipIfTipOpened];
+    
     //chlayer.tag = 4;
     [run addChild:chlayer z:4];
     [chlayer setCityID:_cityID];
@@ -617,6 +635,8 @@
     if (anylayer) {
         [anylayer removeFromParentAndCleanup:YES];
     }
+    
+    [swsp closeTipIfTipOpened];
     
     //chlayer.tag = 4;
     [run addChild:chlayer z:4];
@@ -639,6 +659,8 @@
         [anylayer removeFromParentAndCleanup:YES];
     }
     
+    [swsp closeTipIfTipOpened];
+    
     //chlayer.tag = 4;
     [run addChild:chlayer z:4];
     [chlayer setCityID:_cityID];
@@ -659,6 +681,8 @@
     if (anylayer) {
         [anylayer removeFromParentAndCleanup:YES];
     }
+    
+    [swsp closeTipIfTipOpened];
     
     //chlayer.tag = 4;
     [run addChild:chlayer z:4];
@@ -681,6 +705,8 @@
         [anylayer removeFromParentAndCleanup:YES];
     }
     
+    [swsp closeTipIfTipOpened];
+    
     //chlayer.tag = 4;
     [run addChild:chlayer z:4];
     [chlayer setCityID:_cityID];
@@ -702,11 +728,42 @@
         [anylayer removeFromParentAndCleanup:YES];
     }
     
+    [swsp closeTipIfTipOpened];
+    
     //chlayer.tag = 4;
     [run addChild:chlayer z:4];
     [chlayer setCityID:_cityID];
     
     [self disableBuildingTouchable];
+    
+}
+
+-(void) showArticleWindow
+{
+    [self disableBuildingTouchable];
+    
+    //item window
+    CGSize wsize = [[CCDirector sharedDirector] winSize];
+    CGPoint lorigin = ccp(wsize.width*0.5-240, wsize.height*0.5-120);
+    CGPoint rorigin = ccp(wsize.width*0.5-80, wsize.height*0.5-120);
+    //CGRect lrect = CGRectMake(lorigin.x, lorigin.y, 144, 240);
+    CGRect lrect = CGRectMake(lorigin.x, lorigin.y, 144, 215);
+    
+    //CGRect rrect = CGRectMake(rorigin.x, rorigin.y, 320, 240);
+    CGRect rrect = CGRectMake(rorigin.x, rorigin.y, 320, 235);
+    
+    ArticleLayer* al = [ArticleLayer contentRect1:lrect contentRect2:rrect withCityID:_cityID];
+    CCScene* run = [[CCDirector sharedDirector] runningScene];
+    CCNode* anylayer = [run getChildByTag:4];
+    if (anylayer) {
+        [anylayer removeFromParentAndCleanup:YES];
+    }
+    
+    [swsp closeTipIfTipOpened];
+    
+    al.tag = 4;
+    [run addChild:al z:4];
+    
     
 }
 

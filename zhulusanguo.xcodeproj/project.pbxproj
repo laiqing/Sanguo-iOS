@@ -170,14 +170,22 @@
 		263F07AD1AD8ED9E002C712F /* sanguoeffect.png in Resources */ = {isa = PBXBuildFile; fileRef = 263F07AB1AD8ED9E002C712F /* sanguoeffect.png */; };
 		2643F7BE1AC39B58001FD1AA /* BattleHUDLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 2643F7BD1AC39B58001FD1AA /* BattleHUDLayer.m */; };
 		2646085A1ADBB334008102C4 /* HeroUnit.m in Sources */ = {isa = PBXBuildFile; fileRef = 264608591ADBB334008102C4 /* HeroUnit.m */; };
+		2649AD251AFC4E6500C16AA3 /* CCLabelTTFWithInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 2649AD241AFC4E6500C16AA3 /* CCLabelTTFWithInfo.m */; };
+		264A912E1AFB06E9004C6172 /* ArticleDragSprite.m in Sources */ = {isa = PBXBuildFile; fileRef = 264A912D1AFB06E9004C6172 /* ArticleDragSprite.m */; };
 		2651FB611AC630200076E0A0 /* MoveTouchStateSprite.m in Sources */ = {isa = PBXBuildFile; fileRef = 2651FB601AC630200076E0A0 /* MoveTouchStateSprite.m */; };
 		2651FB631AC645A70076E0A0 /* cityscene-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 2651FB621AC645A70076E0A0 /* cityscene-hd.png */; };
 		2651FB661AC645CB0076E0A0 /* CityScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 2651FB651AC645CB0076E0A0 /* CityScene.m */; };
 		2651FB691AC645E00076E0A0 /* CityMainLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 2651FB681AC645E00076E0A0 /* CityMainLayer.m */; };
+		265CD9CA1AF9ED0500956FE4 /* ArticleObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 265CD9C91AF9ED0500956FE4 /* ArticleObject.m */; };
+		265CD9CD1AFA0E4500956FE4 /* DragableTouchSprite.m in Sources */ = {isa = PBXBuildFile; fileRef = 265CD9CC1AFA0E4500956FE4 /* DragableTouchSprite.m */; };
 		266BB4C41AD4D853007AE253 /* CityHallInfoLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 266BB4C31AD4D853007AE253 /* CityHallInfoLayer.m */; };
+		267124C01AFE3C150036DFE1 /* SkillDBObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 267124BF1AFE3C150036DFE1 /* SkillDBObject.m */; };
+		267124C31AFE4F610036DFE1 /* SkillInfoMovableSprite.m in Sources */ = {isa = PBXBuildFile; fileRef = 267124C21AFE4F610036DFE1 /* SkillInfoMovableSprite.m */; };
+		26756E121AF759A1006C8745 /* NPC1WalkerSprite.m in Sources */ = {isa = PBXBuildFile; fileRef = 26756E111AF759A1006C8745 /* NPC1WalkerSprite.m */; };
 		26796A741ADC0708007A8C08 /* SkillObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 26796A731ADC0708007A8C08 /* SkillObject.m */; };
 		267A598E1AE6721B0049104D /* TipObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 267A598D1AE6721B0049104D /* TipObject.m */; };
 		267D319C1AD2C81000227C20 /* ArticleLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 267D319B1AD2C81000227C20 /* ArticleLayer.m */; };
+		269021351AFA2F9B00F05F73 /* ReceiveDropSprite.m in Sources */ = {isa = PBXBuildFile; fileRef = 269021341AFA2F9B00F05F73 /* ReceiveDropSprite.m */; };
 		2698D85D1AD93AE400596350 /* upgrade.caf in Resources */ = {isa = PBXBuildFile; fileRef = 2698D85C1AD93AE400596350 /* upgrade.caf */; };
 		2699812D1AC25CE900C13879 /* HeroObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 2699812C1AC25CE900C13879 /* HeroObject.m */; };
 		269AB8161AD772EC001125DB /* LumberMillInfoLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 269AB8151AD772EC001125DB /* LumberMillInfoLayer.m */; };
@@ -532,6 +540,10 @@
 		2643F7BD1AC39B58001FD1AA /* BattleHUDLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BattleHUDLayer.m; sourceTree = "<group>"; };
 		264608581ADBB334008102C4 /* HeroUnit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HeroUnit.h; sourceTree = "<group>"; };
 		264608591ADBB334008102C4 /* HeroUnit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HeroUnit.m; sourceTree = "<group>"; };
+		2649AD231AFC4E6500C16AA3 /* CCLabelTTFWithInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCLabelTTFWithInfo.h; sourceTree = "<group>"; };
+		2649AD241AFC4E6500C16AA3 /* CCLabelTTFWithInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCLabelTTFWithInfo.m; sourceTree = "<group>"; };
+		264A912C1AFB06E9004C6172 /* ArticleDragSprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ArticleDragSprite.h; sourceTree = "<group>"; };
+		264A912D1AFB06E9004C6172 /* ArticleDragSprite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ArticleDragSprite.m; sourceTree = "<group>"; };
 		2651FB5F1AC630200076E0A0 /* MoveTouchStateSprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoveTouchStateSprite.h; sourceTree = "<group>"; };
 		2651FB601AC630200076E0A0 /* MoveTouchStateSprite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoveTouchStateSprite.m; sourceTree = "<group>"; };
 		2651FB621AC645A70076E0A0 /* cityscene-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cityscene-hd.png"; sourceTree = "<group>"; };
@@ -539,14 +551,26 @@
 		2651FB651AC645CB0076E0A0 /* CityScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CityScene.m; sourceTree = "<group>"; };
 		2651FB671AC645E00076E0A0 /* CityMainLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CityMainLayer.h; sourceTree = "<group>"; };
 		2651FB681AC645E00076E0A0 /* CityMainLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CityMainLayer.m; sourceTree = "<group>"; };
+		265CD9C81AF9ED0500956FE4 /* ArticleObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ArticleObject.h; sourceTree = "<group>"; };
+		265CD9C91AF9ED0500956FE4 /* ArticleObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ArticleObject.m; sourceTree = "<group>"; };
+		265CD9CB1AFA0E4500956FE4 /* DragableTouchSprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DragableTouchSprite.h; sourceTree = "<group>"; };
+		265CD9CC1AFA0E4500956FE4 /* DragableTouchSprite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DragableTouchSprite.m; sourceTree = "<group>"; };
 		266BB4C21AD4D853007AE253 /* CityHallInfoLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CityHallInfoLayer.h; sourceTree = "<group>"; };
 		266BB4C31AD4D853007AE253 /* CityHallInfoLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CityHallInfoLayer.m; sourceTree = "<group>"; };
+		267124BE1AFE3C150036DFE1 /* SkillDBObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SkillDBObject.h; sourceTree = "<group>"; };
+		267124BF1AFE3C150036DFE1 /* SkillDBObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SkillDBObject.m; sourceTree = "<group>"; };
+		267124C11AFE4F610036DFE1 /* SkillInfoMovableSprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SkillInfoMovableSprite.h; sourceTree = "<group>"; };
+		267124C21AFE4F610036DFE1 /* SkillInfoMovableSprite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SkillInfoMovableSprite.m; sourceTree = "<group>"; };
+		26756E101AF759A1006C8745 /* NPC1WalkerSprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NPC1WalkerSprite.h; sourceTree = "<group>"; };
+		26756E111AF759A1006C8745 /* NPC1WalkerSprite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NPC1WalkerSprite.m; sourceTree = "<group>"; };
 		26796A721ADC0708007A8C08 /* SkillObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SkillObject.h; sourceTree = "<group>"; };
 		26796A731ADC0708007A8C08 /* SkillObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SkillObject.m; sourceTree = "<group>"; };
 		267A598C1AE6721B0049104D /* TipObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TipObject.h; sourceTree = "<group>"; };
 		267A598D1AE6721B0049104D /* TipObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TipObject.m; sourceTree = "<group>"; };
 		267D319A1AD2C81000227C20 /* ArticleLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ArticleLayer.h; sourceTree = "<group>"; };
 		267D319B1AD2C81000227C20 /* ArticleLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ArticleLayer.m; sourceTree = "<group>"; };
+		269021331AFA2F9B00F05F73 /* ReceiveDropSprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReceiveDropSprite.h; sourceTree = "<group>"; };
+		269021341AFA2F9B00F05F73 /* ReceiveDropSprite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReceiveDropSprite.m; sourceTree = "<group>"; };
 		2698D85C1AD93AE400596350 /* upgrade.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = upgrade.caf; sourceTree = "<group>"; };
 		2699812B1AC25CE800C13879 /* HeroObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HeroObject.h; sourceTree = "<group>"; };
 		2699812C1AC25CE900C13879 /* HeroObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HeroObject.m; sourceTree = "<group>"; };
@@ -773,6 +797,22 @@
 				26D43BEB1AC7ADC4002CF592 /* LeftSoliderWalkSprite.m */,
 				267A598C1AE6721B0049104D /* TipObject.h */,
 				267A598D1AE6721B0049104D /* TipObject.m */,
+				26756E101AF759A1006C8745 /* NPC1WalkerSprite.h */,
+				26756E111AF759A1006C8745 /* NPC1WalkerSprite.m */,
+				265CD9C81AF9ED0500956FE4 /* ArticleObject.h */,
+				265CD9C91AF9ED0500956FE4 /* ArticleObject.m */,
+				265CD9CB1AFA0E4500956FE4 /* DragableTouchSprite.h */,
+				265CD9CC1AFA0E4500956FE4 /* DragableTouchSprite.m */,
+				269021331AFA2F9B00F05F73 /* ReceiveDropSprite.h */,
+				269021341AFA2F9B00F05F73 /* ReceiveDropSprite.m */,
+				264A912C1AFB06E9004C6172 /* ArticleDragSprite.h */,
+				264A912D1AFB06E9004C6172 /* ArticleDragSprite.m */,
+				2649AD231AFC4E6500C16AA3 /* CCLabelTTFWithInfo.h */,
+				2649AD241AFC4E6500C16AA3 /* CCLabelTTFWithInfo.m */,
+				267124BE1AFE3C150036DFE1 /* SkillDBObject.h */,
+				267124BF1AFE3C150036DFE1 /* SkillDBObject.m */,
+				267124C11AFE4F610036DFE1 /* SkillInfoMovableSprite.h */,
+				267124C21AFE4F610036DFE1 /* SkillInfoMovableSprite.m */,
 			);
 			path = objects;
 			sourceTree = "<group>";
@@ -1325,9 +1365,11 @@
 				263D065B1AC03FE200248FFA /* mat4.c in Sources */,
 				263D05371AC03FE000248FFA /* ccDeprecated.m in Sources */,
 				263D05F21AC03FE100248FFA /* CCDirectorMac.m in Sources */,
+				269021351AFA2F9B00F05F73 /* ReceiveDropSprite.m in Sources */,
 				263D054C1AC03FE000248FFA /* ccGLStateCache.m in Sources */,
 				269AB8311AD773B8001125DB /* TavernInfoLayer.m in Sources */,
 				269AB82E1AD77382001125DB /* MagicTowerInfoLayer.m in Sources */,
+				267124C01AFE3C150036DFE1 /* SkillDBObject.m in Sources */,
 				26796A741ADC0708007A8C08 /* SkillObject.m in Sources */,
 				262145C61AC148ED00E0D550 /* CitySprite.m in Sources */,
 				263D061E1AC03FE100248FFA /* TransformUtils.m in Sources */,
@@ -1340,6 +1382,7 @@
 				263D05FE1AC03FE100248FFA /* base64.c in Sources */,
 				263D05211AC03FDF00248FFA /* CCActionTween.m in Sources */,
 				266BB4C41AD4D853007AE253 /* CityHallInfoLayer.m in Sources */,
+				265CD9CD1AFA0E4500956FE4 /* DragableTouchSprite.m in Sources */,
 				263D05581AC03FE000248FFA /* CCLabelBMFont.m in Sources */,
 				2601C43C1AD7CE7C006F8C09 /* ArcherRecruitLayer.m in Sources */,
 				2601C4421AD7CEA4006F8C09 /* WizardRecruitLayer.m in Sources */,
@@ -1351,6 +1394,7 @@
 				2651FB661AC645CB0076E0A0 /* CityScene.m in Sources */,
 				263D05151AC03FDF00248FFA /* CCActionManager.m in Sources */,
 				263D057D1AC03FE000248FFA /* CCParticleSystemQuad.m in Sources */,
+				265CD9CA1AF9ED0500956FE4 /* ArticleObject.m in Sources */,
 				26F1279C1AC500A900DADFD9 /* ExternCCAction.m in Sources */,
 				263D05401AC03FE000248FFA /* CCDrawNode.m in Sources */,
 				263D05D21AC03FE100248FFA /* CCTransitionPageTurn.m in Sources */,
@@ -1387,6 +1431,8 @@
 				2601C4531AD7CFEC006F8C09 /* HireLayer.m in Sources */,
 				263D06731AC03FE200248FFA /* AppDelegate.m in Sources */,
 				267A598E1AE6721B0049104D /* TipObject.m in Sources */,
+				264A912E1AFB06E9004C6172 /* ArticleDragSprite.m in Sources */,
+				26756E121AF759A1006C8745 /* NPC1WalkerSprite.m in Sources */,
 				263D05E31AC03FE100248FFA /* CCES2Renderer.m in Sources */,
 				263D05551AC03FE000248FFA /* CCLabelAtlas.m in Sources */,
 				263D05711AC03FE000248FFA /* CCParallaxNode.m in Sources */,
@@ -1413,6 +1459,7 @@
 				263D06551AC03FE200248FFA /* mat4stack.c in Sources */,
 				263D05B11AC03FE100248FFA /* CCSpriteFrameCache.m in Sources */,
 				263D053A1AC03FE000248FFA /* CCDirector.m in Sources */,
+				267124C31AFE4F610036DFE1 /* SkillInfoMovableSprite.m in Sources */,
 				263D052A1AC03FDF00248FFA /* CCAtlasNode.m in Sources */,
 				263D06701AC03FE200248FFA /* main.m in Sources */,
 				263D05EE1AC03FE100248FFA /* CCTouchHandler.m in Sources */,
@@ -1420,6 +1467,7 @@
 				263D05681AC03FE000248FFA /* CCMotionStreak.m in Sources */,
 				263D05E71AC03FE100248FFA /* CCGLView.m in Sources */,
 				263D06141AC03FE100248FFA /* CGPointExtension.m in Sources */,
+				2649AD251AFC4E6500C16AA3 /* CCLabelTTFWithInfo.m in Sources */,
 				263D05181AC03FDF00248FFA /* CCActionPageTurn3D.m in Sources */,
 				263D06691AC03FE200248FFA /* vec3.c in Sources */,
 				263D061B1AC03FE100248FFA /* TGAlib.m in Sources */,

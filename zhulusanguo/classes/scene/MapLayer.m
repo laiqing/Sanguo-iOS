@@ -34,6 +34,7 @@
         
         //add batch node
         bnode = [CCSpriteBatchNode batchNodeWithFile:@"sanguo.pvr.ccz"];
+        //bnode = [CCSpriteBatchNode batchNodeWithFile:@"sanguo2.png"];
         //init sprite cache
         [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"sanguo.plist"];
         [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"sanguoeffect.plist"];

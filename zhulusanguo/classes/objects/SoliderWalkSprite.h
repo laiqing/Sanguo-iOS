@@ -24,6 +24,8 @@
 -(void) initRange:(float)range_;
 -(void) cleanupBeforeRelease;
 
+-(void) closeTipIfTipOpened;
+
 
 
 @end

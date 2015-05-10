@@ -176,13 +176,32 @@ for hero in herodata:
 
 
 #table skillList
-cu.execute('create table skillList(skillID integer primary key, cname text, ename text, passive integer, skillLevel integer, cdesc text, strengthRequire integer, intelligenceRequire integer, requireWeather integer, cost integer)')
+cu.execute('create table skillList(skillID integer primary key, cname text, ename text, passive integer, canLearn integer, skillLevel integer, cdesc text, strengthRequire integer, intelligenceRequire integer, requireWeather integer, cost integer)')
 f = open('skills.json')
 skilldata = json.loads(f.read())
 f.close()
 for sk in skilldata:
-	sql = "insert into skillList values("+str(sk["id"])+",'"+sk["cname"]+"','"+sk["ename"]+"',"+str(sk["passive"])+","+str(sk["skillLevel"]) + ",'"+ sk["cdesc"] + "',"+ str(sk["strengthRequire"]) + ","+ str(sk["intelligenceRequire"])+ ","+ str(sk["requireWeather"])+ ","+ str(sk["cost"]) +")"
+	sql = "insert into skillList values("+str(sk["id"])+",'"+sk["cname"]+"','"+sk["ename"]+"',"+str(sk["passive"])+","+ str(sk["canLearn"]) +","+str(sk["skillLevel"]) + ",'"+ sk["cdesc"] + "',"+ str(sk["strengthRequire"]) + ","+ str(sk["intelligenceRequire"])+ ","+ str(sk["requireWeather"])+ ","+ str(sk["cost"]) +")"
 	cu.execute(sql)
+db.commit()
+
+
+#table citySkills
+cu.execute('create table citySkills(csid integer primary key AUTOINCREMENT, skillID integer, skillLevel integer, cityID integer)')
+cu.execute('insert into citySkills values(null,0,1,50)')
+cu.execute('insert into citySkills values(null,1,1,50)')
+cu.execute('insert into citySkills values(null,2,1,50)')
+cu.execute('insert into citySkills values(null,8,1,50)')
+cu.execute('insert into citySkills values(null,14,1,50)')
+cu.execute('insert into citySkills values(null,15,1,50)')
+cu.execute('insert into citySkills values(null,19,1,50)')
+cu.execute('insert into citySkills values(null,21,1,50)')
+#cu.execute('insert into citySkills values(null,23,2,50)')
+#cu.execute('insert into citySkills values(null,29,2,50)')
+#cu.execute('insert into citySkills values(null,34,2,50)')
+#cu.execute('insert into citySkills values(null,35,2,50)')
+#cu.execute('insert into citySkills values(null,49,2,50)')
+#cu.execute('insert into citySkills values(null,37,2,50)')
 db.commit()
 
 #table
@@ -211,8 +230,27 @@ db.commit()
 
 
 #article table
-cu.execute('create table articles(id integer primary key AUTOINCREMENT, aid integer, ename text, cname text, edesc text, cdesc text, attack integer, hp integer, mp integer, attackRange integer, moveRange integer, multiAttack integer, doubleAttack integer, gold integer, wood integer, iron integer, requireArmyType integer, effectTypeID integer, articleType integer)')
+cu.execute('create table articles(id integer primary key AUTOINCREMENT, aid integer , cityid integer)')
 db.commit()
+sql = "insert into articles values(null,2,50)"
+cu.execute(sql)
+sql = "insert into articles values(null,3,50)"
+cu.execute(sql)
+sql = "insert into articles values(null,4,50)"
+cu.execute(sql)
+sql = "insert into articles values(null,5,50)"
+cu.execute(sql)
+sql = "insert into articles values(null,6,50)"
+cu.execute(sql)
+sql = "insert into articles values(null,7,50)"
+cu.execute(sql)
+sql = "insert into articles values(null,8,50)"
+cu.execute(sql)
+sql = "insert into articles values(null,9,50)"
+cu.execute(sql)
+sql = "insert into articles values(null,10,50)"
+cu.execute(sql)
+
 
 #article template table
 cu.execute('create table articleList(id integer primary key, ename text, cname text, edesc text, cdesc text, attack integer, hp integer, mp integer, attackRange integer, moveRange integer, multiAttack integer, doubleAttack integer, gold integer, wood integer, iron integer, requireArmyType integer, effectTypeID integer, articleType integer)')

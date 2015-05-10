@@ -1,18 +1,18 @@
 //
-//  SoliderWalkSprite.m
+//  NPC1WalkerSprite.m
 //  zhulusanguo
 //
-//  Created by qing on 15/3/29.
+//  Created by qing on 15/5/4.
 //  Copyright 2015年 qing lai. All rights reserved.
 //
 
-#import "SoliderWalkSprite.h"
+#import "NPC1WalkerSprite.h"
 
 
-@implementation SoliderWalkSprite
+@implementation NPC1WalkerSprite
 
 //startpos in the right
--(void) initRange:(float)range_
+-(void) initRange:(float)range_ range2:(float)r2_
 {
     self.flipX = YES;
     
@@ -22,16 +22,38 @@
     //get the animation from cache
     //Repeat animation , walk to left , idle, turn back , repeat animation, walk to right, idle, turn back. again
     //range 160, 40*4 = 2.4 second
-    CCAnimation *walk = [[CCAnimationCache sharedAnimationCache] animationByName:@"solider2"];
+    CCAnimation *walk = [[CCAnimationCache sharedAnimationCache] animationByName:@"npc1"];
     walk.restoreOriginalFrame = YES;
     CCAnimate *wa = [CCAnimate actionWithAnimation:walk];
     CCRepeat *rwa = [CCRepeat actionWithAction:wa times:8];
     CCMoveTo *mt = [CCMoveTo actionWithDuration:6.4 position:endPos];
     CCSpawn *sp = [CCSpawn actions:rwa,mt, nil];
     CCDelayTime *dt = [CCDelayTime actionWithDuration:0.5];
-    CCCallFunc* cf1 = [CCCallFunc actionWithTarget:self selector:@selector(turnLeft)];
+    //CCCallFunc* cf1 = [CCCallFunc actionWithTarget:self selector:@selector(turnLeft)];
     
-    CCAnimation *walk1 = [[CCAnimationCache sharedAnimationCache] animationByName:@"solider2"];
+    leftDownPos = ccp(endPos.x, endPos.y - r2_);
+    CCAnimation *walk2 = [[CCAnimationCache sharedAnimationCache] animationByName:@"npc1"];
+    walk2.restoreOriginalFrame = YES;
+    CCAnimate *wa2 = [CCAnimate actionWithAnimation:walk2];
+    CCRepeat *rwa2 = [CCRepeat actionWithAction:wa2 times:8];
+    CCMoveTo *mt2 = [CCMoveTo actionWithDuration:6.4 position:leftDownPos];
+    CCSpawn *sp2 = [CCSpawn actions:rwa2,mt2, nil];
+    CCDelayTime *dt2 = [CCDelayTime actionWithDuration:0.5];
+    CCCallFunc* cf3 = [CCCallFunc actionWithTarget:self selector:@selector(turnLeft)];
+    
+    
+    rightDownPos = ccp(leftDownPos.x + range_, leftDownPos.y);
+    CCAnimation *walk3 = [[CCAnimationCache sharedAnimationCache] animationByName:@"npc1"];
+    walk3.restoreOriginalFrame = YES;
+    CCAnimate *wa3 = [CCAnimate actionWithAnimation:walk3];
+    CCRepeat *rwa3 = [CCRepeat actionWithAction:wa3 times:8];
+    CCMoveTo *mt3 = [CCMoveTo actionWithDuration:6.4 position:rightDownPos];
+    CCSpawn *sp3 = [CCSpawn actions:rwa3,mt3, nil];
+    CCDelayTime *dt3 = [CCDelayTime actionWithDuration:0.5];
+    
+    
+    
+    CCAnimation *walk1 = [[CCAnimationCache sharedAnimationCache] animationByName:@"npc1"];
     walk1.restoreOriginalFrame = YES;
     CCAnimate *wa1 = [CCAnimate actionWithAnimation:walk1];
     CCRepeat *rwa1 = [CCRepeat actionWithAction:wa1 times:8];
@@ -40,7 +62,7 @@
     CCDelayTime *dt1 = [CCDelayTime actionWithDuration:0.5];
     CCCallFunc* cf2 = [CCCallFunc actionWithTarget:self selector:@selector(turnRight)];
     
-    CCSequence* seq = [CCSequence actions:sp,dt,cf1,sp1,dt1,cf2, nil];
+    CCSequence* seq = [CCSequence actions:sp,dt,sp2,dt2,cf3, sp3, dt3, sp1,dt1,cf2, nil];
     CCRepeatForever* rfe = [CCRepeatForever actionWithAction:seq];
     [self runAction:rfe];
     
@@ -61,6 +83,7 @@
     self.flipX = YES;
 }
 
+/*
 -(void)onEnter {
     [[[CCDirector sharedDirector] touchDispatcher] addTargetedDelegate:self priority:2 swallowsTouches:NO];
     [super onEnter];
@@ -100,10 +123,11 @@
     
 }
 
-
+*/
 
 -(void) showTip
 {
+    /*
     _touchable = NO;
     [self pauseSchedulerAndActions];
     
@@ -137,11 +161,12 @@
     [[[CCDirector sharedDirector] view] addSubview:uvi];
     
     [self performSelector:@selector(closeTip) withObject:nil afterDelay:5];
-    
+    */
 }
 
 -(void) closeTip
 {
+    /*
     [self resumeSchedulerAndActions];
     
     CCLayer* cmlayer = (CCLayer*)[[[CCDirector sharedDirector] runningScene] getChildByTag:1];
@@ -157,18 +182,12 @@
     }
     
     _touchable = YES;
-}
-
--(void) closeTipIfTipOpened
-{
-    if (uvi) {
-        [self closeTip];
-    }
+     */
 }
 
 -(void) cleanupBeforeRelease
 {
-    [NSObject cancelPreviousPerformRequestsWithTarget:self];
+    //[NSObject cancelPreviousPerformRequestsWithTarget:self];
 }
 
 
@@ -177,6 +196,8 @@
     
     
     [self stopAllActions];
+    
+    /*
     //remove the tip
     CCLayer* cmlayer = (CCLayer*)[[[CCDirector sharedDirector] runningScene] getChildByTag:1];
     if (cmlayer) {
@@ -189,6 +210,7 @@
         [uvi removeFromSuperview];
         uvi = nil;
     }
+    */
     
     [super dealloc];
 }

@@ -13,6 +13,8 @@
 #import "CityInfoObject.h"
 #import "HeroObject.h"
 #import "TipObject.h"
+#import "ArticleObject.h"
+#import "SkillDBObject.h"
 
 
 #define AUDIO_MAX_WAITTIME 150
@@ -177,6 +179,19 @@ extern NSString* const armytypes[];
 -(CityInfoObject*) getCityInfoForCityScene:(int)cityID;
 -(void) upgradeCityBuilding:(int)buildID withNewLevel:(int)lev withCityID:(int)cid withNewCityLevel:(int)nlev;
 -(TipObject*) getRandomTip;
+
+-(NSArray*) getHeroListFromCity:(int)cid kingID:(int)kid;
+-(NSArray*) getArticleListFromCity:(int)cid;
+-(ArticleObject*) getArticleDetailFromID:(int)aid;
+-(HeroObject*) getHeroInfoFromID:(int)hid;
+
+-(void) addArticleForID:(int)aid cityID:(int)cid;
+-(void) removeArticleForID:(int)aid cityID:(int)cid;
+-(void) removeArticleFromHero:(int)heroID cityID:(int)cid article:(int)aid articlePos:(int)posID;
+-(void) updateHeroaddArticle:(int)heroID newArticle:(int)aid articlePos:(int)posID;
+
+-(void) generateRandomMagicTower:(int)cityID towerLevel:(int)tlev;
+-(void) heroLearnSkill:(int)heroID skill:(int)skillID skillPos:(int)skillPosID;
 
 
 //-----------------------------------

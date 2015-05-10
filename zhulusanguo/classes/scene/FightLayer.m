@@ -30,6 +30,8 @@
         direction_ = BounceDirectionStayingStill;
         contentRect_ = contentRect;
         
+        bounceDistance = 0;
+        
         virtualLayer = [CCNode node];
         [self addChild:virtualLayer z:1];
         minTopY = virtualLayer.position.y;
@@ -104,7 +106,7 @@
             [virtualLayer addChild:labelline1 z:2];
             
             NSString* trtp = trooptypes[ho.troopType];
-            NSString* line2 = [NSString stringWithFormat:@"部队攻击力:%d  部队精神力:%d  %@  数量:%d",ho.troopAttack,ho.troopMental,trtp,ho.troopCount];
+            NSString* line2 = [NSString stringWithFormat:@"部队攻击力:%d 部队精神力:%d 部队:%@ 数量:%d",ho.troopAttack,ho.troopMental,trtp,ho.troopCount];
             CCLabelTTF* labelline2 = [CCLabelTTF labelWithString:line2 fontName:@"Arial" fontSize:12];
             labelline2.anchorPoint = ccp(0, 0.5);
             labelline2.color = ccORANGE;
@@ -349,7 +351,7 @@
     
     CGPoint nowPosition = virtualLayer.position;
     
-    if(slideDirection_ == Vertically) {
+    //if(slideDirection_ == Vertically) {
         float minY = 0;
         float maxY = (contentRect_.size.height) - self.contentSize.height;
         //CCLOG(@"maxY:%f",maxY);
@@ -359,14 +361,18 @@
             delta *= 0.5;
         }
         nowPosition.y += delta;
-    }
+    //}
+    
+    bounceDistance = 0;
     
     //CCLOG(@"now position.y %f , max: %f",nowPosition.y,maxBottomY);
     if (nowPosition.y <0) {
-        nowPosition.y = 0;
+        bounceDistance = nowPosition.y;
+        //nowPosition.y = 0;
     }
     else if (nowPosition.y > maxBottomY) {
-        nowPosition.y = maxBottomY;
+        //nowPosition.y = maxBottomY;
+        bounceDistance = nowPosition.y - maxBottomY;
     }
     
     [virtualLayer setPosition:nowPosition];
@@ -379,6 +385,26 @@
 
 - (void) ccTouchEnded:(UITouch*)touch withEvent:(UIEvent *)event {
     isDragging_ = NO;
+    if (bounceDistance != 0) {
+        CCMoveBy* mb = [CCMoveBy actionWithDuration:0.1 position:ccp(0, -bounceDistance)];
+        __block FightLayer* fl = self;
+        CCCallBlock* cb = [CCCallBlock actionWithBlock:^{
+            [fl updateVisibleInLayer];
+        }];
+        CCSequence* se = [CCSequence actions:mb,cb, nil];
+        [virtualLayer runAction:se];
+        //[self performSelector:@selector(updateVisibleInLayer) withObject:nil afterDelay:0.2];
+        bounceDistance = 0;
+    }
+    
+    
+}
+
+-(void) updateVisibleInLayer
+{
+    for (CCNode* item in virtualLayer.children) {
+        [self updateChildVisible:item];
+    }
 }
 
 @end

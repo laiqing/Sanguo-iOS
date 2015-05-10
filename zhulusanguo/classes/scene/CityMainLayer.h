@@ -15,6 +15,7 @@
 #import "CloudSprite.h"
 #import "SoliderWalkSprite.h"
 #import "LeftSoliderWalkSprite.h"
+#import "NPC1WalkerSprite.h"
 
 #import "CityHallInfoLayer.h"
 #import "LumberMillInfoLayer.h"
@@ -27,6 +28,8 @@
 #import "BlacksmithInfoLayer.h"
 #import "MagicTowerInfoLayer.h"
 #import "TavernInfoLayer.h"
+
+#import "ArticleLayer.h"
 
 
 @interface CityMainLayer : CCLayer<CityHUDProtocol> {
@@ -79,6 +82,7 @@
     
     SoliderWalkSprite* swsp;
     LeftSoliderWalkSprite* swsp1;
+    NPC1WalkerSprite* npc1;
     
 }
 
@@ -88,7 +92,9 @@
 -(void) enableBuildingTouchable;
 -(void) disableBuildingTouchable;
 
--(void) updateGoldLabel:(int)g woodLabel:(int)w ironLabel:(int)i;
+//-(void) updateGoldLabel:(int)g woodLabel:(int)w ironLabel:(int)i;
+
+-(void) updateResourceLabel;
 
 
 @end

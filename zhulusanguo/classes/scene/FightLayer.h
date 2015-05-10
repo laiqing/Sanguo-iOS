@@ -31,6 +31,8 @@
     
     int _payment;
     
+    float bounceDistance;
+    
     NSMutableArray* _heroSelected;
 }
 
@@ -38,5 +40,7 @@
 - (id) initSlidingLayer:(SlideDirection) slideDirection contentRect:(CGRect)contentRect withTargetCityID:(int)tcid;
 -(void) updateChildVisible:(CCNode*)ch;
 -(void) addChildToVirtualNode:(CCNode*)child;
+
+-(void) updateVisibleInLayer;
 
 @end

@@ -803,6 +803,430 @@ static id instance = nil;
     sqlite3_close(_database);
 }
 
+-(NSArray*) getHeroListFromCity:(int)cid kingID:(int)kid
+{
+    NSMutableArray* herolist = [[[NSMutableArray alloc] init] autorelease];
+    
+    NSString *rootpath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+    NSString *curdb = [rootpath stringByAppendingPathComponent:@"current.db"];
+    sqlite3* _database;
+    sqlite3_open([curdb UTF8String], &_database);
+    
+    sqlite3_stmt *statement;
+    
+    NSString* query = [NSString stringWithFormat:@"select id,cname,city,headImage,strength,intelligence,level,skill1,skill2,skill3,skill4,skill5,troopAttack,troopMental,troopType,troopCount,armyType,article1,article2 from hero  where owner=%d and city=%d",kid,cid];
+    if (sqlite3_prepare_v2(_database, [query UTF8String], -1, &statement, nil) == SQLITE_OK) {
+        while (sqlite3_step(statement) == SQLITE_ROW) {
+            int hid = (int) sqlite3_column_int(statement, 0);
+            char *cname = (char *) sqlite3_column_text(statement, 1);
+            NSString *cname2 = [[NSString alloc] initWithUTF8String:cname];
+            int currentCity = (int) sqlite3_column_int(statement, 2);
+            int headImageID = (int) sqlite3_column_int(statement, 3);
+            int strength = (int) sqlite3_column_int(statement, 4);
+            int intelligence = (int) sqlite3_column_int(statement, 5);
+            int level = (int) sqlite3_column_int(statement, 6);
+            int skill1 = (int) sqlite3_column_int(statement, 7);
+            int skill2 = (int) sqlite3_column_int(statement, 8);
+            int skill3 = (int) sqlite3_column_int(statement, 9);
+            int skill4 = (int) sqlite3_column_int(statement, 10);
+            int skill5 = (int) sqlite3_column_int(statement, 11);
+            int tatt = (int) sqlite3_column_int(statement, 12);
+            int tmental = (int) sqlite3_column_int(statement, 13);
+            int ttype = (int) sqlite3_column_int(statement, 14);
+            int tcount = (int) sqlite3_column_int(statement, 15);
+            int atype = (int) sqlite3_column_int(statement, 16);
+            int a1 = (int) sqlite3_column_int(statement, 17);
+            int a2 = (int) sqlite3_column_int(statement, 18);
+            
+            HeroObject* ho = [[HeroObject alloc] init];
+            ho.cname = cname2;
+            ho.heroID = hid;
+            ho.cityID = currentCity;
+            ho.headImageID = headImageID;
+            ho.strength = strength;
+            ho.intelligence = intelligence;
+            ho.level = level;
+            ho.skill1 = skill1;
+            ho.skill2 = skill2;
+            ho.skill3 = skill3;
+            ho.skill4 = skill4;
+            ho.skill5 = skill5;
+            ho.troopAttack = tatt;
+            ho.troopMental = tmental;
+            ho.troopType = ttype;
+            ho.troopCount = tcount;
+            ho.armyType = atype;
+            ho.article1 = a1;
+            ho.article2 = a2;
+            
+            [herolist addObject:ho];
+            
+            
+            
+            [cname2 release];
+        }
+        
+    }
+    
+    sqlite3_finalize(statement);
+    
+    sqlite3_close(_database);
+    return herolist;
+}
+
+-(ArticleObject*) getArticleDetailFromID:(int)aid
+{
+    NSString *rootpath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+    NSString *curdb = [rootpath stringByAppendingPathComponent:@"current.db"];
+    sqlite3* _database;
+    sqlite3_open([curdb UTF8String], &_database);
+    NSString* query;
+    query = [NSString stringWithFormat:@"select id,cname,ename,cdesc,edesc,attack,hp,mp,attackRange,moveRange,multiAttack,doubleAttack,gold,wood,iron,requireArmyType,effectTypeID,articleType from articleList where id=%d",aid];
+    
+    sqlite3_stmt *statement;
+    ArticleObject *ao = nil;
+    if (sqlite3_prepare_v2(_database, [query UTF8String], -1, &statement, nil) == SQLITE_OK) {
+        if (sqlite3_step(statement) == SQLITE_ROW) {
+            ao = [[[ArticleObject alloc] init] autorelease];
+            int aid = (int) sqlite3_column_int(statement, 0);
+            char *cname = (char *) sqlite3_column_text(statement, 1);
+            NSString *cname2 = [[NSString alloc] initWithUTF8String:cname];
+            char *ename = (char *) sqlite3_column_text(statement, 2);
+            NSString *ename2 = [[NSString alloc] initWithUTF8String:ename];
+            char *cdesc = (char *) sqlite3_column_text(statement, 3);
+            NSString *cdesc2 = [[NSString alloc] initWithUTF8String:cdesc];
+            char *edesc = (char *) sqlite3_column_text(statement, 4);
+            NSString *edesc2 = [[NSString alloc] initWithUTF8String:edesc];
+            
+            ao.aid = aid;
+            ao.cname = cname2;
+            ao.ename = ename2;
+            ao.cdesc = cdesc2;
+            ao.edesc = edesc2;
+            ao.attack = (int) sqlite3_column_int(statement, 5);
+            ao.hp = (int) sqlite3_column_int(statement, 6);
+            ao.mp = (int) sqlite3_column_int(statement, 7);
+            ao.attackRange = (int) sqlite3_column_int(statement, 8);
+            ao.moveRange = (int) sqlite3_column_int(statement, 9);
+            ao.multiAttack = (int) sqlite3_column_int(statement, 10);
+            ao.doubleAttack = (int) sqlite3_column_int(statement, 11);
+            ao.gold = (int) sqlite3_column_int(statement, 12);
+            ao.wood = (int) sqlite3_column_int(statement, 13);
+            ao.iron = (int) sqlite3_column_int(statement, 14);
+            ao.requireArmyType = (int) sqlite3_column_int(statement, 15);
+            ao.effectTypeID = (int) sqlite3_column_int(statement, 16);
+            ao.articleType = (int) sqlite3_column_int(statement, 17);
+            
+            [cname2 release];
+            [ename2 release];
+            [cdesc2 release];
+            [edesc2 release];
+        }
+    }
+    sqlite3_finalize(statement);
+    sqlite3_close(_database);
+    return ao;
+}
+
+-(NSArray*) getArticleListFromCity:(int)cid
+{
+    //select aid from articles where cityid = cid
+    //for every item in the result set, select * from articlelist where id= aid
+    NSString *rootpath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+    NSString *curdb = [rootpath stringByAppendingPathComponent:@"current.db"];
+    sqlite3* _database;
+    sqlite3_open([curdb UTF8String], &_database);
+    NSString* query;
+    NSMutableArray* clists = [[NSMutableArray alloc] init];
+    query = [NSString stringWithFormat:@"select id,cname,ename,cdesc,edesc,attack,hp,mp,attackRange,moveRange,multiAttack,doubleAttack,gold,wood,iron,requireArmyType,effectTypeID,articleType from articleList where id in (select aid from articles where cityid=%d)",cid];
+    
+    sqlite3_stmt *statement;
+    if (sqlite3_prepare_v2(_database, [query UTF8String], -1, &statement, nil) == SQLITE_OK) {
+        while (sqlite3_step(statement) == SQLITE_ROW) {
+            ArticleObject* ao = [[ArticleObject alloc] init];
+            
+            int aid = (int) sqlite3_column_int(statement, 0);
+            char *cname = (char *) sqlite3_column_text(statement, 1);
+            NSString *cname2 = [[NSString alloc] initWithUTF8String:cname];
+            char *ename = (char *) sqlite3_column_text(statement, 2);
+            NSString *ename2 = [[NSString alloc] initWithUTF8String:ename];
+            char *cdesc = (char *) sqlite3_column_text(statement, 3);
+            NSString *cdesc2 = [[NSString alloc] initWithUTF8String:cdesc];
+            char *edesc = (char *) sqlite3_column_text(statement, 4);
+            NSString *edesc2 = [[NSString alloc] initWithUTF8String:edesc];
+            
+            ao.aid = aid;
+            ao.cname = cname2;
+            ao.ename = ename2;
+            ao.cdesc = cdesc2;
+            ao.edesc = edesc2;
+            ao.attack = (int) sqlite3_column_int(statement, 5);
+            ao.hp = (int) sqlite3_column_int(statement, 6);
+            ao.mp = (int) sqlite3_column_int(statement, 7);
+            ao.attackRange = (int) sqlite3_column_int(statement, 8);
+            ao.moveRange = (int) sqlite3_column_int(statement, 9);
+            ao.multiAttack = (int) sqlite3_column_int(statement, 10);
+            ao.doubleAttack = (int) sqlite3_column_int(statement, 11);
+            ao.gold = (int) sqlite3_column_int(statement, 12);
+            ao.wood = (int) sqlite3_column_int(statement, 13);
+            ao.iron = (int) sqlite3_column_int(statement, 14);
+            ao.requireArmyType = (int) sqlite3_column_int(statement, 15);
+            ao.effectTypeID = (int) sqlite3_column_int(statement, 16);
+            ao.articleType = (int) sqlite3_column_int(statement, 17);
+            
+            [clists addObject:ao];
+            
+            [cname2 release];
+            [ename2 release];
+            [cdesc2 release];
+            [edesc2 release];
+        }
+        
+    }
+    sqlite3_finalize(statement);
+    sqlite3_close(_database);
+    
+    return clists;
+}
+
+-(void) addArticleForID:(int)aid cityID:(int)cid
+{
+    NSString *rootpath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+    NSString *curdb = [rootpath stringByAppendingPathComponent:@"current.db"];
+    sqlite3* _database;
+    sqlite3_open([curdb UTF8String], &_database);
+    NSString* query;
+    query = [NSString stringWithFormat:@"insert into articles values(null,%d,%d)",aid,cid];
+    sqlite3_exec(_database, [query UTF8String], nil, nil, nil);
+    sqlite3_close(_database);
+    
+}
+
+-(void) removeArticleForID:(int)aid cityID:(int)cid
+{
+    NSString *rootpath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+    NSString *curdb = [rootpath stringByAppendingPathComponent:@"current.db"];
+    sqlite3* _database;
+    sqlite3_open([curdb UTF8String], &_database);
+    NSString* query;
+    query = [NSString stringWithFormat:@"delete from articles where rowid = (select rowid from articles where aid=%d and cityid=%d limit 1) ",aid,cid];
+    sqlite3_exec(_database, [query UTF8String], nil, nil, nil);
+    sqlite3_close(_database);
+}
+
+-(void) updateHeroaddArticle:(int)heroID newArticle:(int)aid articlePos:(int)posID
+{
+    //if hero has already a item in the pos , remove it from hero and add article to articles table
+    NSString *rootpath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+    NSString *curdb = [rootpath stringByAppendingPathComponent:@"current.db"];
+    sqlite3* _database;
+    sqlite3_open([curdb UTF8String], &_database);
+    NSString* query;
+    query = [NSString stringWithFormat:@"select city,article1,article2 from hero where id=%d",heroID];
+    sqlite3_stmt *statement;
+    int oldcityID = 0;
+    int a1 = 0;
+    int a2 = 0;
+    if (sqlite3_prepare_v2(_database, [query UTF8String], -1, &statement, nil) == SQLITE_OK) {
+        if (sqlite3_step(statement) == SQLITE_ROW) {
+            oldcityID = (int) sqlite3_column_int(statement, 0);
+            a1 = (int) sqlite3_column_int(statement, 1);
+            a2 = (int) sqlite3_column_int(statement, 2);
+        }
+    }
+    sqlite3_finalize(statement);
+    if (posID == 1) {
+        //check a1 != 0 , then add a new article to the articles table
+        if (a1 != 0) {
+            query = [NSString stringWithFormat:@"insert into articles values(null,%d,%d)",a1,oldcityID];
+            sqlite3_exec(_database, [query UTF8String], nil, nil, nil);
+        }
+        //update the hero table set article1 = new id
+        query = [NSString stringWithFormat:@"update hero set article1=%d where id=%d",aid,heroID];
+        sqlite3_exec(_database, [query UTF8String], nil, nil, nil);
+    }
+    else if (posID == 2) {
+        //check a2
+        if (a2 != 0) {
+            query = [NSString stringWithFormat:@"insert into articles values(null,%d,%d)",a2,oldcityID];
+            sqlite3_exec(_database, [query UTF8String], nil, nil, nil);
+        }
+        query = [NSString stringWithFormat:@"update hero set article2=%d where id=%d",aid,heroID];
+        sqlite3_exec(_database, [query UTF8String], nil, nil, nil);
+    }
+    
+    //finally remove the new article from the articles table
+    query = [NSString stringWithFormat:@"delete from articles where rowid = (select rowid from articles where aid=%d and cityid=%d limit 1) ",aid,oldcityID];
+    sqlite3_exec(_database, [query UTF8String], nil, nil, nil);
+    
+    sqlite3_close(_database);
+}
+
+-(void) removeArticleFromHero:(int)heroID cityID:(int)cid article:(int)aid articlePos:(int)posID
+{
+    NSString *rootpath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+    NSString *curdb = [rootpath stringByAppendingPathComponent:@"current.db"];
+    sqlite3* _database;
+    sqlite3_open([curdb UTF8String], &_database);
+    NSString* query;
+    if (posID == 1) {
+        //check a1 != 0 , then add a new article to the articles table
+        query = [NSString stringWithFormat:@"insert into articles values(null,%d,%d)",aid,cid];
+        sqlite3_exec(_database, [query UTF8String], nil, nil, nil);
+
+        //update the hero table set article1 = new id
+        query = [NSString stringWithFormat:@"update hero set article1=0 where id=%d",heroID];
+        sqlite3_exec(_database, [query UTF8String], nil, nil, nil);
+    }
+    else if (posID == 2) {
+        
+        query = [NSString stringWithFormat:@"insert into articles values(null,%d,%d)",aid,cid];
+        sqlite3_exec(_database, [query UTF8String], nil, nil, nil);
+        
+        query = [NSString stringWithFormat:@"update hero set article2=0 where id=%d",heroID];
+        sqlite3_exec(_database, [query UTF8String], nil, nil, nil);
+    }
+    sqlite3_close(_database);
+}
+
+-(HeroObject*) getHeroInfoFromID:(int)hid
+{
+    NSString *rootpath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+    NSString *curdb = [rootpath stringByAppendingPathComponent:@"current.db"];
+    sqlite3* _database;
+    sqlite3_open([curdb UTF8String], &_database);
+    NSString* query = [NSString stringWithFormat:@"select id,cname,city,headImage,strength,intelligence,level,skill1,skill2,skill3,skill4,skill5,troopAttack,troopMental,troopType,troopCount,armyType,article1,article2 from hero  where id=%d",hid];
+    sqlite3_stmt *statement;
+    HeroObject* ho = [[[HeroObject alloc] init] autorelease];
+    if (sqlite3_prepare_v2(_database, [query UTF8String], -1, &statement, nil) == SQLITE_OK) {
+        if (sqlite3_step(statement) == SQLITE_ROW) {
+            int hid = (int) sqlite3_column_int(statement, 0);
+            char *cname = (char *) sqlite3_column_text(statement, 1);
+            NSString *cname2 = [[NSString alloc] initWithUTF8String:cname];
+            int currentCity = (int) sqlite3_column_int(statement, 2);
+            int headImageID = (int) sqlite3_column_int(statement, 3);
+            int strength = (int) sqlite3_column_int(statement, 4);
+            int intelligence = (int) sqlite3_column_int(statement, 5);
+            int level = (int) sqlite3_column_int(statement, 6);
+            int skill1 = (int) sqlite3_column_int(statement, 7);
+            int skill2 = (int) sqlite3_column_int(statement, 8);
+            int skill3 = (int) sqlite3_column_int(statement, 9);
+            int skill4 = (int) sqlite3_column_int(statement, 10);
+            int skill5 = (int) sqlite3_column_int(statement, 11);
+            int tatt = (int) sqlite3_column_int(statement, 12);
+            int tmental = (int) sqlite3_column_int(statement, 13);
+            int ttype = (int) sqlite3_column_int(statement, 14);
+            int tcount = (int) sqlite3_column_int(statement, 15);
+            int atype = (int) sqlite3_column_int(statement, 16);
+            int a1 = (int) sqlite3_column_int(statement, 17);
+            int a2 = (int) sqlite3_column_int(statement, 18);
+            
+            ho.cname = cname2;
+            ho.heroID = hid;
+            ho.cityID = currentCity;
+            ho.headImageID = headImageID;
+            ho.strength = strength;
+            ho.intelligence = intelligence;
+            ho.level = level;
+            ho.skill1 = skill1;
+            ho.skill2 = skill2;
+            ho.skill3 = skill3;
+            ho.skill4 = skill4;
+            ho.skill5 = skill5;
+            ho.troopAttack = tatt;
+            ho.troopMental = tmental;
+            ho.troopType = ttype;
+            ho.troopCount = tcount;
+            ho.armyType = atype;
+            ho.article1 = a1;
+            ho.article2 = a2;
+            
+            [cname2 release];
+        }
+    }
+    
+    
+    sqlite3_finalize(statement);
+    sqlite3_close(_database);
+    
+    return ho;
+}
+
+-(void) generateRandomMagicTower:(int)cityID towerLevel:(int)tlev
+{
+    
+    NSString *rootpath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+    NSString *curdb = [rootpath stringByAppendingPathComponent:@"current.db"];
+    sqlite3* _database;
+    sqlite3_open([curdb UTF8String], &_database);
+    NSString* query = [NSString stringWithFormat:@"select skillID,skillLevel from skillList where canLearn=1 and skillLevel=%d",tlev];
+    sqlite3_stmt *statement;
+    NSMutableArray *result = [[NSMutableArray alloc] init];
+    if (sqlite3_prepare_v2(_database, [query UTF8String], -1, &statement, nil) == SQLITE_OK) {
+        while (sqlite3_step(statement) == SQLITE_ROW) {
+            SkillDBObject *sdo = [[[SkillDBObject alloc] init] autorelease];
+            sdo.skillID = sqlite3_column_int(statement, 0);
+            sdo.skillLevel = sqlite3_column_int(statement, 1);
+            [result addObject:sdo];
+        }
+    }
+    sqlite3_finalize(statement);
+    
+    NSMutableSet *randomSet = [[NSMutableSet alloc] init];
+    int tcount = 9;
+    if (tlev == 2) {
+        tcount = 5;
+    }
+    else if (tlev == 3) {
+        tcount = 3;
+    }
+    
+    int tlen = (int)[result count];
+    
+    while ([randomSet count] < tcount) {
+        int rid = arc4random()%tlen;
+        SkillDBObject *sdo = [result objectAtIndex:rid];
+        [randomSet addObject:sdo];
+    }
+    
+    for (SkillDBObject* sdo in randomSet) {
+        query = [NSString stringWithFormat:@"insert into citySkills values(null,%d,%d,%d)",sdo.skillID,sdo.skillLevel,cityID];
+        sqlite3_exec(_database, [query UTF8String], nil, nil, nil);
+    }
+    
+    [randomSet release];
+    [result release];
+    sqlite3_close(_database) ;
+    
+}
+
+-(void) heroLearnSkill:(int)heroID skill:(int)skillID skillPos:(int)skillPosID
+{
+    NSString *rootpath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+    NSString *curdb = [rootpath stringByAppendingPathComponent:@"current.db"];
+    sqlite3* _database;
+    sqlite3_open([curdb UTF8String], &_database);
+    NSString* query = [NSString stringWithFormat:@"update hero set skill1=%d where id=%d",skillID,heroID]; ;
+    
+    if (skillPosID == 2) {
+        query = [NSString stringWithFormat:@"update hero set skill2=%d where id=%d",skillID,heroID];
+    }
+    else if (skillPosID == 3) {
+        query = [NSString stringWithFormat:@"update hero set skill3=%d where id=%d",skillID,heroID];
+    }
+    else if (skillPosID == 4) {
+        query = [NSString stringWithFormat:@"update hero set skill4=%d where id=%d",skillID,heroID];
+    }
+    else if (skillPosID == 5) {
+        query = [NSString stringWithFormat:@"update hero set skill5=%d where id=%d",skillID,heroID];
+    }
+    sqlite3_exec(_database, [query UTF8String], nil, nil, nil);
+    sqlite3_close(_database);
+    
+}
+
+
+
 -(void) saveGameToRecord:(int)recID
 {
     NSString *rootpath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
