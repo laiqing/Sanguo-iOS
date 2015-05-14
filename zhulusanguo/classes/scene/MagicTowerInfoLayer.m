@@ -194,6 +194,7 @@ int const scounts[] = {0,8,12,14};
         otherBtn = [TouchableSprite spriteWithSpriteFrameName:@"buildskillbtn.png"];
         otherBtn.position = ccp(bg.position.x - bg.boundingBox.size.width*0.5+35, bg.position.y - bg.boundingBox.size.height*0.5 + 20);
         [self addChild:otherBtn z:1];
+        [otherBtn initTheCallbackFunc:@selector(touchOther) withCaller:self withTouchID:-1];
         
         //show upgrade cost text
         nextgold = [CCSprite spriteWithSpriteFrameName:@"gold.png"];
@@ -239,6 +240,7 @@ int const scounts[] = {0,8,12,14};
         otherBtn = [TouchableSprite spriteWithSpriteFrameName:@"buildskillbtn.png"];
         otherBtn.position = ccp(bg.position.x + bg.boundingBox.size.width*0.5-35, bg.position.y - bg.boundingBox.size.height*0.5 + 20);
         [self addChild:otherBtn z:1];
+        [otherBtn initTheCallbackFunc:@selector(touchOther) withCaller:self withTouchID:-1];
         
         
     }
@@ -321,8 +323,41 @@ int const scounts[] = {0,8,12,14};
 
 -(void) touchOther
 {
+    CCScene* run = [[CCDirector sharedDirector] runningScene];
+    CCLayer* main = (CCLayer*)[run getChildByTag:1];
+    if (main) {
+        [main performSelector:@selector(showSkillWindow)];
+    }
+    
+    /*
     //touch skill btn , show skill layer
     
+    //call main to show skill , then close self.
+    //item window
+    CGSize wsize = [[CCDirector sharedDirector] winSize];
+    CGPoint lorigin = ccp(wsize.width*0.5-240, wsize.height*0.5-120);
+    CGPoint rorigin = ccp(wsize.width*0.5-80, wsize.height*0.5-120);
+    //CGRect lrect = CGRectMake(lorigin.x, lorigin.y, 144, 240);
+    CGRect lrect = CGRectMake(lorigin.x, lorigin.y, 144, 215);
+    
+    //CGRect rrect = CGRectMake(rorigin.x, rorigin.y, 320, 240);
+    CGRect rrect = CGRectMake(rorigin.x, rorigin.y, 320, 235);
+    
+    SkillsLayer* al = [SkillsLayer contentRect1:lrect contentRect2:rrect withCityID:_cityID];
+    CCScene* run = [[CCDirector sharedDirector] runningScene];
+    //CCNode* anylayer = [run getChildByTag:4];
+    //if (anylayer) {
+    //    [anylayer removeFromParentAndCleanup:YES];
+    //}
+    
+    //[swsp closeTipIfTipOpened];
+    
+    al.tag = 4;
+    [run addChild:al z:4];
+    
+    
+    [self touchOutside];
+    */
     
 }
 

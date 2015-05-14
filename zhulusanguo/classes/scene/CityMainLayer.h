@@ -30,6 +30,9 @@
 #import "TavernInfoLayer.h"
 
 #import "ArticleLayer.h"
+#import "SkillsLayer.h"
+#import "AllRecruitLayer.h"
+#import "DistributeLayer.h"
 
 
 @interface CityMainLayer : CCLayer<CityHUDProtocol> {

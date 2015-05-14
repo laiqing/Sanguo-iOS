@@ -17,6 +17,7 @@
 #import "SkillDBObject.h"
 
 
+
 #define AUDIO_MAX_WAITTIME 150
 
 #define FRAME_RATE 60
@@ -28,6 +29,8 @@
 //tip text in city scene
 #define TIP_SOLIDER_HEAD_TAG 2000
 #define TIP_SOLIDER_SPEECH_BG_TAG 2001
+
+#define SKILL_DETAIL_CARD_TAG 3000
 
 
 #define BUILDING_HALL_ID 1
@@ -60,6 +63,74 @@
 #define ARMY_ENEMY_WIZARD 14
 #define ARMY_ENEMY_BALLISTA 15
 #define ARMY_ENEMY_HERO 16
+
+#define TROOP_FOOTMAN_HP 20
+#define TROOP_FOOTMAN_MP 16
+#define TROOP_FOOTMAN_ATTACK 8
+#define TROOP_FOOTMAN_MENTAL 6
+#define TROOP_FOOTMAN_MOVE 4
+#define TROOP_FOOTMAN_ATTACK_RANGE 1
+#define TROOP_FOOTMAN_COST_GOLD 20
+#define TROOP_FOOTMAN_COST_WOOD 0
+#define TROOP_FOOTMAN_COST_IRON 0
+
+#define TROOP_MENTAL_ATTACK_RANGE 3
+
+#define TROOP_FOOTMAN_HP 20
+#define TROOP_FOOTMAN_MP 16
+#define TROOP_FOOTMAN_ATTACK 8
+#define TROOP_FOOTMAN_MENTAL 6
+#define TROOP_FOOTMAN_MOVE 4
+#define TROOP_FOOTMAN_ATTACK_RANGE 1
+#define TROOP_FOOTMAN_COST_GOLD 20
+#define TROOP_FOOTMAN_COST_WOOD 0
+#define TROOP_FOOTMAN_COST_IRON 0
+
+#define TROOP_ARCHER_HP 25
+#define TROOP_ARCHER_MP 20
+#define TROOP_ARCHER_ATTACK 10
+#define TROOP_ARCHER_MENTAL 10
+#define TROOP_ARCHER_MOVE 5
+#define TROOP_ARCHER_ATTACK_RANGE 3
+#define TROOP_ARCHER_COST_GOLD 30
+#define TROOP_ARCHER_COST_WOOD 1
+#define TROOP_ARCHER_COST_IRON 0
+
+#define TROOP_CAVALRY_HP 50
+#define TROOP_CAVALRY_MP 30
+#define TROOP_CAVALRY_ATTACK 15
+#define TROOP_CAVALRY_MENTAL 8
+#define TROOP_CAVALRY_MOVE 6
+#define TROOP_CAVALRY_ATTACK_RANGE 1
+#define TROOP_CAVALRY_COST_GOLD 100
+#define TROOP_CAVALRY_COST_WOOD 2
+#define TROOP_CAVALRY_COST_IRON 2
+
+#define TROOP_WIZARD_HP 20
+#define TROOP_WIZARD_MP 50
+#define TROOP_WIZARD_ATTACK 5
+#define TROOP_WIZARD_MENTAL 15
+#define TROOP_WIZARD_MOVE 4
+#define TROOP_WIZARD_ATTACK_RANGE 1
+#define TROOP_WIZARD_COST_GOLD 80
+#define TROOP_WIZARD_COST_WOOD 2
+#define TROOP_WIZARD_COST_IRON 2
+
+#define TROOP_BALLISTA_HP 100
+#define TROOP_BALLISTA_MP 0
+#define TROOP_BALLISTA_ATTACK 30
+#define TROOP_BALLISTA_MENTAL 0
+#define TROOP_BALLISTA_MOVE 3
+#define TROOP_BALLISTA_ATTACK_RANGE 5
+#define TROOP_BALLISTA_COST_GOLD 200
+#define TROOP_BALLISTA_COST_WOOD 3
+#define TROOP_BALLISTA_COST_IRON 3
+
+// 12 * 2000 = 24000, 12*10 = 120 , 120  20*a + 30*b + 100*c + 80*d + 200*e <= 24000
+//                                              b + 2c + 2d + 3e <= 120
+//                                                  2c + 2d + 3e <= 120
+//                                        max (a+b+c+d+e)
+
 
 
 typedef enum {
@@ -192,6 +263,12 @@ extern NSString* const armytypes[];
 
 -(void) generateRandomMagicTower:(int)cityID towerLevel:(int)tlev;
 -(void) heroLearnSkill:(int)heroID skill:(int)skillID skillPos:(int)skillPosID;
+-(SkillDBObject*) getSkillInfoFromID:(int)skID;
+-(NSArray*) getSkillListFromCity:(int)cityID;
+
+-(void) heroRecruitTroop:(int)heroID newTroopCount:(int)nc;
+-(void) updateHeroTroopCount:(int)hid1 withCount1:(int)c1 hero2:(int)hid2 withCount2:(int)c2 withTroopType:(int)tt;
+
 
 
 //-----------------------------------

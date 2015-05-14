@@ -13,6 +13,7 @@
 #import "CityInfoObject.h"
 
 #import "TouchableSprite.h"
+#import "SkillsLayer.h"
 
 @interface MagicTowerInfoLayer : CCLayer {
     int _cityID;

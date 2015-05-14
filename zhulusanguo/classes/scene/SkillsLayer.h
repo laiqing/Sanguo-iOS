@@ -12,11 +12,15 @@
 #import "ShareGameManager.h"
 #import "TouchableSprite.h"
 #import "HeroObject.h"
-#import "MoveTouchStateSprite.h"  //for info button
+//#import "MoveTouchStateSprite.h"  //for info button
 
-#import "DragableTouchSprite.h"   //for skill icon button
-#import "ReceiveDropSprite.h"     //for hero skill receive button
+//#import "DragableTouchSprite.h"   //for skill icon button
+//#import "ReceiveDropSprite.h"     //for hero skill receive button
 #import "ArticleDragSprite.h"     //for skill icon drag
+#import "SkillDragTouchSprite.h"
+#import "SkillInfoMovableSprite.h"
+#import "ReceiveSkillDropSprite.h"
+
 //#import "CCLabelTTFWithInfo.h"    //no need
 
 
@@ -44,6 +48,7 @@
     
     
     CCArray* receivers;
+    //CCArray* heroskills;
     
     
 }
@@ -57,8 +62,9 @@
 -(void) updateRightLayerVisible;
 
 
--(void) showSkillDetail:(int)skID;
--(void) refreshLeftLayer;
+-(void) showSkillDetail:(NSNumber*)skID;
+-(void) hideSkillDetail;
+//-(void) refreshLeftLayer;
 //-(void) updateArticleItemForHero:(int)hid withArticle:(int)aid articlePos:(int)apid;
 -(void) updateHeroSkill:(int)hid skill:(int)skid skillPos:(int)skposID;
 

@@ -1152,6 +1152,56 @@ static id instance = nil;
     return ho;
 }
 
+-(SkillDBObject*) getSkillInfoFromID:(int)skID
+{
+    NSString *rootpath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+    NSString *curdb = [rootpath stringByAppendingPathComponent:@"current.db"];
+    sqlite3* _database;
+    sqlite3_open([curdb UTF8String], &_database);
+    NSString* query = [NSString stringWithFormat:@"select skillID,skillLevel,cname,passive,strengthRequire,intelligenceRequire,requireWeather,cost from skillList where skillID=%d",skID];
+    sqlite3_stmt *statement;
+    SkillDBObject *sdo = [[[SkillDBObject alloc] init] autorelease];
+    if (sqlite3_prepare_v2(_database, [query UTF8String], -1, &statement, nil) == SQLITE_OK) {
+        if (sqlite3_step(statement) == SQLITE_ROW) {
+            sdo.skillID = sqlite3_column_int(statement, 0);
+            sdo.skillLevel = sqlite3_column_int(statement, 1);
+            char *cname = (char *) sqlite3_column_text(statement, 2);
+            sdo.cname = [[NSString alloc] initWithUTF8String:cname];
+            sdo.passive = sqlite3_column_int(statement, 3);
+            sdo.strengthRequire = sqlite3_column_int(statement, 4);
+            sdo.intelligenceRequire = sqlite3_column_int(statement, 5);
+            sdo.requireWeather = sqlite3_column_int(statement, 6);
+            sdo.cost = sqlite3_column_int(statement, 7);
+        }
+    }
+    sqlite3_finalize(statement);
+    sqlite3_close(_database);
+    
+    return sdo;
+}
+
+-(NSArray*) getSkillListFromCity:(int)cityID
+{
+    NSString *rootpath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+    NSString *curdb = [rootpath stringByAppendingPathComponent:@"current.db"];
+    sqlite3* _database;
+    sqlite3_open([curdb UTF8String], &_database);
+    NSString* query = [NSString stringWithFormat:@"select skillID,skillLevel from citySkills where cityID=%d",cityID];
+    sqlite3_stmt *statement;
+    NSMutableArray *result = [[NSMutableArray alloc] init];
+    if (sqlite3_prepare_v2(_database, [query UTF8String], -1, &statement, nil) == SQLITE_OK) {
+        while (sqlite3_step(statement) == SQLITE_ROW) {
+            SkillDBObject *sdo = [[[SkillDBObject alloc] init] autorelease];
+            sdo.skillID = sqlite3_column_int(statement, 0);
+            sdo.skillLevel = sqlite3_column_int(statement, 1);
+            [result addObject:sdo];
+        }
+    }
+    sqlite3_finalize(statement);
+    sqlite3_close(_database);
+    return result;
+}
+
 -(void) generateRandomMagicTower:(int)cityID towerLevel:(int)tlev
 {
     
@@ -1223,6 +1273,42 @@ static id instance = nil;
     sqlite3_exec(_database, [query UTF8String], nil, nil, nil);
     sqlite3_close(_database);
     
+}
+
+-(void) heroRecruitTroop:(int)heroID newTroopCount:(int)nc
+{
+    NSString *rootpath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+    NSString *curdb = [rootpath stringByAppendingPathComponent:@"current.db"];
+    sqlite3* _database;
+    sqlite3_open([curdb UTF8String], &_database);
+    NSString* query = [NSString stringWithFormat:@"update hero set troopCount=%d where id=%d",nc,heroID];
+    sqlite3_exec(_database, [query UTF8String], nil, nil, nil);
+    sqlite3_close(_database);
+}
+
+-(void) updateHeroTroopCount:(int)hid1 withCount1:(int)c1 hero2:(int)hid2 withCount2:(int)c2 withTroopType:(int)tt
+{
+    NSString *rootpath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+    NSString *curdb = [rootpath stringByAppendingPathComponent:@"current.db"];
+    sqlite3* _database;
+    sqlite3_open([curdb UTF8String], &_database);
+    NSString* query ;
+    if (c1 == 0) {
+        query =[NSString stringWithFormat:@"update hero set troopType=0,troopCount=%d where id=%d",c1,hid1];
+    }
+    else {
+        query = [NSString stringWithFormat:@"update hero set troopType=%d,troopCount=%d where id=%d",tt,c1,hid1];
+    }
+    sqlite3_exec(_database, [query UTF8String], nil, nil, nil);
+    if (c2 == 0) {
+        query = [NSString stringWithFormat:@"update hero set troopType=0,troopCount=%d where id=%d",c2,hid2];
+    }
+    else {
+        query = [NSString stringWithFormat:@"update hero set troopType=%d,troopCount=%d where id=%d",tt,c2,hid2];
+    }
+    sqlite3_exec(_database, [query UTF8String], nil, nil, nil);
+    
+    sqlite3_close(_database);
 }
 
 

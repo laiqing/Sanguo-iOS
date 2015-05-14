@@ -46,6 +46,8 @@
         
         [[SimpleAudioEngine sharedEngine] preloadEffect:@"menu.caf"];
         [[SimpleAudioEngine sharedEngine] preloadEffect:@"upgrade.caf"];
+        [[SimpleAudioEngine sharedEngine] preloadEffect:@"sthget.caf"];
+        [[SimpleAudioEngine sharedEngine] preloadEffect:@"fail.caf"];
         
         [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"sanguo.plist"];
         [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"sanguoeffect.plist"];
@@ -122,6 +124,13 @@
         ver.anchorPoint = ccp(1,0.5);
         ver.position = ccp(size.width-5, 10);
         [self addChild:ver z:1];
+        
+        //add comment button in left
+        TouchableSprite* comment = [TouchableSprite spriteWithSpriteFrameName:@"rateus.png"];
+        comment.position = ccp(comment.boundingBox.size.width*0.7, comment.boundingBox.size.height*0.7);
+        [self addChild:comment z:1];
+        [comment initTheCallbackFunc:@selector(openRateURL) withCaller:self withTouchID:-1];
+        
 
         /*
         else {
@@ -148,6 +157,12 @@
     }
     
     return self;
+}
+
+-(void) openRateURL
+{
+    NSString* staticurl = @"itms-apps://itunes.apple.com/app/id880612121";
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:staticurl]];
 }
 
 -(void) loadnew

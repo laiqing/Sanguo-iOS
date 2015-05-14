@@ -22,5 +22,6 @@
 @synthesize intelligenceRequire = _intelligenceRequire;
 @synthesize requireWeather = _requireWeather;
 @synthesize cost = _cost;
+@synthesize cityID = _cityID;
 
 @end

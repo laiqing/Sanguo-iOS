@@ -195,6 +195,7 @@ int const ironcost7[] = {0,15};
         otherBtn.position = ccp(bg.position.x + bg.boundingBox.size.width*0.5-35, bg.position.y - bg.boundingBox.size.height*0.5 + 20);
         //otherBtn.position = ccp(bg.position.x - bg.boundingBox.size.width*0.5+35, bg.position.y - bg.boundingBox.size.height*0.5 + 20);
         [self addChild:otherBtn z:1];
+        [otherBtn initTheCallbackFunc:@selector(touchOther) withCaller:self withTouchID:-1];
     }
     
     
@@ -273,7 +274,11 @@ int const ironcost7[] = {0,15};
 -(void) touchOther
 {
     //touch recruit btn , show recruit layer
-    
+    CCScene* run = [[CCDirector sharedDirector] runningScene];
+    CCLayer* main = (CCLayer*)[run getChildByTag:1];
+    if (main) {
+        [main performSelector:@selector(showRecruitWindow)];
+    }
     
 }
 

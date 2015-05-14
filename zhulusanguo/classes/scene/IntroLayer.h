@@ -11,6 +11,8 @@
 #import "cocos2d.h"
 #import "ShareGameManager.h"
 
+#import "TouchableSprite.h"
+
 
 // HelloWorldLayer
 @interface IntroLayer : CCLayer

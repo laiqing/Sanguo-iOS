@@ -216,6 +216,7 @@
 {
     [[SimpleAudioEngine sharedEngine] playEffect:@"menu.caf"];
     if (_payment > [ShareGameManager shareGameManager].gold) {
+        [[SimpleAudioEngine sharedEngine] playEffect:@"fail.caf"];
         //show statusbar.png and a text
         CGSize wszie = [[CCDirector sharedDirector] winSize];
         CCSprite* stbar = [CCSprite spriteWithSpriteFrameName:@"statusbar.png"];
@@ -223,7 +224,7 @@
         [self addChild:stbar z:5];
         [stbar performSelector:@selector(removeFromParent) withObject:nil afterDelay:1.2];
         CCLabelTTF* warn = [CCLabelTTF labelWithString:@"无法调动，没有足够的金钱！" fontName:@"Arial" fontSize:16];
-        warn.color = ccRED;
+        warn.color = ccYELLOW;
         warn.position = stbar.position;
         [self addChild:warn z:6];
         [warn performSelector:@selector(removeFromParent) withObject:nil afterDelay:1.2];

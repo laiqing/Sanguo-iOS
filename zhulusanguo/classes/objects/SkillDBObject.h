@@ -23,6 +23,7 @@
     int _intelligenceRequire;
     int _requireWeather;
     int _cost;
+    int _cityID;
 }
 
 @property (nonatomic,assign) int skillID;
@@ -37,5 +38,6 @@
 @property (nonatomic,assign) int intelligenceRequire;
 @property (nonatomic,assign) int requireWeather;
 @property (nonatomic,assign) int cost;
+@property (nonatomic,assign) int cityID;
 
 @end

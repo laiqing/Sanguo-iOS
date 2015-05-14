@@ -60,7 +60,7 @@
         //now add item
         CGFloat hfheight;
         NSArray* items = [[ShareGameManager shareGameManager] getArticleListFromCity:_cityID];
-        int ilen = [items count];
+        int ilen = (int)[items count];
         for (int i=0;i<ilen;i++) {
             ArticleObject* ao = [items objectAtIndex:i];
             //frame , image, cname , cdesc
@@ -100,7 +100,7 @@
         //now add hero
         int kid = [ShareGameManager shareGameManager].kingID;
         NSArray* heroes = [[ShareGameManager shareGameManager] getHeroListFromCity:_cityID kingID:kid];
-        ilen = [heroes count];
+        ilen = (int)[heroes count];
         for (int i=0;i<ilen;i++) {
             HeroObject *ho = [heroes objectAtIndex:i];
             
@@ -474,6 +474,7 @@
             HeroObject* ho = [[ShareGameManager shareGameManager] getHeroInfoFromID:item.heroID];
             if (ao.requireArmyType != -1) {
                 if (ao.requireArmyType != ho.armyType) {
+                    [[SimpleAudioEngine sharedEngine] playEffect:@"fail.caf"];
                     //not the same
                     CGSize wszie = [[CCDirector sharedDirector] winSize];
                     CCSprite* stbar = [CCSprite spriteWithSpriteFrameName:@"statusbar.png"];
@@ -499,7 +500,7 @@
                 }
             }
             
-            
+            [[SimpleAudioEngine sharedEngine] playEffect:@"sthget.caf"];
             //    update hero set article1 = _drag.articleID , delete from artiles where aid=_drag.articleID and cityID = _cityID
             [[ShareGameManager shareGameManager] updateHeroaddArticle:item.heroID newArticle:_drag.articleID articlePos:item.articlePosID];
             

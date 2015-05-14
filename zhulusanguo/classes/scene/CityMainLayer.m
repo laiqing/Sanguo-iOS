@@ -206,10 +206,12 @@
         recruitBtn = [TouchableSprite spriteWithSpriteFrameName:@"recruitbtn.png"];
         recruitBtn.position = ccp(wsize.width*0.26, 22);
         [self addChild:recruitBtn z:2];
+        [recruitBtn initTheCallbackFunc:@selector(showRecruitWindow) withCaller:self withTouchID:-1];
         
         distributeBtn = [TouchableSprite spriteWithSpriteFrameName:@"distributebtn.png"];
         distributeBtn.position = ccp(wsize.width*0.38, 22);
         [self addChild:distributeBtn z:2];
+        [distributeBtn initTheCallbackFunc:@selector(showDistributeWindow) withCaller:self withTouchID:-1];
         
         heroBtn = [TouchableSprite spriteWithSpriteFrameName:@"herobtn.png"];
         heroBtn.position = ccp(wsize.width*0.5, 22);
@@ -218,6 +220,7 @@
         skillBtn = [TouchableSprite spriteWithSpriteFrameName:@"skillbtn.png"];
         skillBtn.position = ccp(wsize.width*0.62, 22);
         [self addChild:skillBtn z:2];
+        [skillBtn initTheCallbackFunc:@selector(showSkillWindow) withCaller:self withTouchID:-1];
         
         forgeBtn = [TouchableSprite spriteWithSpriteFrameName:@"forgebtn.png"];
         forgeBtn.position = ccp(wsize.width*0.74, 22);
@@ -766,6 +769,93 @@
     
     
 }
+
+-(void) showSkillWindow
+{
+    [self disableBuildingTouchable];
+    
+    //item window
+    CGSize wsize = [[CCDirector sharedDirector] winSize];
+    CGPoint lorigin = ccp(wsize.width*0.5-240, wsize.height*0.5-120);
+    CGPoint rorigin = ccp(wsize.width*0.5-80, wsize.height*0.5-120);
+    //CGRect lrect = CGRectMake(lorigin.x, lorigin.y, 144, 240);
+    CGRect lrect = CGRectMake(lorigin.x, lorigin.y, 144, 215);
+    
+    //CGRect rrect = CGRectMake(rorigin.x, rorigin.y, 320, 240);
+    CGRect rrect = CGRectMake(rorigin.x, rorigin.y, 320, 235);
+    
+    SkillsLayer* al = [SkillsLayer contentRect1:lrect contentRect2:rrect withCityID:_cityID];
+    CCScene* run = [[CCDirector sharedDirector] runningScene];
+    CCNode* anylayer = [run getChildByTag:4];
+    if (anylayer) {
+        [anylayer removeFromParentAndCleanup:YES];
+    }
+    
+    [swsp closeTipIfTipOpened];
+    
+    al.tag = 4;
+    [run addChild:al z:4];
+    
+    
+}
+
+-(void) showRecruitWindow
+{
+    [self disableBuildingTouchable];
+    
+    //item window
+    CGSize wsize = [[CCDirector sharedDirector] winSize];
+    CGPoint lorigin = ccp(wsize.width*0.5-240, wsize.height*0.5-120);
+    CGPoint rorigin = ccp(wsize.width*0.5-80, wsize.height*0.5-120);
+    //CGRect lrect = CGRectMake(lorigin.x, lorigin.y, 144, 240);
+    CGRect lrect = CGRectMake(lorigin.x, lorigin.y, 144, 215);
+    
+    //CGRect rrect = CGRectMake(rorigin.x, rorigin.y, 320, 240);
+    CGRect rrect = CGRectMake(rorigin.x, rorigin.y, 320, 235);
+    
+    AllRecruitLayer* al = [AllRecruitLayer contentRect1:lrect contentRect2:rrect withCityID:_cityID];
+    CCScene* run = [[CCDirector sharedDirector] runningScene];
+    CCNode* anylayer = [run getChildByTag:4];
+    if (anylayer) {
+        [anylayer removeFromParentAndCleanup:YES];
+    }
+    
+    [swsp closeTipIfTipOpened];
+    
+    al.tag = 4;
+    [run addChild:al z:4];
+}
+
+-(void) showDistributeWindow
+{
+    [self disableBuildingTouchable];
+    
+    //item window
+    CGSize wsize = [[CCDirector sharedDirector] winSize];
+    //CGPoint lorigin = ccp(wsize.width*0.5-240, wsize.height*0.5-120);
+    CGPoint lorigin = ccp(wsize.width*0.5-210, wsize.height*0.5-120);
+    //CGPoint rorigin = ccp(wsize.width*0.5-80, wsize.height*0.5-120);
+    CGPoint rorigin = ccp(wsize.width*0.5+10, wsize.height*0.5-120);
+    //CGRect lrect = CGRectMake(lorigin.x, lorigin.y, 144, 240);
+    CGRect lrect = CGRectMake(lorigin.x, lorigin.y, 200, 215);
+    
+    //CGRect rrect = CGRectMake(rorigin.x, rorigin.y, 320, 240);
+    CGRect rrect = CGRectMake(rorigin.x, rorigin.y, 200, 215);
+    
+    DistributeLayer* al = [DistributeLayer contentRect1:lrect contentRect2:rrect withCityID:_cityID];
+    CCScene* run = [[CCDirector sharedDirector] runningScene];
+    CCNode* anylayer = [run getChildByTag:4];
+    if (anylayer) {
+        [anylayer removeFromParentAndCleanup:YES];
+    }
+    
+    [swsp closeTipIfTipOpened];
+    
+    al.tag = 4;
+    [run addChild:al z:4];
+}
+
+
 
 -(void) enableBuildingTouchable
 {

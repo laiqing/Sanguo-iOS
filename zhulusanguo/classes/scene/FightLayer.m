@@ -175,13 +175,16 @@
 {
     //max 5 hero
     if ([_heroSelected count]>=5) {
+        
+        [[SimpleAudioEngine sharedEngine] playEffect:@"fail.caf"];
+        
         CGSize wszie = [[CCDirector sharedDirector] winSize];
         CCSprite* stbar = [CCSprite spriteWithSpriteFrameName:@"statusbar.png"];
         stbar.position = ccp(wszie.width*0.5, wszie.height*0.5);
         [self addChild:stbar z:5];
         [stbar performSelector:@selector(removeFromParent) withObject:nil afterDelay:1.2];
         CCLabelTTF* warn = [CCLabelTTF labelWithString:@"最多只能选择5只部队！" fontName:@"Arial" fontSize:16];
-        warn.color = ccRED;
+        warn.color = ccYELLOW;
         warn.position = stbar.position;
         [self addChild:warn z:6];
         [warn performSelector:@selector(removeFromParent) withObject:nil afterDelay:1.2];
@@ -237,6 +240,9 @@
     [[SimpleAudioEngine sharedEngine] playEffect:@"menu.caf"];
     
     if (_payment > [ShareGameManager shareGameManager].gold) {
+        
+        [[SimpleAudioEngine sharedEngine] playEffect:@"fail.caf"];
+        
         //show statusbar.png and a text
         CGSize wszie = [[CCDirector sharedDirector] winSize];
         CCSprite* stbar = [CCSprite spriteWithSpriteFrameName:@"statusbar.png"];
@@ -244,7 +250,7 @@
         [self addChild:stbar z:5];
         [stbar performSelector:@selector(removeFromParent) withObject:nil afterDelay:1.2];
         CCLabelTTF* warn = [CCLabelTTF labelWithString:@"无法进攻，没有足够的金钱！" fontName:@"Arial" fontSize:16];
-        warn.color = ccRED;
+        warn.color = ccYELLOW;
         warn.position = stbar.position;
         [self addChild:warn z:6];
         [warn performSelector:@selector(removeFromParent) withObject:nil afterDelay:1.2];
@@ -259,13 +265,14 @@
     [[SimpleAudioEngine sharedEngine] playEffect:@"menu.caf"];
     if (_payment > [ShareGameManager shareGameManager].gold) {
         //show statusbar.png and a text
+        [[SimpleAudioEngine sharedEngine] playEffect:@"fail.caf"];
         CGSize wszie = [[CCDirector sharedDirector] winSize];
         CCSprite* stbar = [CCSprite spriteWithSpriteFrameName:@"statusbar.png"];
         stbar.position = ccp(wszie.width*0.5, wszie.height*0.5);
         [self addChild:stbar z:5];
         [stbar performSelector:@selector(removeFromParent) withObject:nil afterDelay:1.2];
         CCLabelTTF* warn = [CCLabelTTF labelWithString:@"无法调动，没有足够的金钱！" fontName:@"Arial" fontSize:16];
-        warn.color = ccRED;
+        warn.color = ccYELLOW;
         warn.position = stbar.position;
         [self addChild:warn z:6];
         [warn performSelector:@selector(removeFromParent) withObject:nil afterDelay:1.2];
