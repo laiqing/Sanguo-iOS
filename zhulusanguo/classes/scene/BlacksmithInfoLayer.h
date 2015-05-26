@@ -13,6 +13,7 @@
 #import "CityInfoObject.h"
 
 #import "TouchableSprite.h"
+#import "ForgeLayer.h"
 
 @interface BlacksmithInfoLayer : CCLayer {
     int _cityID;

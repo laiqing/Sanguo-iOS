@@ -15,6 +15,8 @@ NSString* const armytypes[] = {@"",@"步",@"弓",@"骑"};
 
 NSString* const citynames[] = {@"",@"酒泉",@"张掖",@"武威",@"西海",@"天水",@"陇西",@"汉中",@"巴西",@"梓潼",@"巴郡",@"广汉",@"成都",@"江阳",@"永安",@"江州",@"建宁",@"云南",@"交趾",@"郁林",@"扶风",@"京兆",@"长安",@"上庸",@"武陵",@"零陵",@"桂阳",@"苍梧",@"合浦",@"晋阳",@"平阳",@"弘农",@"襄阳",@"雁门",@"常山",@"洛阳",@"宛城",@"新野",@"江陵",@"长沙",@"南海",@"朱崖",@"上谷",@"范阳",@"代郡",@"邺城",@"巨鹿",@"河内",@"濮阳",@"颖川",@"许昌",@"陈留",@"汝南",@"寿春",@"江夏",@"庐江",@"柴桑",@"鄱阳",@"豫章",@"建安",@"庐陵",@"蓟城",@"渔阳",@"清河",@"泰山",@"平原",@"北平",@"辽西",@"襄平",@"乐浪",@"南皮",@"东莱",@"北海",@"小沛",@"琅邪",@"东海",@"徐州",@"下邳",@"广陵",@"建业",@"毗陵",@"吴郡",@"会稽",@"临海",@"夷州"};
 
+NSString* const articleForCitys[] = {@"10,11,12,14,15",@"13,14,15,16,17",@"16,17,18,19,20",@"19,20,21,22,23",@"22,23,24,26,27",@"25,26,27,28,29",@"28,29,30,31,15",@"31,101,102,12,18",@"103,104,105,22,24",@"106,107,108,28,29",@"201,202,203,31,14",@"204,205,206,16,19",@"301,302,303,101,102",@"304,305,306,30,18"};
+
 @implementation ShareGameManager
 
 @synthesize gameDifficulty = _gameDifficulty;
@@ -938,14 +940,79 @@ static id instance = nil;
     sqlite3_open([curdb UTF8String], &_database);
     NSString* query;
     NSMutableArray* clists = [[NSMutableArray alloc] init];
-    query = [NSString stringWithFormat:@"select id,cname,ename,cdesc,edesc,attack,hp,mp,attackRange,moveRange,multiAttack,doubleAttack,gold,wood,iron,requireArmyType,effectTypeID,articleType from articleList where id in (select aid from articles where cityid=%d)",cid];
+    //query = [NSString stringWithFormat:@"select id,cname,ename,cdesc,edesc,attack,hp,mp,attackRange,moveRange,multiAttack,doubleAttack,gold,wood,iron,requireArmyType,effectTypeID,articleType from articleList where id in (select aid from articles where cityid=%d)",cid];
     
     sqlite3_stmt *statement;
+    query = [NSString stringWithFormat:@"select aid from articles where cityid=%d",cid];
+    NSMutableArray* temp = [[NSMutableArray alloc] init];
     if (sqlite3_prepare_v2(_database, [query UTF8String], -1, &statement, nil) == SQLITE_OK) {
         while (sqlite3_step(statement) == SQLITE_ROW) {
+            NSNumber* tempaid = [NSNumber numberWithInt:sqlite3_column_int(statement,0)];
+            [temp addObject:tempaid];
+        }
+    }
+    sqlite3_finalize(statement);
+    
+    for (NSNumber* temp_id in temp) {
+        int tid = (int)[temp_id integerValue];
+        query = [NSString stringWithFormat:@"select id,cname,ename,cdesc,edesc,attack,hp,mp,attackRange,moveRange,multiAttack,doubleAttack,gold,wood,iron,requireArmyType,effectTypeID,articleType from articleList where id=%d",tid];
+        if (sqlite3_prepare_v2(_database, [query UTF8String], -1, &statement, nil) == SQLITE_OK) {
+            if (sqlite3_step(statement) == SQLITE_ROW) {
+                
+                ArticleObject* ao = [[ArticleObject alloc] init];
+                
+                int aid = (int) sqlite3_column_int(statement, 0);
+                CCLOG(@"select one article : %d",aid);
+                char *cname = (char *) sqlite3_column_text(statement, 1);
+                NSString *cname2 = [[NSString alloc] initWithUTF8String:cname];
+                char *ename = (char *) sqlite3_column_text(statement, 2);
+                NSString *ename2 = [[NSString alloc] initWithUTF8String:ename];
+                char *cdesc = (char *) sqlite3_column_text(statement, 3);
+                NSString *cdesc2 = [[NSString alloc] initWithUTF8String:cdesc];
+                char *edesc = (char *) sqlite3_column_text(statement, 4);
+                NSString *edesc2 = [[NSString alloc] initWithUTF8String:edesc];
+                
+                ao.aid = aid;
+                ao.cname = cname2;
+                ao.ename = ename2;
+                ao.cdesc = cdesc2;
+                ao.edesc = edesc2;
+                ao.attack = (int) sqlite3_column_int(statement, 5);
+                ao.hp = (int) sqlite3_column_int(statement, 6);
+                ao.mp = (int) sqlite3_column_int(statement, 7);
+                ao.attackRange = (int) sqlite3_column_int(statement, 8);
+                ao.moveRange = (int) sqlite3_column_int(statement, 9);
+                ao.multiAttack = (int) sqlite3_column_int(statement, 10);
+                ao.doubleAttack = (int) sqlite3_column_int(statement, 11);
+                ao.gold = (int) sqlite3_column_int(statement, 12);
+                ao.wood = (int) sqlite3_column_int(statement, 13);
+                ao.iron = (int) sqlite3_column_int(statement, 14);
+                ao.requireArmyType = (int) sqlite3_column_int(statement, 15);
+                ao.effectTypeID = (int) sqlite3_column_int(statement, 16);
+                ao.articleType = (int) sqlite3_column_int(statement, 17);
+                
+                [clists addObject:ao];
+                
+                [cname2 release];
+                [ename2 release];
+                [cdesc2 release];
+                [edesc2 release];
+            }
+            
+        }
+        sqlite3_finalize(statement);
+    }
+    [temp removeAllObjects];
+    [temp release];
+    
+    /*
+    if (sqlite3_prepare_v2(_database, [query UTF8String], -1, &statement, nil) == SQLITE_OK) {
+        while (sqlite3_step(statement) == SQLITE_ROW) {
+            
             ArticleObject* ao = [[ArticleObject alloc] init];
             
             int aid = (int) sqlite3_column_int(statement, 0);
+            CCLOG(@"select one article : %d",aid);
             char *cname = (char *) sqlite3_column_text(statement, 1);
             NSString *cname2 = [[NSString alloc] initWithUTF8String:cname];
             char *ename = (char *) sqlite3_column_text(statement, 2);
@@ -983,7 +1050,8 @@ static id instance = nil;
         }
         
     }
-    sqlite3_finalize(statement);
+     */
+    //sqlite3_finalize(statement);
     sqlite3_close(_database);
     
     return clists;
@@ -991,6 +1059,7 @@ static id instance = nil;
 
 -(void) addArticleForID:(int)aid cityID:(int)cid
 {
+    CCLOG(@"add article to sqlite , arid : %d,  cityid : %d",aid,cid);
     NSString *rootpath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
     NSString *curdb = [rootpath stringByAppendingPathComponent:@"current.db"];
     sqlite3* _database;
@@ -1095,7 +1164,7 @@ static id instance = nil;
     NSString *curdb = [rootpath stringByAppendingPathComponent:@"current.db"];
     sqlite3* _database;
     sqlite3_open([curdb UTF8String], &_database);
-    NSString* query = [NSString stringWithFormat:@"select id,cname,city,headImage,strength,intelligence,level,skill1,skill2,skill3,skill4,skill5,troopAttack,troopMental,troopType,troopCount,armyType,article1,article2 from hero  where id=%d",hid];
+    NSString* query = [NSString stringWithFormat:@"select id,cname,city,headImage,strength,intelligence,level,skill1,skill2,skill3,skill4,skill5,troopAttack,troopMental,troopType,troopCount,armyType,article1,article2,experience,attackImage,defendImage from hero  where id=%d",hid];
     sqlite3_stmt *statement;
     HeroObject* ho = [[[HeroObject alloc] init] autorelease];
     if (sqlite3_prepare_v2(_database, [query UTF8String], -1, &statement, nil) == SQLITE_OK) {
@@ -1120,6 +1189,9 @@ static id instance = nil;
             int atype = (int) sqlite3_column_int(statement, 16);
             int a1 = (int) sqlite3_column_int(statement, 17);
             int a2 = (int) sqlite3_column_int(statement, 18);
+            int exp = (int) sqlite3_column_int(statement, 19);
+            ho.armyAttackImageID = sqlite3_column_int(statement, 20);
+            ho.armyDefendImageID = sqlite3_column_int(statement, 21);
             
             ho.cname = cname2;
             ho.heroID = hid;
@@ -1140,6 +1212,7 @@ static id instance = nil;
             ho.armyType = atype;
             ho.article1 = a1;
             ho.article2 = a2;
+            ho.experience = exp;
             
             [cname2 release];
         }

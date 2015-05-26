@@ -53,5 +53,6 @@
 {"id":52,"ename":"silence","cname":"沉默","passive":0,"canLearn":1,"skillLevel":3,"cdesc":"在本回合，所有被动策略失效，但主动策略依然可以用","strengthRequire":0,"intelligenceRequire":70,"requireWeather":0,"cost":12},
 {"id":53,"ename":"grab","cname":"豪夺","passive":0,"canLearn":1,"skillLevel":3,"cdesc":"将一个敌方角色身上的增强型效果剥离，转移到一个随机己方角色上","strengthRequire":0,"intelligenceRequire":80,"requireWeather":0,"cost":12},
 {"id":54,"ename":"meditate","cname":"冥想","passive":0,"canLearn":1,"skillLevel":1,"cdesc":"通过冥想，恢复一部分mp","strengthRequire":0,"intelligenceRequire":0,"requireWeather":0,"cost":0},
-{"id":47,"ename":"water spell","cname":"水计","passive":0,"canLearn":1,"skillLevel":2,"cdesc":"对一个角色进行一次水计攻击，损失部分hp，只能在雨天使用","strengthRequire":0,"intelligenceRequire":75,"requireWeather":2,"cost":10}
+{"id":47,"ename":"water spell","cname":"水计","passive":0,"canLearn":1,"skillLevel":2,"cdesc":"对一个角色进行一次水计攻击，损失部分hp，只能在雨天使用","strengthRequire":0,"intelligenceRequire":75,"requireWeather":2,"cost":10},
+{"id":55,"ename":"fence","cname":"拒马","passive":0,"canLearn":1,"skillLevel":1,"cdesc":"在指定的位置建造拒马阻挡敌军，必须毁坏拒马才能占领该位置，否则必须绕道","strengthRequire":0,"intelligenceRequire":0,"requireWeather":0,"cost":6}
 ]

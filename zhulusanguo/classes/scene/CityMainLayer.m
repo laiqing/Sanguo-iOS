@@ -216,6 +216,7 @@
         heroBtn = [TouchableSprite spriteWithSpriteFrameName:@"herobtn.png"];
         heroBtn.position = ccp(wsize.width*0.5, 22);
         [self addChild:heroBtn z:2];
+        [heroBtn initTheCallbackFunc:@selector(showHeroListWindow) withCaller:self withTouchID:-1];
         
         skillBtn = [TouchableSprite spriteWithSpriteFrameName:@"skillbtn.png"];
         skillBtn.position = ccp(wsize.width*0.62, 22);
@@ -225,6 +226,7 @@
         forgeBtn = [TouchableSprite spriteWithSpriteFrameName:@"forgebtn.png"];
         forgeBtn.position = ccp(wsize.width*0.74, 22);
         [self addChild:forgeBtn z:2];
+        [forgeBtn initTheCallbackFunc:@selector(showForgeWindow) withCaller:self withTouchID:-1];
         
         tradeBtn = [TouchableSprite spriteWithSpriteFrameName:@"tradebtn.png"];
         tradeBtn.position = ccp(wsize.width*0.86, 22);
@@ -855,6 +857,60 @@
     [run addChild:al z:4];
 }
 
+-(void) showHeroListWindow
+{
+    [self disableBuildingTouchable];
+    
+    //item window
+    CGSize wsize = [[CCDirector sharedDirector] winSize];
+    //CGPoint lorigin = ccp(wsize.width*0.5-240, wsize.height*0.5-120);
+    
+    CGPoint lorigin = ccp(wsize.width*0.5-240, wsize.height*0.5-120);
+    CGPoint rorigin = ccp(wsize.width*0.5-80, wsize.height*0.5-120);
+    CGRect lrect = CGRectMake(lorigin.x, lorigin.y, 144, 215);
+    CGRect rrect = CGRectMake(rorigin.x, rorigin.y, 320, 235);
+    
+    
+    HeroListLayer* al = [HeroListLayer contentRect1:lrect contentRect2:rrect withCityID:_cityID];
+    CCScene* run = [[CCDirector sharedDirector] runningScene];
+    CCNode* anylayer = [run getChildByTag:4];
+    if (anylayer) {
+        [anylayer removeFromParentAndCleanup:YES];
+    }
+    
+    [swsp closeTipIfTipOpened];
+    
+    al.tag = 4;
+    [run addChild:al z:4];
+}
+
+
+-(void) showForgeWindow
+{
+    [self disableBuildingTouchable];
+    
+    //item window
+    CGSize wsize = [[CCDirector sharedDirector] winSize];
+    //CGPoint lorigin = ccp(wsize.width*0.5-240, wsize.height*0.5-120);
+    
+    CGPoint lorigin = ccp(wsize.width*0.5-225, wsize.height*0.5-120);
+    //CGPoint rorigin = ccp(wsize.width*0.5-80, wsize.height*0.5-120);
+    CGRect lrect = CGRectMake(lorigin.x, lorigin.y, 450, 240);
+    CGRect rrect = CGRectZero;
+    
+    
+    ForgeLayer* al = [ForgeLayer contentRect1:lrect contentRect2:rrect withCityID:_cityID];
+    CCScene* run = [[CCDirector sharedDirector] runningScene];
+    CCNode* anylayer = [run getChildByTag:4];
+    if (anylayer) {
+        [anylayer removeFromParentAndCleanup:YES];
+    }
+    
+    [swsp closeTipIfTipOpened];
+    
+    al.tag = 4;
+    [run addChild:al z:4];
+}
 
 
 -(void) enableBuildingTouchable

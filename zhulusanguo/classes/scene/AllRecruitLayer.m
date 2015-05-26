@@ -57,6 +57,13 @@
         CGSize wsize = [[CCDirector sharedDirector] winSize];
         itembg.position = ccp(wsize.width*0.5-168, wsize.height*0.5);
         [self addChild:itembg z:0];
+        
+        CCLabelTTF* itemtitle = [CCLabelTTF labelWithString:@"可招募兵种" fontName:@"Arial" fontSize:12];
+        itemtitle.color = ccYELLOW;
+        itemtitle.position = ccp(itembg.position.x, itembg.position.y + itembg.boundingBox.size.height*0.5 - 10);
+        [self addChild:itemtitle z:1];
+        
+        
         CGFloat ibgheight = itembg.boundingBox.size.height;
         
         CCSprite* herobg = [CCSprite spriteWithSpriteFrameName:@"heroselectbg2.png"];

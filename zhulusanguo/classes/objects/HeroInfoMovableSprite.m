@@ -63,7 +63,7 @@
 - (void)ccTouchEnded:(UITouch *)touch withEvent:(UIEvent *)event {
     
     //now call the caller to perform selector
-    
+
     if (touchID <= -1 )
     {
         if ([caller respondsToSelector:callbackFunc0]) {

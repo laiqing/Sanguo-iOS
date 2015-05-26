@@ -183,11 +183,18 @@ typedef enum {
 
 @end
 
+@protocol MoneyEffectProtocol
+
+-(void) playMoneyEffectAtPos:(CGPoint)startPos;
+
+@end
+
 
 extern NSString* const skillnames[];
 extern NSString* const trooptypes[];
 extern NSString* const citynames[];
 extern NSString* const armytypes[];
+extern NSString* const articleForCitys[];
 
 
 

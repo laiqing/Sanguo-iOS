@@ -57,6 +57,11 @@
         [self addChild:itembg z:0];
         CGFloat ibgheight = itembg.boundingBox.size.height;
         
+        CCLabelTTF* itemtitle = [CCLabelTTF labelWithString:@"可重新分配兵力的武将" fontName:@"Arial" fontSize:12];
+        itemtitle.color = ccYELLOW;
+        itemtitle.position = ccp(itembg.position.x, itembg.position.y + itembg.boundingBox.size.height*0.5 - 10);
+        [self addChild:itemtitle z:1];
+        
         CCSprite* herobg = [CCSprite spriteWithSpriteFrameName:@"itemlist2.png"];
         herobg.position = ccp(wsize.width*0.5+110, wsize.height*0.5);
         [self addChild:herobg z:0];

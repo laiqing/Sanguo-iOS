@@ -1,15 +1,15 @@
 //
-//  TouchableSprite.m
+//  TouchableBuySprite.m
 //  zhulusanguo
 //
-//  Created by qing on 15/3/24.
+//  Created by qing on 15/5/25.
 //  Copyright 2015年 qing lai. All rights reserved.
 //
 
-#import "TouchableSprite.h"
+#import "TouchableBuySprite.h"
 
 
-@implementation TouchableSprite
+@implementation TouchableBuySprite
 
 -(id)init
 {
@@ -29,11 +29,12 @@
     return self;
 }
 
--(void) initTheCallbackFunc:(SEL)cbfunc_ withCaller:(id)caller_ withTouchID:(int)tid
+-(void) initTheCallbackFunc:(SEL)cbfunc_ withCaller:(id)caller_ withTouchID:(int)tid withPosID:(int)pID
 {
     caller = caller_;
     callbackFunc = cbfunc_;
     touchID = tid;
+    posID = pID;
     _touchable = YES;
 }
 
@@ -99,11 +100,14 @@
             [caller performSelector:callbackFunc];
         }
     }
+    //article is the normal 9 item
     else
     {
         if ([caller respondsToSelector:callbackFunc]) {
-            [caller performSelector:callbackFunc withObject:[NSNumber numberWithInt:touchID]];
+            [caller performSelector:callbackFunc withObject:[NSNumber numberWithInt:touchID] withObject:[NSNumber numberWithInt:posID]];
         }
+        //[caller playMoneyEffectAtPos:self.position];
+        
     }
     
     

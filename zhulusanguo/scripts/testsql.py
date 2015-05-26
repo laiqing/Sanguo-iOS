@@ -257,7 +257,7 @@ cu.execute('create table articleList(id integer primary key, ename text, cname t
 db.commit()
 
 #now insert int artilceList 
-f = open('articles2.json')
+f = open('articles2-test.json')
 articleData = json.loads(f.read())
 f.close()
 for sk in articleData:

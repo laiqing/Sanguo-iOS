@@ -174,7 +174,7 @@
 -(void) selectHeroWithID:(NSNumber*)heID
 {
     //max 5 hero
-    if ([_heroSelected count]>=5) {
+    if ([_heroSelected count]>=6) {
         
         [[SimpleAudioEngine sharedEngine] playEffect:@"fail.caf"];
         
@@ -183,7 +183,7 @@
         stbar.position = ccp(wszie.width*0.5, wszie.height*0.5);
         [self addChild:stbar z:5];
         [stbar performSelector:@selector(removeFromParent) withObject:nil afterDelay:1.2];
-        CCLabelTTF* warn = [CCLabelTTF labelWithString:@"最多只能选择5只部队！" fontName:@"Arial" fontSize:16];
+        CCLabelTTF* warn = [CCLabelTTF labelWithString:@"最多只能选择6名武将出战！" fontName:@"Arial" fontSize:16];
         warn.color = ccYELLOW;
         warn.position = stbar.position;
         [self addChild:warn z:6];

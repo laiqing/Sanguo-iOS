@@ -46,6 +46,11 @@
         [self addChild:itembg z:0];
         CGFloat ibgheight = itembg.boundingBox.size.height;
         
+        CCLabelTTF* itemtitle = [CCLabelTTF labelWithString:@"可学习的技能" fontName:@"Arial" fontSize:12];
+        itemtitle.color = ccYELLOW;
+        itemtitle.position = ccp(itembg.position.x, itembg.position.y + itembg.boundingBox.size.height*0.5 - 10);
+        [self addChild:itemtitle z:1];
+        
         CCSprite* herobg = [CCSprite spriteWithSpriteFrameName:@"heroselectbg2.png"];
         herobg.position = ccp(wsize.width*0.5+80, wsize.height*0.5);
         [self addChild:herobg z:0];

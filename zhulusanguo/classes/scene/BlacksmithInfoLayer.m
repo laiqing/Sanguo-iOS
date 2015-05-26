@@ -203,6 +203,7 @@ int const ironcost9[] = {0,20};
         //forgeBtn.position = ccp(bg.position.x + bg.boundingBox.size.width*0.5-35, bg.position.y - bg.boundingBox.size.height*0.5 + 20);
         forgeBtn.position = ccp(bg.position.x - bg.boundingBox.size.width*0.5+35, bg.position.y - bg.boundingBox.size.height*0.5 + 20);
         [self addChild:forgeBtn z:1];
+        [forgeBtn initTheCallbackFunc:@selector(touchForge) withCaller:self withTouchID:-1];
         
     }
     
@@ -293,7 +294,11 @@ int const ironcost9[] = {0,20};
 -(void) touchForge
 {
     //touch forge btn , show forge layer
-    
+    CCScene* run = [[CCDirector sharedDirector] runningScene];
+    CCLayer* main = (CCLayer*)[run getChildByTag:1];
+    if (main) {
+        [main performSelector:@selector(showForgeWindow)];
+    }
     
 }
 

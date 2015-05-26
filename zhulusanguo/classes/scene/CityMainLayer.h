@@ -33,6 +33,8 @@
 #import "SkillsLayer.h"
 #import "AllRecruitLayer.h"
 #import "DistributeLayer.h"
+#import "HeroListLayer.h"
+#import "ForgeLayer.h"
 
 
 @interface CityMainLayer : CCLayer<CityHUDProtocol> {
