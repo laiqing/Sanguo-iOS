@@ -168,6 +168,7 @@
 
 -(void) cleanupBeforeRelease
 {
+    [self closeTipIfTipOpened];
     [NSObject cancelPreviousPerformRequestsWithTarget:self];
 }
 

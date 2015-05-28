@@ -43,7 +43,7 @@
 {"id":41,"ename":"security","cname":"治安","passive":1,"canLearn":1,"skillLevel":1,"cdesc":"拥有该技能的武将驻扎在某城市，该城市不会受到盗贼侵害","strengthRequire":0,"intelligenceRequire":0,"requireWeather":0,"cost":0},
 {"id":42,"ename":"sunny","cname":"晴天","passive":0,"canLearn":1,"skillLevel":2,"cdesc":"将天气变为晴天，以便使用火计和火箭","strengthRequire":0,"intelligenceRequire":70,"requireWeather":0,"cost":6},
 {"id":43,"ename":"thor","cname":"雷神","passive":1,"canLearn":1,"skillLevel":2,"cdesc":"当有友方角色使用雷击时，启动本策略，对所有敌方角色进行雷击","strengthRequire":0,"intelligenceRequire":85,"requireWeather":0,"cost":8},
-{"id":44,"ename":"trap","cname":"陷阱","passive":0,"canLearn":1,"skillLevel":1,"cdesc":"让一个角色陷入险境无法移动，但可以正常攻击和使用策略","strengthRequire":0,"intelligenceRequire":0,"requireWeather":0,"cost":8},
+{"id":44,"ename":"trap","cname":"陷阱","passive":0,"canLearn":1,"skillLevel":1,"cdesc":"在一个指定位置制作陷阱，经过该位置的角色将受到攻击，且无法继续移动","strengthRequire":0,"intelligenceRequire":0,"requireWeather":0,"cost":6},
 {"id":45,"ename":"volleyfire","cname":"群射","passive":0,"canLearn":1,"skillLevel":2,"cdesc":"对场上所有敌方角色不计攻击范围进行一次攻击","strengthRequire":70,"intelligenceRequire":0,"requireWeather":0,"cost":8},
 {"id":46,"ename":"hydro machine","cname":"治水","passive":1,"canLearn":1,"skillLevel":1,"cdesc":"拥有该技能的武将驻扎在某城市，该城市不会遭受洪灾","strengthRequire":0,"intelligenceRequire":60,"requireWeather":0,"cost":0},
 {"id":48,"ename":"pray","cname":"祝福","passive":0,"canLearn":1,"skillLevel":3,"cdesc":"在本回合内，所有己方角色的攻击力和策略伤害值均翻倍","strengthRequire":0,"intelligenceRequire":80,"requireWeather":0,"cost":16},

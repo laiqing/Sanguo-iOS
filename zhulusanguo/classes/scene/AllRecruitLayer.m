@@ -34,6 +34,7 @@
         currentTroopType = -1;
         currentTroopCount = -1;
         needClosePayment = 0;
+        showPaymentDialog = 0;
         
         leftLayer = [[[CCNode alloc] init] autorelease];
         rightLayer = [[[CCNode alloc] init] autorelease];

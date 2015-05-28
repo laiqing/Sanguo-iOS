@@ -231,6 +231,7 @@
         tradeBtn = [TouchableSprite spriteWithSpriteFrameName:@"tradebtn.png"];
         tradeBtn.position = ccp(wsize.width*0.86, 22);
         [self addChild:tradeBtn z:2];
+        [tradeBtn initTheCallbackFunc:@selector(showTradeWindow) withCaller:self withTouchID:-1];
         
         
         //draw money infobar close.button up
@@ -887,6 +888,26 @@
 
 -(void) showForgeWindow
 {
+    //if blacksmith not build , not show
+    //CityInfoObject* cio = [[ShareGameManager shareGameManager] getCityInfoForCityScene:_cityID];
+    if (cio.blacksmith == 0) {
+        [[SimpleAudioEngine sharedEngine] playEffect:@"fail.caf"];
+        
+        CGSize wszie = [[CCDirector sharedDirector] winSize];
+        CCSprite* stbar = [CCSprite spriteWithSpriteFrameName:@"statusbar.png"];
+        stbar.position = ccp(wszie.width*0.5, wszie.height*0.5);
+        [self addChild:stbar z:5];
+        [stbar performSelector:@selector(removeFromParent) withObject:nil afterDelay:1.5];
+        
+        CCLabelTTF* warn = [CCLabelTTF labelWithString:@"铁匠铺未建造！" fontName:@"Arial" fontSize:15];
+        warn.color = ccYELLOW;
+        warn.position = stbar.position;
+        [self addChild:warn z:6];
+        [warn performSelector:@selector(removeFromParent) withObject:nil afterDelay:1.5];
+        
+        return;
+    }
+    
     [self disableBuildingTouchable];
     
     //item window
@@ -900,6 +921,33 @@
     
     
     ForgeLayer* al = [ForgeLayer contentRect1:lrect contentRect2:rrect withCityID:_cityID];
+    CCScene* run = [[CCDirector sharedDirector] runningScene];
+    CCNode* anylayer = [run getChildByTag:4];
+    if (anylayer) {
+        [anylayer removeFromParentAndCleanup:YES];
+    }
+    
+    [swsp closeTipIfTipOpened];
+    
+    al.tag = 4;
+    [run addChild:al z:4];
+}
+
+-(void) showTradeWindow
+{
+    [self disableBuildingTouchable];
+    
+    //item window
+    CGSize wsize = [[CCDirector sharedDirector] winSize];
+    //CGPoint lorigin = ccp(wsize.width*0.5-240, wsize.height*0.5-120);
+    
+    CGPoint lorigin = ccp(wsize.width*0.5-155, wsize.height*0.5-120);
+    //CGPoint rorigin = ccp(wsize.width*0.5-80, wsize.height*0.5-120);
+    CGRect lrect = CGRectMake(lorigin.x, lorigin.y, 310, 240);
+    CGRect rrect = CGRectZero;
+    
+    
+    TradeLayer* al = [TradeLayer contentRect1:lrect contentRect2:rrect withCityID:_cityID];
     CCScene* run = [[CCDirector sharedDirector] runningScene];
     CCNode* anylayer = [run getChildByTag:4];
     if (anylayer) {

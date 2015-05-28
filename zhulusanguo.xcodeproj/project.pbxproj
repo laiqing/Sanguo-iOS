@@ -171,8 +171,10 @@
 		264567141B00D52F0096A34F /* UnitReceiveDropSprite.m in Sources */ = {isa = PBXBuildFile; fileRef = 264567131B00D52F0096A34F /* UnitReceiveDropSprite.m */; };
 		264567171B00E44E0096A34F /* ReceiveSkillDropSprite.m in Sources */ = {isa = PBXBuildFile; fileRef = 264567161B00E44E0096A34F /* ReceiveSkillDropSprite.m */; };
 		2646085A1ADBB334008102C4 /* HeroUnit.m in Sources */ = {isa = PBXBuildFile; fileRef = 264608591ADBB334008102C4 /* HeroUnit.m */; };
+		26493F601B173F1C00B0F5AD /* todolist.txt in Resources */ = {isa = PBXBuildFile; fileRef = 26493F5F1B173F1C00B0F5AD /* todolist.txt */; };
 		2649AD251AFC4E6500C16AA3 /* CCLabelTTFWithInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 2649AD241AFC4E6500C16AA3 /* CCLabelTTFWithInfo.m */; };
 		264A912E1AFB06E9004C6172 /* ArticleDragSprite.m in Sources */ = {isa = PBXBuildFile; fileRef = 264A912D1AFB06E9004C6172 /* ArticleDragSprite.m */; };
+		264B86F61B15E42A00FE1488 /* ResourceDragTouchSprite.m in Sources */ = {isa = PBXBuildFile; fileRef = 264B86F51B15E42A00FE1488 /* ResourceDragTouchSprite.m */; };
 		264E07FC1B023C1400746E27 /* CCControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 264E07E11B023C1400746E27 /* CCControl.m */; };
 		264E07FD1B023C1400746E27 /* CCControlButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 264E07E31B023C1400746E27 /* CCControlButton.m */; };
 		264E07FE1B023C1400746E27 /* CCControlColourPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 264E07E51B023C1400746E27 /* CCControlColourPicker.m */; };
@@ -224,6 +226,8 @@
 		26CFBD671AC58D45009CF983 /* FightLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 26CFBD661AC58D45009CF983 /* FightLayer.m */; };
 		26D43BE91AC7A7BF002CF592 /* SoliderWalkSprite.m in Sources */ = {isa = PBXBuildFile; fileRef = 26D43BE81AC7A7BF002CF592 /* SoliderWalkSprite.m */; };
 		26D43BEC1AC7ADC4002CF592 /* LeftSoliderWalkSprite.m in Sources */ = {isa = PBXBuildFile; fileRef = 26D43BEB1AC7ADC4002CF592 /* LeftSoliderWalkSprite.m */; };
+		26D5E5541B15BD3000DBD53E /* ResourceDragSprite.m in Sources */ = {isa = PBXBuildFile; fileRef = 26D5E5531B15BD3000DBD53E /* ResourceDragSprite.m */; };
+		26D5E5571B15BE1800DBD53E /* ResourceReceiveDropSprite.m in Sources */ = {isa = PBXBuildFile; fileRef = 26D5E5561B15BE1800DBD53E /* ResourceReceiveDropSprite.m */; };
 		26F1279C1AC500A900DADFD9 /* ExternCCAction.m in Sources */ = {isa = PBXBuildFile; fileRef = 26F1279B1AC500A900DADFD9 /* ExternCCAction.m */; };
 /* End PBXBuildFile section */
 
@@ -557,10 +561,13 @@
 		264567161B00E44E0096A34F /* ReceiveSkillDropSprite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReceiveSkillDropSprite.m; sourceTree = "<group>"; };
 		264608581ADBB334008102C4 /* HeroUnit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HeroUnit.h; sourceTree = "<group>"; };
 		264608591ADBB334008102C4 /* HeroUnit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HeroUnit.m; sourceTree = "<group>"; };
+		26493F5F1B173F1C00B0F5AD /* todolist.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = todolist.txt; sourceTree = "<group>"; };
 		2649AD231AFC4E6500C16AA3 /* CCLabelTTFWithInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCLabelTTFWithInfo.h; sourceTree = "<group>"; };
 		2649AD241AFC4E6500C16AA3 /* CCLabelTTFWithInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCLabelTTFWithInfo.m; sourceTree = "<group>"; };
 		264A912C1AFB06E9004C6172 /* ArticleDragSprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ArticleDragSprite.h; sourceTree = "<group>"; };
 		264A912D1AFB06E9004C6172 /* ArticleDragSprite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ArticleDragSprite.m; sourceTree = "<group>"; };
+		264B86F41B15E42A00FE1488 /* ResourceDragTouchSprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResourceDragTouchSprite.h; sourceTree = "<group>"; };
+		264B86F51B15E42A00FE1488 /* ResourceDragTouchSprite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResourceDragTouchSprite.m; sourceTree = "<group>"; };
 		264E07E01B023C1400746E27 /* CCControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCControl.h; sourceTree = "<group>"; };
 		264E07E11B023C1400746E27 /* CCControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCControl.m; sourceTree = "<group>"; };
 		264E07E21B023C1400746E27 /* CCControlButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCControlButton.h; sourceTree = "<group>"; };
@@ -662,6 +669,10 @@
 		26D43BE81AC7A7BF002CF592 /* SoliderWalkSprite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SoliderWalkSprite.m; sourceTree = "<group>"; };
 		26D43BEA1AC7ADC4002CF592 /* LeftSoliderWalkSprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LeftSoliderWalkSprite.h; sourceTree = "<group>"; };
 		26D43BEB1AC7ADC4002CF592 /* LeftSoliderWalkSprite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LeftSoliderWalkSprite.m; sourceTree = "<group>"; };
+		26D5E5521B15BD3000DBD53E /* ResourceDragSprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResourceDragSprite.h; sourceTree = "<group>"; };
+		26D5E5531B15BD3000DBD53E /* ResourceDragSprite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResourceDragSprite.m; sourceTree = "<group>"; };
+		26D5E5551B15BE1800DBD53E /* ResourceReceiveDropSprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResourceReceiveDropSprite.h; sourceTree = "<group>"; };
+		26D5E5561B15BE1800DBD53E /* ResourceReceiveDropSprite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResourceReceiveDropSprite.m; sourceTree = "<group>"; };
 		26F1279A1AC5008B00DADFD9 /* ExternCCAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExternCCAction.h; sourceTree = "<group>"; };
 		26F1279B1AC500A900DADFD9 /* ExternCCAction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExternCCAction.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -749,6 +760,7 @@
 				2601C4551AD7D001006F8C09 /* TradeLayer.m */,
 				263174B41AD7EFB100190F08 /* HeroListLayer.h */,
 				263174B51AD7EFB100190F08 /* HeroListLayer.m */,
+				26493F5F1B173F1C00B0F5AD /* todolist.txt */,
 			);
 			name = City;
 			sourceTree = "<group>";
@@ -865,10 +877,16 @@
 				26C581681AFFAC7A008AC4EA /* SkillDragTouchSprite.m */,
 				2645670C1B00D4EA0096A34F /* RecruitDragTouchSprite.h */,
 				2645670D1B00D4EA0096A34F /* RecruitDragTouchSprite.m */,
+				264B86F41B15E42A00FE1488 /* ResourceDragTouchSprite.h */,
+				264B86F51B15E42A00FE1488 /* ResourceDragTouchSprite.m */,
 				2645670F1B00D5090096A34F /* UnitDragSprite.h */,
 				264567101B00D5090096A34F /* UnitDragSprite.m */,
+				26D5E5521B15BD3000DBD53E /* ResourceDragSprite.h */,
+				26D5E5531B15BD3000DBD53E /* ResourceDragSprite.m */,
 				264567121B00D52F0096A34F /* UnitReceiveDropSprite.h */,
 				264567131B00D52F0096A34F /* UnitReceiveDropSprite.m */,
+				26D5E5551B15BE1800DBD53E /* ResourceReceiveDropSprite.h */,
+				26D5E5561B15BE1800DBD53E /* ResourceReceiveDropSprite.m */,
 				264567151B00E44E0096A34F /* ReceiveSkillDropSprite.h */,
 				264567161B00E44E0096A34F /* ReceiveSkillDropSprite.m */,
 				266E71F81B0489D0008F7038 /* TroopDragTouchSprite.h */,
@@ -1436,6 +1454,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				26493F601B173F1C00B0F5AD /* todolist.txt in Resources */,
 				262145B21AC13F6E00E0D550 /* animate_all.plist in Resources */,
 				2698D85D1AD93AE400596350 /* upgrade.caf in Resources */,
 				263D04F31AC03FDF00248FFA /* Icon.png in Resources */,
@@ -1545,6 +1564,7 @@
 				263D060B1AC03FE100248FFA /* CCProfiling.m in Sources */,
 				269AB8161AD772EC001125DB /* LumberMillInfoLayer.m in Sources */,
 				269AB8221AD7733F001125DB /* ArcherInfoLayer.m in Sources */,
+				26D5E5541B15BD3000DBD53E /* ResourceDragSprite.m in Sources */,
 				263D05A21AC03FE000248FFA /* CCShaderCache.m in Sources */,
 				264E08061B023C1400746E27 /* CCScale9Sprite.m in Sources */,
 				263D05A81AC03FE000248FFA /* CCSprite.m in Sources */,
@@ -1580,6 +1600,7 @@
 				2651FB691AC645E00076E0A0 /* CityMainLayer.m in Sources */,
 				26CEA5D71AC3195900649827 /* MapLayer.m in Sources */,
 				263D058D1AC03FE000248FFA /* CCScene.m in Sources */,
+				264B86F61B15E42A00FE1488 /* ResourceDragTouchSprite.m in Sources */,
 				264567171B00E44E0096A34F /* ReceiveSkillDropSprite.m in Sources */,
 				264E07FD1B023C1400746E27 /* CCControlButton.m in Sources */,
 				263D050C1AC03FDF00248FFA /* CCActionGrid3D.m in Sources */,
@@ -1609,6 +1630,7 @@
 				263D062C1AC03FE100248FFA /* CDOpenALSupport.m in Sources */,
 				263D050F1AC03FDF00248FFA /* CCActionInstant.m in Sources */,
 				263D05301AC03FDF00248FFA /* CCClippingNode.m in Sources */,
+				26D5E5571B15BE1800DBD53E /* ResourceReceiveDropSprite.m in Sources */,
 				263D05B41AC03FE100248FFA /* CCTexture2D.m in Sources */,
 				263D05C91AC03FE100248FFA /* CCTMXTiledMap.m in Sources */,
 				268D6FD41B04D444006D5262 /* HeroInfoMovableSprite.m in Sources */,

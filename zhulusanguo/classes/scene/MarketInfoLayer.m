@@ -189,6 +189,7 @@ int const ironprovide4[] = {0,1,2,3,4,5};
         otherBtn = [TouchableSprite spriteWithSpriteFrameName:@"buildtradebtn.png"];
         otherBtn.position = ccp(bg.position.x - bg.boundingBox.size.width*0.5+35, bg.position.y - bg.boundingBox.size.height*0.5 + 20);
         [self addChild:otherBtn z:1];
+        [otherBtn initTheCallbackFunc:@selector(touchOther) withCaller:self withTouchID:-1];
     }
     
     
@@ -265,7 +266,12 @@ int const ironprovide4[] = {0,1,2,3,4,5};
 -(void) touchOther
 {
     //touch trade btn , show trade layer
-    
+    //touch recruit btn , show recruit layer
+    CCScene* run = [[CCDirector sharedDirector] runningScene];
+    CCLayer* main = (CCLayer*)[run getChildByTag:1];
+    if (main) {
+        [main performSelector:@selector(showTradeWindow)];
+    }
     
 }
 

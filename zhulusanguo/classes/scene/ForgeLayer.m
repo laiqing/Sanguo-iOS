@@ -74,7 +74,7 @@
         [leftLayer addChild:desclabel1 z:2];
         
         //buy button , cost resource text
-        TouchableBuySprite* tb1 = [TouchableBuySprite spriteWithSpriteFrameName:@"buildtradebtn.png"];
+        TouchableBuySprite* tb1 = [TouchableBuySprite spriteWithSpriteFrameName:@"buildbuybtn.png"];
         tb1.position = ccp(item1.position.x + 20, item1.position.y - 35);
         [leftLayer addChild:tb1 z:2];
         [tb1 initTheCallbackFunc:@selector(buyArticleWithItem:withPosID:) withCaller:self withTouchID:randomid withPosID:0];
@@ -135,7 +135,7 @@
         [leftLayer addChild:desclabel2 z:2];
         
         //buy button , cost resource text
-        TouchableBuySprite* tb2 = [TouchableBuySprite spriteWithSpriteFrameName:@"buildtradebtn.png"];
+        TouchableBuySprite* tb2 = [TouchableBuySprite spriteWithSpriteFrameName:@"buildbuybtn.png"];
         tb2.position = ccp(item2.position.x + 20, item2.position.y - 35);
         [leftLayer addChild:tb2 z:2];
         [tb2 initTheCallbackFunc:@selector(buyArticleWithItem:withPosID:) withCaller:self withTouchID:randomid+3 withPosID:1];
@@ -195,7 +195,7 @@
         [leftLayer addChild:desclabel3 z:2];
         
         //buy button , cost resource text
-        TouchableBuySprite* tb3 = [TouchableBuySprite spriteWithSpriteFrameName:@"buildtradebtn.png"];
+        TouchableBuySprite* tb3 = [TouchableBuySprite spriteWithSpriteFrameName:@"buildbuybtn.png"];
         tb3.position = ccp(item3.position.x + 20, item3.position.y - 35);
         [leftLayer addChild:tb3 z:2];
         [tb3 initTheCallbackFunc:@selector(buyArticleWithItem:withPosID:) withCaller:self withTouchID:randomid+6 withPosID:2];
@@ -255,7 +255,7 @@
         [leftLayer addChild:desclabel4 z:2];
         
         //buy button , cost resource text
-        TouchableBuySprite* tb4 = [TouchableBuySprite spriteWithSpriteFrameName:@"buildtradebtn.png"];
+        TouchableBuySprite* tb4 = [TouchableBuySprite spriteWithSpriteFrameName:@"buildbuybtn.png"];
         tb4.position = ccp(item4.position.x + 20, item4.position.y - 35);
         [leftLayer addChild:tb4 z:2];
         [tb4 initTheCallbackFunc:@selector(buyArticleWithItem:withPosID:) withCaller:self withTouchID:de1 withPosID:3];
@@ -318,7 +318,7 @@
         [leftLayer addChild:desclabel5 z:2];
         
         //buy button , cost resource text
-        TouchableBuySprite* tb5 = [TouchableBuySprite spriteWithSpriteFrameName:@"buildtradebtn.png"];
+        TouchableBuySprite* tb5 = [TouchableBuySprite spriteWithSpriteFrameName:@"buildbuybtn.png"];
         tb5.position = ccp(item5.position.x + 20, item5.position.y - 35);
         [leftLayer addChild:tb5 z:2];
         [tb5 initTheCallbackFunc:@selector(buyArticleWithItem:withPosID:) withCaller:self withTouchID:de2 withPosID:4];
@@ -379,7 +379,7 @@
         [leftLayer addChild:desclabel6 z:2];
         
         //buy button , cost resource text
-        TouchableBuySprite* tb6 = [TouchableBuySprite spriteWithSpriteFrameName:@"buildtradebtn.png"];
+        TouchableBuySprite* tb6 = [TouchableBuySprite spriteWithSpriteFrameName:@"buildbuybtn.png"];
         tb6.position = ccp(item6.position.x + 20, item6.position.y - 35);
         [leftLayer addChild:tb6 z:2];
         [tb6 initTheCallbackFunc:@selector(buyArticleWithItem:withPosID:) withCaller:self withTouchID:de3 withPosID:5];
@@ -439,7 +439,7 @@
         [leftLayer addChild:desclabel7 z:2];
         
         //buy button , cost resource text
-        TouchableBuySprite* tb7 = [TouchableBuySprite spriteWithSpriteFrameName:@"buildtradebtn.png"];
+        TouchableBuySprite* tb7 = [TouchableBuySprite spriteWithSpriteFrameName:@"buildbuybtn.png"];
         tb7.position = ccp(item7.position.x + 20, item7.position.y - 35);
         [leftLayer addChild:tb7 z:2];
         [tb7 initTheCallbackFunc:@selector(buyArticleWithItem:withPosID:) withCaller:self withTouchID:de4 withPosID:6];
@@ -499,7 +499,7 @@
         [leftLayer addChild:desclabel8 z:2];
         
         //buy button , cost resource text
-        TouchableBuySprite* tb8 = [TouchableBuySprite spriteWithSpriteFrameName:@"buildtradebtn.png"];
+        TouchableBuySprite* tb8 = [TouchableBuySprite spriteWithSpriteFrameName:@"buildbuybtn.png"];
         tb8.position = ccp(item8.position.x + 20, item8.position.y - 35);
         [leftLayer addChild:tb8 z:2];
         [tb8 initTheCallbackFunc:@selector(buyArticleWithItem:withPosID:) withCaller:self withTouchID:de5 withPosID:7];

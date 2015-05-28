@@ -17,6 +17,13 @@ NSString* const citynames[] = {@"",@"酒泉",@"张掖",@"武威",@"西海",@"天
 
 NSString* const articleForCitys[] = {@"10,11,12,14,15",@"13,14,15,16,17",@"16,17,18,19,20",@"19,20,21,22,23",@"22,23,24,26,27",@"25,26,27,28,29",@"28,29,30,31,15",@"31,101,102,12,18",@"103,104,105,22,24",@"106,107,108,28,29",@"201,202,203,31,14",@"204,205,206,16,19",@"301,302,303,101,102",@"304,305,306,30,18"};
 
+int const goldToWoodRate[] = {100,80,60,40,20,10};
+int const goldToIronRate[] = {100,80,60,40,20,10};
+int const woodToGoldRate[] = {15,10,8,6,4,3};  //10 wood <-> 1 gold
+int const woodToIronRate[] = {15,10,8,6,4,3};
+int const ironToGoldRate[] = {15,10,8,6,4,3};
+int const ironToWoodRate[] = {15,10,8,6,4,3};
+
 @implementation ShareGameManager
 
 @synthesize gameDifficulty = _gameDifficulty;

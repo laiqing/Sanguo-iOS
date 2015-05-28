@@ -1,0 +1,10 @@
+
+//2015.5.28
+
+
+1. hero list layer, the hero attack may not correct.  (check)
+
+2. article list layer, add the sell button.
+
+3. hire layer coding....
+

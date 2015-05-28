@@ -1,26 +1,25 @@
 //
-//  RecruitDragTouchSprite.h
+//  ResourceDragTouchSprite.h
 //  zhulusanguo
 //
-//  Created by qing on 15/5/11.
+//  Created by qing on 15/5/27.
 //  Copyright 2015年 qing lai. All rights reserved.
 //
-//  用于在allRecruitLayer里的左侧的可以拖拉的兵种unit
 
 #import <Foundation/Foundation.h>
 #import "cocos2d.h"
+#import "ResourceDragSprite.h"
 
-#import "UnitDragSprite.h"
-
-@interface RecruitDragTouchSprite : CCSprite<CCTouchOneByOneDelegate> {
+@interface ResourceDragTouchSprite : CCSprite<CCTouchOneByOneDelegate> {
     id caller;
     SEL callbackFunc0;
-    int touchID;    //在这里，touchID表示unitTypeID
-    UnitDragSprite* dragSprite;
+    int touchID;    //在这里，touchID表示resource type id
+    ResourceDragSprite* dragSprite;
     BOOL dragable;
     
     //int state;
     NSString* state0Image;
+
 }
 
 @property (nonatomic,assign) BOOL candrag;

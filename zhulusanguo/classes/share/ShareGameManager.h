@@ -195,6 +195,14 @@ extern NSString* const trooptypes[];
 extern NSString* const citynames[];
 extern NSString* const armytypes[];
 extern NSString* const articleForCitys[];
+extern int const goldToWoodRate[];
+extern int const goldToIronRate[];
+extern int const woodToGoldRate[];
+extern int const woodToIronRate[];
+extern int const ironToGoldRate[];
+extern int const ironToWoodRate[];
+
+
 
 
 
