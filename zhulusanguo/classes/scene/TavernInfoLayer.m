@@ -188,6 +188,7 @@ int const ironcost11[] = {0,0};
         otherBtn.position = ccp(bg.position.x + bg.boundingBox.size.width*0.5-35, bg.position.y - bg.boundingBox.size.height*0.5 + 20);
         //otherBtn.position = ccp(bg.position.x - bg.boundingBox.size.width*0.5+35, bg.position.y - bg.boundingBox.size.height*0.5 + 20);
         [self addChild:otherBtn z:1];
+        [otherBtn initTheCallbackFunc:@selector(touchOther) withCaller:self withTouchID:-1];
     }
     
     
@@ -266,7 +267,11 @@ int const ironcost11[] = {0,0};
 -(void) touchOther
 {
     //touch hire btn , show hire layer
-    
+    CCScene* run = [[CCDirector sharedDirector] runningScene];
+    CCLayer* main = (CCLayer*)[run getChildByTag:1];
+    if (main) {
+        [main performSelector:@selector(showHireWindow)];
+    }
     
 }
 

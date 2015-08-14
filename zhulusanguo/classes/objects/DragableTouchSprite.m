@@ -77,7 +77,7 @@
         }
         else {
             dragSprite = [ArticleDragSprite spriteWithSpriteFrameName:state0Image];
-            dragSprite.scale = 3;
+            dragSprite.scale = 1.5;
         }
         
         dragSprite.articleID = touchID;

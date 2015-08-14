@@ -60,42 +60,51 @@
         CGFloat hfheight;
         //CGFloat hbgheight = herobg.boundingBox.size.height;
         
-        for (int i=0; i<ilen; i++) {
-            HeroObject *ho = [heroes objectAtIndex:i];
-            CCSprite* hf = [CCSprite spriteWithSpriteFrameName:@"itemframe.png"];
-            hfheight = hf.boundingBox.size.height;
-            hf.position = ccp(itembg.position.x, wsize.height*0.5+ibgheight*0.5 - 25 - hfheight*0.5 -(hfheight+5)*i);
-            [leftLayer addChild:hf z:1];
-            
-            //hero head
-            NSString* hfile = [NSString stringWithFormat:@"hero%d.png",ho.headImageID];
-            HeroInfoMovableSprite* hhead = [HeroInfoMovableSprite spriteWithSpriteFrameName:hfile];
-            hhead.position = ccp(hf.position.x - hf.boundingBox.size.width*0.5 + 45, hf.position.y);
-            [leftLayer addChild:hhead z:3];
-            [hhead initTheCallbackFunc0:@selector(showHeroDetail:) withCaller:self withTouchID:ho.heroID];
-            
-            CCSprite *armybg = [CCSprite spriteWithSpriteFrameName:@"hero_bg.png"];
-            armybg.position = hhead.position;
-            armybg.scale = 1.2;
-            [leftLayer addChild:armybg z:2];
-            
-            //hero name , level , hp , mp , attack , //attack range, move range
-            NSString* compound = [NSString stringWithFormat:@"%@", ho.cname];
-            CCLabelTTF* hnamelabel = [CCLabelTTF labelWithString:compound fontName:@"Arial" fontSize:10];
-            hnamelabel.anchorPoint = ccp(0, 0.5);
-            //hnamelabel.color = ccORANGE;
-            hnamelabel.position = ccp(hhead.position.x + 35, hhead.position.y);
-            [leftLayer addChild:hnamelabel z:2];
-            
-            
+        if (ilen == 0) {
             
         }
-        maxBottomLeftY = (hfheight+5)*ilen - leftContent.size.height + 10 ;
+        else {
+            for (int i=0; i<ilen; i++) {
+                HeroObject *ho = [heroes objectAtIndex:i];
+                CCSprite* hf = [CCSprite spriteWithSpriteFrameName:@"itemframe.png"];
+                hfheight = hf.boundingBox.size.height;
+                hf.position = ccp(itembg.position.x, wsize.height*0.5+ibgheight*0.5 - 25 - hfheight*0.5 -(hfheight+5)*i);
+                [leftLayer addChild:hf z:1];
+                
+                //hero head
+                NSString* hfile = [NSString stringWithFormat:@"hero%d.png",ho.headImageID];
+                HeroInfoMovableSprite* hhead = [HeroInfoMovableSprite spriteWithSpriteFrameName:hfile];
+                hhead.position = ccp(hf.position.x - hf.boundingBox.size.width*0.5 + 45, hf.position.y);
+                [leftLayer addChild:hhead z:3];
+                [hhead initTheCallbackFunc0:@selector(showHeroDetail:) withCaller:self withTouchID:ho.heroID];
+                
+                CCSprite *armybg = [CCSprite spriteWithSpriteFrameName:@"hero_bg.png"];
+                armybg.position = hhead.position;
+                armybg.scale = 1.2;
+                [leftLayer addChild:armybg z:2];
+                
+                //hero name , level , hp , mp , attack , //attack range, move range
+                NSString* compound = [NSString stringWithFormat:@"%@", ho.cname];
+                CCLabelTTF* hnamelabel = [CCLabelTTF labelWithString:compound fontName:@"Arial" fontSize:10];
+                hnamelabel.anchorPoint = ccp(0, 0.5);
+                //hnamelabel.color = ccORANGE;
+                hnamelabel.position = ccp(hhead.position.x + 35, hhead.position.y);
+                [leftLayer addChild:hnamelabel z:2];
+                
+                
+                
+            }
+            maxBottomLeftY = (hfheight+5)*ilen - leftContent.size.height + 10 ;
+            
+            [self updateLeftLayerVisible];
+            
+            HeroObject* first = [heroes objectAtIndex:0];
+            if (first) {
+                [self showHeroDetail:[NSNumber numberWithInt:first.heroID]];
+            }
+
+        }
         
-        [self updateLeftLayerVisible];
-        
-        HeroObject* first = [heroes objectAtIndex:0];
-        [self showHeroDetail:[NSNumber numberWithInt:first.heroID]];
         
         //maxBootomRightY = (hfheight+5)*ilen - rightContent.size.height + 10 ;
         

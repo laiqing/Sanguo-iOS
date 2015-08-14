@@ -124,12 +124,33 @@ db.commit()
 
 
 #table playerInfo contain info about player select kingid, year month day
-cu.execute('create table playerInfo(kingID integer primary key, year integer, month integer, day integer, savedate text, gold integer, lumber integer, iron integer , inBattle integer, difficulty integer, cityCount integer)')
+cu.execute('create table playerInfo(kingID integer primary key, year integer, month integer, day integer, gold integer, wood integer, iron integer , inBattle integer, difficulty integer)')
 db.commit()
 
 #table autoIncResource
 cu.execute('create table autoIncResource(kingID integer, incGold integer, incWood integer, incIron integer)')
 db.commit()
+
+#autogold = [0,0,0,0,0,0,0,0,0,0,0,0]
+#autowood = [0,0,0,0,0,0,0,0,0,0,0,0]
+#autoiron = [0,0,0,0,0,0,0,0,0,0,0,0]
+#for hero in herodata:
+#	if hero["owner"]==99:
+#		pass
+#	else:
+#		howner = hero["owner"]
+#		if hero["skill1"]==0:
+#			#add iron
+#			autoiron[howner] += 10
+#		elif hero["skill1"]==1:
+#			autogold[howner] += 100
+#		elif hero["skill1"]==2:
+#			autowood[howner] += 10
+#update the autoIncResource
+#for x in xrange(0,12):
+#	cu.execute("insert into autoIncResource values("+str(x)+","+str(autogold[x])+","+str(autowood[x])+","+str(autoiron[x])+")")
+#	print x,autogold[x],autowood[x],autoiron[x]
+#	db.commit()
 
 gold = [0,0,0,0,0,0,0,0,0,0,0,0]
 wood = [0,0,0,0,0,0,0,0,0,0,0,0]
@@ -139,11 +160,11 @@ for hero in herodata:
 		continue
 	if hero["skill1"]==1:
 		#gold
-		gold[hero["owner"]] += 1
+		gold[hero["owner"]] += 100
 	elif hero["skill1"]==0:
-		iron[hero["owner"]] += 1
+		iron[hero["owner"]] += 10
 	elif hero["skill1"]==2:
-		wood[hero["owner"]] += 1
+		wood[hero["owner"]] += 10
 
 print gold
 print wood
@@ -208,12 +229,13 @@ db.commit()
 #cu.execute('create table battleInfo()')
 
 # turn , a integer in (1,30) , attackOrDefend 1-attack,2-defend, weather 1 sunny,2 rain
-cu.execute('create table battleInfo(turn integer, attackOrDefend integer, weather integer, playerLostHP integer, computerLostHP integer)')
+cu.execute('create table battleInfo(cityID integer, turn integer, attackOrDefend integer, weather integer, playerLostHP integer, computerLostHP integer)')
 db.commit()
-# include player side and computer side , heroID = 9999 means camp, heroID = 9000,9001,9002,9003 means tower
+# include player side and computer side , heroID = 9999 means camp, heroID = 9000,9001,9002,9003 means tower, heroID = 8000-8999 means fence, heroID = 7000-7999 means trap.
 # heroState 1 not attack, 2 attacked, 3 retreated 4 defeated
+# heroOtherState 1 normal 2.poison 3.trap 4.chaos 
 # troopState 1 not attack , 2 attacked , 3 defeated
-cu.execute('create table battleHeroInfo(heroID integer primary key, heroState integer, hp integer, mp integer, posx integer, posy integer, troopType integer, troopInitCount integer, troopLost integer, troopPosx integer, troopPosy integer, troopState integer)')
+cu.execute('create table battleHeroInfo(heroID integer primary key, heroState integer, hp integer, mp integer, posx integer, posy integer,fightState integer,hpAdd integer, attackAdd integer, moveAdd integer, attackRangeAdd integer, troopType integer, troopInitCount integer, troopLost integer, troopPosx integer, troopPosy integer, troopState integer, troopFightState integer,troopHpAdd integer, troopAttackAdd integer, troopMoveAdd integer, troopAttackRangeAdd integer)')
 db.commit()
 
 #tips table

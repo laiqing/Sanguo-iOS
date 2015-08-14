@@ -27,4 +27,22 @@
 
 @end
 
+@interface CCSpriteSetInvisible : CCAction
+{
+    
+}
+
++(id)newInvisibleAction;
+
+@end
+
+@interface CCNodeRelease : CCAction
+{
+    
+}
+
++(id) newReleaseAction;
+
+@end
+
 #endif

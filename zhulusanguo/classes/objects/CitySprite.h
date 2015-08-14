@@ -17,6 +17,7 @@
     int _posx;
     int _posy;
     int _capital;
+    int _cityLevel;
 }
 
 @property (nonatomic, assign) int cityID;
@@ -26,6 +27,8 @@
 @property (nonatomic, assign) int posx;
 @property (nonatomic, assign) int posy;
 @property (nonatomic, assign) int capital;
+@property (nonatomic, assign) int cityLevel;
+
 
 
 @end

@@ -1,0 +1,10 @@
+sips -Z 180 iosicon.png --out Icon-60@3x.png
+sips -Z 120 iosicon.png --out Icon-60@2x.png
+sips -Z 152 iosicon.png --out Icon-76@2x.png
+sips -Z 76 iosicon.png --out Icon-76.png
+sips -Z 72 iosicon.png --out Icon-72.png
+sips -Z 50 iosicon.png --out Icon-Small-50.png
+sips -Z 29 iosicon.png --out Icon-Small.png
+sips -Z 58 iosicon.png --out Icon-Small@2x.png
+sips -Z 57 iosicon.png --out Icon.png
+sips -Z 114 iosicon.png --out Icon@2x.png

@@ -18,6 +18,7 @@
 @synthesize cnName = _cnName;
 @synthesize enName = _enName;
 @synthesize capital = _capital;
+@synthesize cityLevel = _cityLevel;
 
 
 @end

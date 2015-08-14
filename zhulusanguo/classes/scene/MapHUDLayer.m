@@ -283,6 +283,17 @@
     
 }
 
+-(void) updateResourceLabel
+{
+    //假设_gold有和share manager 同步
+    _gold = [ShareGameManager shareGameManager].gold;
+    _wood = [ShareGameManager shareGameManager].wood;
+    _iron = [ShareGameManager shareGameManager].iron;
+    [moneyLabel setString:[NSString stringWithFormat:@"%d",_gold]];
+    [woodLabel setString:[NSString stringWithFormat:@"%d",_wood]];
+    [ironLabel setString:[NSString stringWithFormat:@"%d",_iron]];
+}
+
 -(void) scheduleAddInfo
 {
     if (uvi) {

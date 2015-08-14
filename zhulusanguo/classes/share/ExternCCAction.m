@@ -77,3 +77,34 @@
     return [[self class] actionWithDuration:_duration position: ccp(-delta_.x,-delta_.y) height:height_ jumps:jumps_];
 }
 @end
+
+
+//*****************************
+//  sprite invisible action
+//*****************************
+@implementation CCSpriteSetInvisible
+
++(id)newInvisibleAction
+{
+   id act = [CCCallBlockN actionWithBlock:^(CCNode *node) {
+                node.visible = NO;
+            }];
+    return act;
+}
+
+@end
+
+//****************************
+// node release self action
+//****************************
+@implementation CCNodeRelease
+
++(id)newReleaseAction
+{
+    id act = [CCCallBlockN actionWithBlock:^(CCNode *node) {
+        [node removeFromParentAndCleanup:YES];
+    }];
+    return act;
+}
+
+@end

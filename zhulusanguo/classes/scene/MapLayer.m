@@ -38,6 +38,7 @@
         //init sprite cache
         [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"sanguo.plist"];
         [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"sanguoeffect.plist"];
+        [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"sanguobattle.plist"];
         //sb.tag = 1000;
         [self addChild:bnode z:2];
         
@@ -51,7 +52,7 @@
         
         citySprites = [[NSMutableArray alloc] init];
         
-        NSString *query = @"SELECT id, cname, ename,xpos,ypos,flag,capital FROM city";
+        NSString *query = @"SELECT id, cname, ename,xpos,ypos,flag,capital,level FROM city";
         if (sqlite3_prepare_v2(_database, [query UTF8String], -1, &statement, nil) == SQLITE_OK) {
             while (sqlite3_step(statement) == SQLITE_ROW) {
                 //int uniqueId = sqlite3_column_int(statement, 0);
@@ -64,6 +65,7 @@
                 int ypos = (int) sqlite3_column_int(statement, 4);
                 int flag = (int) sqlite3_column_int(statement, 5);
                 int capital = (int) sqlite3_column_int(statement, 6);
+                int lev = (int) sqlite3_column_int(statement, 7);
                 
                 //CityInfoObject* cio = [[CityInfoObject alloc] init];
                 CitySprite *cs = [CitySprite spriteWithSpriteFrameName:@"city.png"];
@@ -76,6 +78,7 @@
                 cs.cnName = cname2;
                 cs.enName = ename2;
                 cs.position = ccp(xpos*0.5,bg.boundingBox.size.height - ypos*0.5);
+                cs.cityLevel = lev;
                 [bnode addChild:cs z:1];
                 [citySprites addObject:cs];
                 
@@ -102,8 +105,33 @@
                     CCRepeatForever *rf = [CCRepeatForever actionWithAction:a1];
                     [flagsp runAction:rf];
                     
+                    //show the king title
+                    NSString* cpname = [NSString stringWithFormat:@"capital%d.png",flag];
+                    CCSprite* cp = [CCSprite spriteWithSpriteFrameName:cpname];
+                    CGPoint cpp = ccp(cs.position.x - cs.boundingBox.size.width*0.4, cs.position.y + cs.boundingBox.size.height*0.4);
+                    cp.position = cpp;
+                    [self addChild:cp z:2];
                 }
                 
+                /*
+                //if this city belong to you , then show the level tag
+                if (flag == [ShareGameManager shareGameManager].kingID) {
+                    
+                    CCSprite* cp = [CCSprite spriteWithSpriteFrameName:@"capitalblue.png"];
+                    CGPoint cpp = ccp(cs.position.x - cs.boundingBox.size.width*0.4, cs.position.y + cs.boundingBox.size.height*0.4);
+                    cp.position = cpp;
+                    [self addChild:cp z:2];
+                    
+                    //add city level
+                    CCLabelTTF* clev = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%d",lev] fontName:@"Verdana-Bold" fontSize:15];
+                    //clev.color = ccBLUE;
+                    clev.color = ccRED;
+                    clev.position = ccp(cs.position.x - cs.boundingBox.size.width*0.4, cs.position.y + cs.boundingBox.size.height*0.4);
+                    [self addChild:clev z:3];
+                }
+                 */
+                
+                /*
                 //add captial
                 if (capital==1) {
                     NSString* cpname = [NSString stringWithFormat:@"capital%d.png",flag];
@@ -113,6 +141,7 @@
                     [self addChild:cp z:2];
                     
                 }
+                 */
                 
                 
                 
@@ -133,12 +162,35 @@
             NSString* cloudfile;
             cloudfile = @"cloud01.png";
             CloudSprite *ccsp = [CloudSprite spriteWithSpriteFrameName:cloudfile];
+            
             [ccsp initBoundary:bg.boundingBox.size.width withYPos:(80*i+arc4random()%30)];
             [bnode addChild:ccsp z:3];
         }
         
         
         
+        //add 黑洞
+        //CCParticleSystem* galaxy = [CCParticleSystemQuad particleWithFile:@"galaxy.plist"];
+        //galaxy.position = ccp(1200,175);
+        //galaxy.scale = 0.5;
+        //galaxy.autoRemoveOnFinish = YES;
+        //[self addChild:galaxy z:2];
+        
+        /*
+        CCSprite* galaxy = [CCSprite spriteWithSpriteFrameName:@"aura01.png"];
+        galaxy.position = ccp(1200, 175);
+        [self addChild:galaxy z:2];
+        
+        CCAnimation* gaani = [[CCAnimationCache sharedAnimationCache] animationByName:@"aura"];
+        gaani.restoreOriginalFrame = YES;
+        CCAnimate* gaa = [CCAnimate actionWithAnimation:gaani];
+        CCRepeatForever* grep = [CCRepeatForever actionWithAction:gaa];
+        [galaxy runAction:grep];
+        
+        CCLabelTTF* heidonglab = [CCLabelTTF labelWithString:@"黑洞" fontName:@"Verdana-Bold" fontSize:16];
+        heidonglab.position = galaxy.position;
+        [self addChild:heidonglab z:3];
+        */
         
         
         //schedule update

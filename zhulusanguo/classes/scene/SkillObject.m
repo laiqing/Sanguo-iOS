@@ -10,4 +10,6 @@
 
 @implementation SkillObject
 
+@synthesize needDragToCast=_needDragToCast;
+
 @end

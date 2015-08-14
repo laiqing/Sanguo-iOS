@@ -20,6 +20,7 @@
         
         [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"sanguo.plist"];
         [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"sanguoeffect.plist"];
+        [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"sanguobattle.plist"];
         
         [[ShareGameManager shareGameManager] initDefaultAllAnimationInScene];
         
@@ -746,6 +747,7 @@
 
 -(void) showArticleWindow
 {
+    [[SimpleAudioEngine sharedEngine] playEffect:@"menu.caf"];
     [self disableBuildingTouchable];
     
     //item window
@@ -775,6 +777,7 @@
 
 -(void) showSkillWindow
 {
+    [[SimpleAudioEngine sharedEngine] playEffect:@"menu.caf"];
     [self disableBuildingTouchable];
     
     //item window
@@ -804,6 +807,7 @@
 
 -(void) showRecruitWindow
 {
+    [[SimpleAudioEngine sharedEngine] playEffect:@"menu.caf"];
     [self disableBuildingTouchable];
     
     //item window
@@ -831,6 +835,7 @@
 
 -(void) showDistributeWindow
 {
+    [[SimpleAudioEngine sharedEngine] playEffect:@"menu.caf"];
     [self disableBuildingTouchable];
     
     //item window
@@ -860,6 +865,7 @@
 
 -(void) showHeroListWindow
 {
+    [[SimpleAudioEngine sharedEngine] playEffect:@"menu.caf"];
     [self disableBuildingTouchable];
     
     //item window
@@ -888,6 +894,7 @@
 
 -(void) showForgeWindow
 {
+    
     //if blacksmith not build , not show
     //CityInfoObject* cio = [[ShareGameManager shareGameManager] getCityInfoForCityScene:_cityID];
     if (cio.blacksmith == 0) {
@@ -907,7 +914,7 @@
         
         return;
     }
-    
+    [[SimpleAudioEngine sharedEngine] playEffect:@"menu.caf"];
     [self disableBuildingTouchable];
     
     //item window
@@ -935,6 +942,7 @@
 
 -(void) showTradeWindow
 {
+    [[SimpleAudioEngine sharedEngine] playEffect:@"menu.caf"];
     [self disableBuildingTouchable];
     
     //item window
@@ -948,6 +956,32 @@
     
     
     TradeLayer* al = [TradeLayer contentRect1:lrect contentRect2:rrect withCityID:_cityID];
+    CCScene* run = [[CCDirector sharedDirector] runningScene];
+    CCNode* anylayer = [run getChildByTag:4];
+    if (anylayer) {
+        [anylayer removeFromParentAndCleanup:YES];
+    }
+    
+    [swsp closeTipIfTipOpened];
+    
+    al.tag = 4;
+    [run addChild:al z:4];
+}
+
+-(void) showHireWindow
+{
+    [[SimpleAudioEngine sharedEngine] playEffect:@"menu.caf"];
+    [self disableBuildingTouchable];
+    
+    //item window
+    CGSize wsize = [[CCDirector sharedDirector] winSize];
+
+    CGPoint lorigin = ccp(wsize.width*0.5-240, wsize.height*0.5-120);
+    CGPoint rorigin = ccp(wsize.width*0.5-80, wsize.height*0.5-120);
+    CGRect lrect = CGRectMake(lorigin.x, lorigin.y, 144, 215);
+    CGRect rrect = CGRectMake(rorigin.x, rorigin.y, 320, 235);
+    
+    HireLayer* al = [HireLayer contentRect1:lrect contentRect2:rrect withCityID:_cityID];
     CCScene* run = [[CCDirector sharedDirector] runningScene];
     CCNode* anylayer = [run getChildByTag:4];
     if (anylayer) {

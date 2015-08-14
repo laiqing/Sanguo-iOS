@@ -63,39 +63,82 @@
         //item bg posx : -80 - 16 - 72
         
         //now add item
-        CGFloat hfheight;
+        CGFloat hfheight=0;
         NSArray* items = [[ShareGameManager shareGameManager] getArticleListFromCity:_cityID];
         int ilen = (int)[items count];
-        for (int i=0;i<ilen;i++) {
-            ArticleObject* ao = [items objectAtIndex:i];
-            //frame , image, cname , cdesc
-            CCSprite* hf = [CCSprite spriteWithSpriteFrameName:@"itemframe.png"];
-            hfheight = hf.boundingBox.size.height;
-            hf.position = ccp(wsize.width*0.5-168, wsize.height*0.5+ibgheight*0.5 - 25 - hfheight*0.5 -(hfheight+5)*i);
-            [leftLayer addChild:hf z:1];
-            
-            //image
-            NSString* afile = [NSString stringWithFormat:@"article%d.png",ao.aid];
-            DragableTouchSprite *mts = [DragableTouchSprite spriteWithSpriteFrameName:afile];
-            mts.position = ccp(hf.position.x - hf.boundingBox.size.width*0.5 + 25, hf.position.y);
-            [leftLayer addChild:mts z:2];
-            [mts initTheCallbackFunc0:@selector(checkReceiveSprite:) withCaller:self withTouchID:ao.aid needChangeImg:NO withImage0:afile withImage1:afile];
-            
-            //cname , cdesc
-            CCLabelTTF* namelabel = [CCLabelTTF labelWithString:ao.cname fontName:@"Arial" fontSize:12];
-            namelabel.anchorPoint = ccp(0, 0.5);
-            namelabel.color = ccWHITE;
-            namelabel.position = ccp(mts.position.x + 25, mts.position.y + 8);
-            [leftLayer addChild:namelabel z:2];
-            
-            CCLabelTTF* desclabel = [CCLabelTTF labelWithString:ao.cdesc fontName:@"Arial" fontSize:12];
-            desclabel.anchorPoint = ccp(0, 0.5);
-            desclabel.color = ccWHITE;
-            desclabel.position = ccp(mts.position.x + 25, mts.position.y - 8);
-            [leftLayer addChild:desclabel z:2];
-            
-            
-            
+        if (ilen==0) {
+            //do nothing
+        }
+        else {
+            for (int i=0;i<ilen;i++) {
+                ArticleObject* ao = [items objectAtIndex:i];
+                //frame , image, cname , cdesc
+                CCSprite* hf = [CCSprite spriteWithSpriteFrameName:@"itemframe4.png"];
+                hfheight = hf.boundingBox.size.height;
+                hf.position = ccp(wsize.width*0.5-168, wsize.height*0.5+ibgheight*0.5 - 25 - hfheight*0.5 -(hfheight+5)*i);
+                [leftLayer addChild:hf z:1];
+                
+                //image
+                NSString* afile = [NSString stringWithFormat:@"article%d.png",ao.aid];
+                DragableTouchSprite *mts = [DragableTouchSprite spriteWithSpriteFrameName:afile];
+                mts.position = ccp(hf.position.x - hf.boundingBox.size.width*0.5 + 25, hf.position.y+10);
+                [leftLayer addChild:mts z:2];
+                [mts initTheCallbackFunc0:@selector(checkReceiveSprite:) withCaller:self withTouchID:ao.aid needChangeImg:NO withImage0:afile withImage1:afile];
+                
+                //cname , cdesc
+                CCLabelTTF* namelabel = [CCLabelTTF labelWithString:ao.cname fontName:@"Arial" fontSize:12];
+                namelabel.anchorPoint = ccp(0, 0.5);
+                namelabel.color = ccWHITE;
+                namelabel.position = ccp(mts.position.x + 25, mts.position.y + 8);
+                [leftLayer addChild:namelabel z:2];
+                
+                CCLabelTTF* desclabel = [CCLabelTTF labelWithString:ao.cdesc fontName:@"Arial" fontSize:12];
+                desclabel.anchorPoint = ccp(0, 0.5);
+                desclabel.color = ccWHITE;
+                desclabel.position = ccp(mts.position.x + 25, mts.position.y - 8);
+                [leftLayer addChild:desclabel z:2];
+                
+                int gcost = ao.gold*0.5;
+                int wcost = ao.wood*0.5;
+                int icost = ao.iron*0.5;
+                
+                //
+                CCSprite* gg = [CCSprite spriteWithSpriteFrameName:@"gold.png"];
+                gg.scale = 0.3;
+                gg.position = ccp(mts.position.x, hf.position.y - 15);
+                [leftLayer addChild:gg z:2];
+                
+                CCSprite* ww = [CCSprite spriteWithSpriteFrameName:@"wood.png"];
+                ww.scale = 0.3;
+                ww.position = ccp(gg.position.x, gg.position.y - 8);
+                [leftLayer addChild:ww z:2];
+                
+                CCSprite* ii = [CCSprite spriteWithSpriteFrameName:@"iron.png"];
+                ii.scale = 0.3;
+                ii.position = ccp(gg.position.x, gg.position.y - 16);
+                [leftLayer addChild:ii z:2];
+                
+                CCLabelTTF* glab = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%d",gcost] fontName:@"Arial" fontSize:9];
+                glab.anchorPoint = ccp(0, 0.5);
+                glab.position = ccp(gg.position.x + 8, gg.position.y);
+                [leftLayer addChild:glab z:2];
+                
+                CCLabelTTF* wlab = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%d",wcost] fontName:@"Arial" fontSize:9];
+                wlab.anchorPoint = ccp(0, 0.5);
+                wlab.position = ccp(ww.position.x + 8, ww.position.y);
+                [leftLayer addChild:wlab z:2];
+                
+                CCLabelTTF* ilab = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%d",icost] fontName:@"Arial" fontSize:9];
+                ilab.anchorPoint = ccp(0, 0.5);
+                ilab.position = ccp(ii.position.x + 8, ii.position.y);
+                [leftLayer addChild:ilab z:2];
+                
+                MoveTouchSellSprite* ms = [MoveTouchSellSprite spriteWithSpriteFrameName:@"buildsellbtn.png"];
+                ms.position = ccp(ww.position.x + 65, ww.position.y);
+                [leftLayer addChild:ms z:2];
+                [ms initTheCallbackFunc:@selector(sellArticleForID:) withCaller:self withTouchID:ao.aid];
+                
+            }
         }
         
         maxBottomLeftY = (hfheight+5)*ilen - leftContent.size.height + 10 ;
@@ -326,7 +369,7 @@
     for (int i=0;i<ilen;i++) {
         ArticleObject* ao = [items objectAtIndex:i];
         //frame , image, cname , cdesc
-        CCSprite* hf = [CCSprite spriteWithSpriteFrameName:@"itemframe.png"];
+        CCSprite* hf = [CCSprite spriteWithSpriteFrameName:@"itemframe4.png"];
         hfheight = hf.boundingBox.size.height;
         hf.position = ccp(wsize.width*0.5-168, wsize.height*0.5+95 - hfheight*0.5 -(hfheight+5)*i);
         [leftLayer addChild:hf z:1];
@@ -334,7 +377,7 @@
         //image
         NSString* afile = [NSString stringWithFormat:@"article%d.png",ao.aid];
         DragableTouchSprite *mts = [DragableTouchSprite spriteWithSpriteFrameName:afile];
-        mts.position = ccp(hf.position.x - hf.boundingBox.size.width*0.5 + 25, hf.position.y);
+        mts.position = ccp(hf.position.x - hf.boundingBox.size.width*0.5 + 25, hf.position.y+10);
         [leftLayer addChild:mts z:2];
         [mts initTheCallbackFunc0:@selector(checkReceiveSprite:) withCaller:self withTouchID:ao.aid needChangeImg:NO withImage0:afile withImage1:afile];
         
@@ -350,6 +393,46 @@
         desclabel.color = ccWHITE;
         desclabel.position = ccp(mts.position.x + 25, mts.position.y - 8);
         [leftLayer addChild:desclabel z:2];
+        
+        int gcost = ao.gold*0.5;
+        int wcost = ao.wood*0.5;
+        int icost = ao.iron*0.5;
+        
+        //
+        CCSprite* gg = [CCSprite spriteWithSpriteFrameName:@"gold.png"];
+        gg.scale = 0.3;
+        gg.position = ccp(mts.position.x, hf.position.y - 15);
+        [leftLayer addChild:gg z:2];
+        
+        CCSprite* ww = [CCSprite spriteWithSpriteFrameName:@"wood.png"];
+        ww.scale = 0.3;
+        ww.position = ccp(gg.position.x, gg.position.y - 8);
+        [leftLayer addChild:ww z:2];
+        
+        CCSprite* ii = [CCSprite spriteWithSpriteFrameName:@"iron.png"];
+        ii.scale = 0.3;
+        ii.position = ccp(gg.position.x, gg.position.y - 16);
+        [leftLayer addChild:ii z:2];
+        
+        CCLabelTTF* glab = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%d",gcost] fontName:@"Arial" fontSize:9];
+        glab.anchorPoint = ccp(0, 0.5);
+        glab.position = ccp(gg.position.x + 8, gg.position.y);
+        [leftLayer addChild:glab z:2];
+        
+        CCLabelTTF* wlab = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%d",wcost] fontName:@"Arial" fontSize:9];
+        wlab.anchorPoint = ccp(0, 0.5);
+        wlab.position = ccp(ww.position.x + 8, ww.position.y);
+        [leftLayer addChild:wlab z:2];
+        
+        CCLabelTTF* ilab = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%d",icost] fontName:@"Arial" fontSize:9];
+        ilab.anchorPoint = ccp(0, 0.5);
+        ilab.position = ccp(ii.position.x + 8, ii.position.y);
+        [leftLayer addChild:ilab z:2];
+        
+        MoveTouchSellSprite* ms = [MoveTouchSellSprite spriteWithSpriteFrameName:@"buildsellbtn.png"];
+        ms.position = ccp(ww.position.x + 65, ww.position.y);
+        [leftLayer addChild:ms z:2];
+        [ms initTheCallbackFunc:@selector(sellArticleForID:) withCaller:self withTouchID:ao.aid];
         
         
         
@@ -519,6 +602,32 @@
     }
     
     
+}
+
+-(void) sellArticleForID:(NSNumber*)arID
+{
+    int ar = (int)[arID integerValue];
+    ArticleObject* ao = [[ShareGameManager shareGameManager] getArticleDetailFromID:ar];
+    //+ money
+    [ShareGameManager shareGameManager].gold += ao.gold*0.5;
+    [ShareGameManager shareGameManager].wood += ao.wood*0.5;
+    [ShareGameManager shareGameManager].iron += ao.iron*0.5;
+    
+    //run effect
+    [[SimpleAudioEngine sharedEngine] playEffect:@"upgrade.caf"];
+    
+    //update label
+    CCScene* run = [[CCDirector sharedDirector] runningScene];
+    CCLayer* main = (CCLayer*) [run getChildByTag:1];
+    if (main) {
+        [main performSelector:@selector(updateResourceLabel)];
+    }
+    
+    //remove item from the article table
+    [[ShareGameManager shareGameManager] removeArticleForID:ar cityID:_cityID];
+    
+    //refresh leftlayer
+    [self refreshLeftLayer];
 }
 
 -(void) updateLeftChildVisible:(CCNode*)ch

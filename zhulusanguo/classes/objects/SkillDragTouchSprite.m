@@ -75,7 +75,7 @@
             dragSprite = nil;
         }
         dragSprite = [ArticleDragSprite spriteWithSpriteFrameName:state0Image];
-        dragSprite.scale = 2;
+        dragSprite.scale = 1.5;
         
         dragSprite.skillID = touchID;
         

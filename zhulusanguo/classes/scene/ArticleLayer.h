@@ -18,6 +18,7 @@
 #import "ReceiveDropSprite.h"
 #import "ArticleDragSprite.h"
 #import "CCLabelTTFWithInfo.h"
+#import "MoveTouchSellSprite.h"
 
 @interface ArticleLayer : CCLayer {
     int _dragItemID;  //for item in left layer id , or in right layer id.
@@ -60,5 +61,6 @@
 -(void) updateArticleItemForHero:(int)hid withArticle:(int)aid articlePos:(int)apid;
 
 -(void) checkReceiveSprite:(ArticleDragSprite*)_drag;
+-(void) sellArticleForID:(NSNumber*)arID;
 
 @end

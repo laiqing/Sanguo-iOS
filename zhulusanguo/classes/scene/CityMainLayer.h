@@ -36,6 +36,7 @@
 #import "HeroListLayer.h"
 #import "ForgeLayer.h"
 #import "TradeLayer.h"
+#import "HireLayer.h"
 
 @interface CityMainLayer : CCLayer<CityHUDProtocol> {
     int _cityID;

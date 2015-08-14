@@ -110,6 +110,7 @@
 	{
 		_loops = 1;
 		_delayPerUnit = delay;
+        _totalDelayUnits = 0;
 
 		self.frames = [NSMutableArray arrayWithCapacity:[array count]];
 		
@@ -131,6 +132,7 @@
 	{
 		_delayPerUnit = delayPerUnit;
 		_loops = loops;
+        _totalDelayUnits = 0;
 
 		self.frames = [NSMutableArray arrayWithArray:arrayOfAnimationFrames];
 

@@ -104,7 +104,7 @@
                 dragSprite = nil;
             }
             dragSprite = [UnitDragSprite spriteWithSpriteFrameName:state0Image];
-            dragSprite.scale = 2;
+            dragSprite.scale = 1.5;
             
             dragSprite.unitTypeID = ho.troopType;
             dragSprite.heroID = _heroID;

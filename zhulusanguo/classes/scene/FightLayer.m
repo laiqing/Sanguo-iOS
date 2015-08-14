@@ -200,6 +200,7 @@
     //add hero id to the list
     NSNumber* hh = [NSNumber numberWithInt:hid];
     [_heroSelected addObject:hh];
+    
     //get the hero city pos and target city pos sqrt
     int fee = [[ShareGameManager shareGameManager] calcHeroDiaoDongFeet:hid targetCityID:_targetCityID];
     _payment += fee;
@@ -223,6 +224,7 @@
     }
     [_heroSelected removeObject:needRemove];
     //calc the payment
+    
     int fee = [[ShareGameManager shareGameManager] calcHeroDiaoDongFeet:hid targetCityID:_targetCityID];
     _payment -= fee;
     if (_payment<0) {
@@ -232,9 +234,12 @@
     CCLabelTTF* ggtext = (CCLabelTTF*)[self getChildByTag:PAYMENT_TEXT_TAG];
     [ggtext setString:[NSString stringWithFormat:@"%d",_payment]];
     
+    
 }
 
-
+//*************************************************
+//  to do : add go to battle scene
+//*************************************************
 -(void) fightToTargetCity
 {
     [[SimpleAudioEngine sharedEngine] playEffect:@"menu.caf"];
@@ -256,6 +261,25 @@
         [warn performSelector:@selector(removeFromParent) withObject:nil afterDelay:1.2];
         return;
     }
+    else {
+        //remove money
+        [ShareGameManager shareGameManager].gold -= _payment;
+        CCLayer<MapHUDProtocol>* hud = (CCLayer<MapHUDProtocol>*)[[[CCDirector sharedDirector] runningScene] getChildByTag:2];
+        if (hud) {
+            [hud updateResourceLabel];
+        }
+        //add auto save record here
+        
+        
+        //call battlescene and set target city id, attack herolist , and battle main layer need to get the defend hero list.
+        
+        
+    }
+    
+    
+    
+    
+    
     [self performSelector:@selector(removeFromParent) withObject:nil afterDelay:0.5];
     
 }

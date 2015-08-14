@@ -32,19 +32,35 @@
     int _effect2;
     
     CGPoint _casterPosition;  // (2,2) - (19,9)
+    CGPoint _targetPosition;  //  必须在casterPosition距离为4的范围内
     
     id _caster;
     id _destination;  //dest hero or troop
     
     
+    int _skillEffectRange; //如，只对自己用，只对自己及范围内友军用，只对范围内敌军用....
+    int _damageRate;  //伤害率，例如火计是1.2，水计是1.5，雷击时1.8
+    int _needDragToCast; // 0 , player touch to cast
+                         // 1 , player drag to target to cast
+    
+    
 }
 
 
--(void) setDamage:(int)da;  //call by caster
+//init all var....
+-(void) initAllFromSkillID:(int)sid FromHero:(int)hid;
+-(void) initAllFromSkillID:(int)sid FromArmy:(int)armyTypeID withHeroLevel:(int)hlev;  //1.
+
 -(void) calcTargetRange;    //获得layer对象里的所有hero 和 troop，计算其是否在自己的攻击范围内，然后让layer给这些hero的z更高等级上加上攻击图标
                             //如果能攻击死，则加上一个骷髅头
 -(void) executeSkill;
--(BOOL) checkTargetValid;   //检验对方是否合适使用此技能
--(void) removeEffect;       //when call by scene, remove this effect on destination
+
+-(BOOL) checkTargetHeroValid:(int)hid;
+-(BOOL) checkTargetArmyValid:(int)armyTypeID;   //检验对方是否合适使用此技能
+
+-(void) removeEffect;       //when call by scene, remove this effect on destination , remove the icon on all possible target unit.
+
+
+@property (assign,nonatomic) int needDragToCast;
 
 @end

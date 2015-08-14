@@ -23,6 +23,9 @@
 #define FRAME_RATE 60
 #define BOUNCE_TIME 0.2f
 
+#define GRID_MAX_WIDTH 23
+#define GRID_MAX_HEIGHT 11
+
 //payment_text_tag used in diaodong layer and fight layer , when select hero or unselect hero, it will change cost text
 #define PAYMENT_TEXT_TAG 9999
 
@@ -91,7 +94,7 @@
 #define TROOP_ARCHER_ATTACK 10
 #define TROOP_ARCHER_MENTAL 10
 #define TROOP_ARCHER_MOVE 5
-#define TROOP_ARCHER_ATTACK_RANGE 3
+#define TROOP_ARCHER_ATTACK_RANGE 4
 #define TROOP_ARCHER_COST_GOLD 30
 #define TROOP_ARCHER_COST_WOOD 1
 #define TROOP_ARCHER_COST_IRON 0
@@ -121,10 +124,23 @@
 #define TROOP_BALLISTA_ATTACK 30
 #define TROOP_BALLISTA_MENTAL 0
 #define TROOP_BALLISTA_MOVE 3
-#define TROOP_BALLISTA_ATTACK_RANGE 5
+#define TROOP_BALLISTA_ATTACK_RANGE 6
 #define TROOP_BALLISTA_COST_GOLD 200
 #define TROOP_BALLISTA_COST_WOOD 3
 #define TROOP_BALLISTA_COST_IRON 3
+
+
+#define SKILL_EFFECT_RANGE_SELF 1
+#define SKILL_EFFECT_RANGE_UNIT_ONLY_4 2
+#define SKILL_EFFECT_RANGE_SELF_HERO_ONLY_4 3
+#define SKILL_EFFECT_RANGE_ALL_FRIEND_4 4
+
+#define SKILL_EFFECT_RANGE_ENEMY_UNIT_ONLY_4 5
+#define SKILL_EFFECT_RANGE_ENEMY_HERO_ONLY_4 6
+#define SKILL_EFFECT_RANGE_ALL_ENEMY_IN_4 7
+
+#define SKILL_EFFECT_FULL_MAP_NOT_OCCUPIED 8  //地道，祈雨，晴天
+#define SKILL_EFFECT_RANGE_MAP_NOT_OCCUPIED 9 //陷阱，拒马，诏书
 
 // 12 * 2000 = 24000, 12*10 = 120 , 120  20*a + 30*b + 100*c + 80*d + 200*e <= 24000
 //                                              b + 2c + 2d + 3e <= 120
@@ -171,6 +187,7 @@ typedef enum {
 
 -(void) popCityInfoWithCityID:(int)cid;
 -(void) removePopCityInfo;
+-(void) updateResourceLabel;
 
 @end
 
@@ -270,11 +287,16 @@ extern int const ironToWoodRate[];
 -(NSArray*) getArticleListFromCity:(int)cid;
 -(ArticleObject*) getArticleDetailFromID:(int)aid;
 -(HeroObject*) getHeroInfoFromID:(int)hid;
+-(NSArray*) getUnemploymentHeroListFromCity:(int)cid;
+-(void) hireHeroWithID:(int)hid forKing:(int)kid;
 
 -(void) addArticleForID:(int)aid cityID:(int)cid;
 -(void) removeArticleForID:(int)aid cityID:(int)cid;
 -(void) removeArticleFromHero:(int)heroID cityID:(int)cid article:(int)aid articlePos:(int)posID;
 -(void) updateHeroaddArticle:(int)heroID newArticle:(int)aid articlePos:(int)posID;
+
+-(void) updateCityTroopCount:(int)tcount withTroopType:(int)ttype withCityID:(int)cid;
+-(void) updateCityTroopCountWithCityID:(int)cid withKingID:(int)kid;
 
 -(void) generateRandomMagicTower:(int)cityID towerLevel:(int)tlev;
 -(void) heroLearnSkill:(int)heroID skill:(int)skillID skillPos:(int)skillPosID;
@@ -284,11 +306,28 @@ extern int const ironToWoodRate[];
 -(void) heroRecruitTroop:(int)heroID newTroopCount:(int)nc;
 -(void) updateHeroTroopCount:(int)hid1 withCount1:(int)c1 hero2:(int)hid2 withCount2:(int)c2 withTroopType:(int)tt;
 
+//------------------------------
+//for battle scene
+//------------------------------
+-(void) lostHero:(int)hid withOwnerID:(int)oid;  //战败，失去某个武将
+-(NSArray*) getBotCityBestSixHero:(int)cityID;
+-(void) addSkillToBotCityHero:(int)cityID forKing:(int)kid;
+
+-(CGPoint) getPositionTransform:(CGPoint)heroPos;
+-(BOOL) isValidPosition:(CGPoint)pos;
+-(NSArray*) getSkillAvailableForStrength:(int)strength forIntelligence:(int)intelligence;
+-(NSArray*) getPassiveSkillAvailableForStrength:(int)strength forIntelligence:(int)intelligence;
+-(void) generateHeroSkill:(int)hid;
+
 
 
 //-----------------------------------
 //  save game , del game , load game
 //-----------------------------------
+
+-(void) saveProgress;  //save the player info to the table playerinfo
+-(void) saveBattleProgress; 
+
 -(void) saveGameToRecord:(int)recID;
 -(void) loadGameFromRecord:(int)recID;
 -(void) autoSaveCurrentDB;

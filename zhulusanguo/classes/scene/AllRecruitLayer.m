@@ -1218,6 +1218,9 @@
     int newcount = recruitTroopCount + currentTroopCount;
     [[ShareGameManager shareGameManager] heroRecruitTroop:currentHeroID newTroopCount:newcount];
     
+    //update the city troop count
+    [[ShareGameManager shareGameManager] updateCityTroopCount:recruitTroopCount withTroopType:currentTroopType withCityID:_cityID];
+    
     //update the right layer
     CCLabelTTFWithInfo *cli;
     CCARRAY_FOREACH(troopCountLabels, cli)

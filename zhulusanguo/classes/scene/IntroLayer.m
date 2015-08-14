@@ -41,8 +41,24 @@
 {
     if( (self=[super init])) {
         
+        /*
+        int originstate = 1; //0001
+        int poisonstate = 2; //0010
+        int bads = 3;        //0011
+        int total = bads | poisonstate;   //中毒操作始终是 | , 解毒操作是先判断是否中毒，中毒了则 ^，否则不操作  ， 判断是否中毒
+        int st = sizeof(int);
+        int pp = originstate << (st-2) >> (st-1) ;
+        CCLOG(@"the poison tag is %d",pp);
+        */
+        
         [[SimpleAudioEngine sharedEngine] preloadBackgroundMusic:@"sanguo_menu2.aifc"];
-        [[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"sanguo_menu2.aifc" loop:YES];
+        [[SimpleAudioEngine sharedEngine] preloadBackgroundMusic:@"sanguo_menu3.aifc"];
+        int r = arc4random()%2;
+        if (r==0)
+            [[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"sanguo_menu2.aifc" loop:YES];
+        else
+            [[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"sanguo_menu3.aifc" loop:YES];
+        
         
         [[SimpleAudioEngine sharedEngine] preloadEffect:@"menu.caf"];
         [[SimpleAudioEngine sharedEngine] preloadEffect:@"upgrade.caf"];
@@ -51,6 +67,7 @@
         
         [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"sanguo.plist"];
         [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"sanguoeffect.plist"];
+        [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"sanguobattle.plist"];
         
         CGSize size = [[CCDirector sharedDirector] winSize];
         
@@ -68,7 +85,7 @@
         [title runAction:tfi];
         
         CCSprite *dragon = [CCSprite spriteWithSpriteFrameName:@"dragon.png"];
-        dragon.position = ccp(size.width*0.85, size.height*0.65);
+        dragon.position = ccp(size.width*0.82, size.height*0.65);
         [self addChild:dragon z:1];
         
         CCFadeIn *dfi = [CCFadeIn actionWithDuration:8];

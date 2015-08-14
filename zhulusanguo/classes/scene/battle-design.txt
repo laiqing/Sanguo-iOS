@@ -1,0 +1,143 @@
+1. touch event
+
+//只会有两种操作，地图拖拉，选取某个单位，敌人turn时，两种操作都禁止
+
+//当前状态：
+1.敌人turn，不能做任何操作。
+2.自己的turn，未选择英雄或士兵，（可以拖拉地图，可以选择英雄或士兵，也可以看敌人的）
+3.自己的turn，已选择英雄或士兵，(拖地图时隐藏选中过的英雄的可移动轨迹以及技能图标按钮，点中其他英雄或士兵时重新选中)
+4.自己的turn，英雄或士兵正在操作。不能进行任何操作。
+
+
+//skill的限制
+1.只能对自己用
+2.只能对自己及范围内友军用
+3.只能对范围内敌军用
+4.全范围的无被占领的地图位置（地道、祈雨、晴天）
+5.范围内的无被占领的地图位置（拒马，陷阱）
+
+touch on the map , if not self turn , then can only move the map.
+                   if self turn.
+                   if no unit selected , then can drag to move the map.
+                   if unit selected, then move to the pos or show reason that unit can't move here.
+                   if unit selected and skill selected, then use skill or show reason that why cannot use skill.
+
+
+touch on the unit, if not self turn, no action. only show unit info window.
+                   if self turn.
+                                if unit selected, and skill selected, then cast the skill on the unit.
+                                if unit selected, then unselect selected unit, and show the new unit info window and skill buttons.
+
+
+z order:
+
+main: z:0
+bg: 0
+bg mask: 1
+bg mask square: 2
+unit:3
+
+hud: z:1
+
+
+
+
+skill {
+
+CCArray* targets;
+
+-(void) addTarget:(unit*)target;
+
+-(void) beforeCast; -- main layer loop all other friend unit , check if has the cooperate skill, loop the target bot unit, check if has defend skill.
+
+-(void) calcDamage;
+
+-(void) realCast; -- animation , data calc and set .
+
+-(void) afterTurnFinish;  -- remove the effect of this turn
+
+// add new CCSequence to show other friend passive animation,
+
+// animation: self cast animation , friend animation, target animation. sequence.
+
+}
+
+unit {
+{[hp,+3,turn:10,undo:hp -3],[hp,-2,turn:12,undo: hp-2],[attack,+3,turn:15,undo:attack-3],[attack,*2,turn:15,undo:attack/2],[move,+3,turn:16,undo:move-3],[attack range:+3,turn:17,undo:attack range -3]}
+
+cast skill animation,
+it need add a ccdelay to wait for the comspire skill animation to finish.
+
+cast skill animation, positive
+1. show card png
+2. show speech dialog
+3. animation on self
+4. for ccsprite friend loop in layer.friends , friend found any passive skill to help this. if has, then start a ccdelaytime and repeat 1-3, and add show a effect dialog with text show harm *2 , etc.
+5. check ccsprite bot target if it has passive skill to overcome this spell. if has, then change the skill target.
+6. check every bot ccsprite if it has the skill 51. if has then change the skill target.
+
+}
+
+unit.onUnderPhyAttack() { check if has 激怒 to add attack }
+unit.onBeforePhyAttack() { check if has the 爆击 to add attack then remove attack }
+// unit.onAfterPhyAttack() { remove the 爆击 attack , change the state 无双=normal }
+
+int state = xxxxxxxx 8 位  0000 0001 normal  0000 0010 混乱  0000 0100 中毒  0000 1000 无双
+用亦或计算 某位是否为 中毒， 例如 0000 0100 ^ current state = 0000 0001 ，说明中毒了 ，解毒则 state = state ^ 0000 0100
+
+
+map: z:0
+map mask: z:2
+unit: z:3
+
+---------- unit move square z:1
+
+unit desc bg: z:4
+unit desc text: z:5
+unit talk speech: z:6
+unit animation: z:6
+unit magic effect: z:6
+移动的斜线  z:6
+
+hud:
+infobar z:0
+sunny tip  z:1 , city name z:1 , turn info z:1  2 button z:1 , pausegame button z:0
+player info bg: z:0 , text on it z: 1
+
+
+
+skill card , z:3
+unit magic effect z:4
+
+
+
+技能的animation：
+add sprite -- skill card , scale 0.1
+抛物线移动 , 同时 scale = 1
+remove sprite
+
+ccdelay time.
+self add animation sprite
+sprite run animation
+remove sprite
+
+for friends loop:
+ccdelay time.
+layer add sprite and set sprite
+sprite run animation
+remove sprite
+
+for enemy loop:
+if enemy is not target and enemy.skill react to the skill
+ccdelay time.
+passive skill. //只有扰咒可以启动
+
+
+caster run animation fight.
+
+target list run animation.
+
+
+
+
+

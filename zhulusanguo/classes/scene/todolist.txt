@@ -4,7 +4,27 @@
 
 1. hero list layer, the hero attack may not correct.  (check)
 
-2. article list layer, add the sell button.
+2. article list layer, add the sell button. (check)
 
-3. hire layer coding....
+3. hire layer coding.... (check)
 
+
+//2015.5.29
+
+1. everytime in battle move, after move one step, callback to check if the new position have trap.
+
+2. hire hero bug, the second hire error. (check)
+
+3. map scene add a new layer, when enemy attack , show that , like the fight layer. (check)
+
+4. map scene, every city with a tag to show city level, not the hero head icon. (check)
+
+5. not finish, fightlayer, underattacklayer, need add goto battle scene function.
+
+6. battle map png move to special position function.... , move to action....
+
+7. bug, 招完兵后，城市的总兵力没有增加 (check)
+
+//2015.6.7
+
+1. 如果武将在战斗中失去，则需要update autoIncResource表和cityWithSpecialHero表
